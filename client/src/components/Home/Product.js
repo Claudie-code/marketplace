@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../lib/state/actions";
 
 const Product = ({ id, name, price, category }) => {
+    const dispatch = useDispatch();
+    const addToCartAction = () => dispatch(addToCart({id, name, price}));
+
     return (
     <div className="col-xl-3 col-lg-3 col-md-4 col-6">
         <div className="card card-product-grid">
@@ -21,11 +26,18 @@ const Product = ({ id, name, price, category }) => {
                 <div className="price h5 mt-2">${ price }</div>
                     <div className="btn-group btn-group-toggle float-right" data-toggle="buttons">
                         <label className="btn btn-warning active">
-                            <input type="radio" name="options" id="option1" checked /><i className="fas fa-heart"></i>
+                            <input type="radio" name="options" id="option1" checked />
+                            <i className="fas fa-heart"></i>
                         </label>
 
                         <label className="btn btn-success">
-                            <input onClick={() => null} type="radio" name="options" id="option3" /><i className="fas fa-shopping-cart"></i>
+                            <input 
+                                onClick={addToCartAction} 
+                                type="radio" 
+                                name="options" 
+                                id="option3" 
+                            />
+                            <i className="fas fa-shopping-cart"></i>
                         </label>
                     </div>        
             </figcaption>

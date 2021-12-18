@@ -1,12 +1,26 @@
-import React from 'react'
-import Layout from './Layout'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Layout from './Layout';
+import Row from './Row';
 
 const Cart = () => { 
+	const { items } = useSelector((state) => ({...state.cart }));
+
 	return (
 	<>
-	<Layout>
-				<p className="d-flex justify-content-center align-items-center" style={{fontSize: 20}}>Your Cart is Empty</p>
-	</Layout>
+		<Layout>
+			{true && 
+				<p 
+					className="d-flex justify-content-center align-items-center" 
+					style={{fontSize: 20}}
+				>
+					Your Cart is Empty
+				</p>
+			}
+			{items.map(item => <Row key={item.id} {...item} />)}
+		</Layout>
 	</>
-)}
-export default Cart
+	)
+};
+
+export default Cart;

@@ -18,7 +18,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-stripe-elements": "^6.1.2",
-    "realm-web": "^1.0.0",
+    "realm-web": "^1.5.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",

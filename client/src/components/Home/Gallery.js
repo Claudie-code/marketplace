@@ -10,7 +10,9 @@ const Loading = ({ isLoading }) => isLoading && <p style={{marginLeft: 18, fontS
 
 const Gallery = () => {
 	const dispatch = useDispatch();
-	
+	const state = useSelector(state => ({...state.products}));
+	const { items, isLoading } = state;
+
 	// fetch products
 	useEffect(() => {
 		dispatch(fetchProducts());
@@ -23,7 +25,9 @@ const Gallery = () => {
 				<h3 className="title-section">Products</h3>
 			</header>
 			<div className="row">
-					{/* Listing */}
+				<Loading isLoading={isLoading} />
+				<Results {...state} />
+				<Empty isVisible={!!items} />
 			</div> 
 			<div className="clearfix"></div>
 		</section>

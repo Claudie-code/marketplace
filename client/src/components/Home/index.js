@@ -109,6 +109,7 @@ const Home = () => {
     return(
       <div className="container" style={{marginTop: '130px'}}>  
        	<Deals />
+        <Gallery />
       </div>
     )
 }

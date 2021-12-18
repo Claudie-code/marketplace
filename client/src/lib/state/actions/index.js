@@ -84,7 +84,8 @@ export const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(getProductsPending);
     getProducts()
-    .then(data => dispatch(getProductsSuccess(data)))
+    .then(response => returnProductsArrays(response.data))
+    .then(productsData => dispatch(getProductsSuccess(productsData)))
     .catch(error => dispatch(getProductsFailure(error)));
   }
 }

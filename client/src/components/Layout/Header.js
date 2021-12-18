@@ -1,4 +1,5 @@
 import React from 'react';  
+import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 
 const UserLogin = ({ user  }) => { 
@@ -21,6 +22,9 @@ const UserLogin = ({ user  }) => {
 }
 
 const Header = () => {
+	const { items } = useSelector(state => ({...state.cart}));
+	const quantity = items.length > 0 ? items.length : "";
+
 	return(<nav className="navbar d-flex p-md-0 navbar-expand-lg navbar-light bg-light border-bottom">
 			<div className="container-fluid">
 			<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +48,7 @@ const Header = () => {
 					</li>
 					<li><a href="#" className="nav-link" disabled={true}> My Orders </a></li>
 					<li><a href="#" className="nav-link"> <i className="fas fa-bell"></i></a></li>
-					<li><Link to={'/cart'} className="nav-link"><i className="fas fa-shopping-cart"></i></Link></li><li> {' '}<span className="badge badge-primary">{/* cart quantity */}</span></li>
+					<li><Link to={'/cart'} className="nav-link"><i className="fas fa-shopping-cart"></i></Link></li><li> {' '}<span className="badge badge-primary">{quantity}</span></li>
 				</ul> 
 			</div> 
 			</div> 

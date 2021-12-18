@@ -1,6 +1,17 @@
 import React from 'react';  
+import { useDispatch } from 'react-redux';
+import { removeFromCart, updateCart } from '../../lib/state/actions';
 
 const Row = ({ id, name, price, quantity}) => { 
+    const dispatch = useDispatch();
+    const updateCartAction = (event) => { 
+        dispatch(updateCart(id, event.target.value));
+    };
+    const removeFromCartAction = (event) => {
+        event.preventDefault();
+        dispatch(removeFromCart(id));
+    };
+
     return (
         <tr>
             <td>
@@ -12,7 +23,7 @@ const Row = ({ id, name, price, quantity}) => {
                 </figure>
             </td>
             <td> 
-                <select className="form-control" value={quantity} onChange={() => null}>
+                <select className="form-control" value={quantity} onChange={updateCartAction}>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -22,7 +33,7 @@ const Row = ({ id, name, price, quantity}) => {
             </td>
             <td>    
                 <div className="price-wrap"> 
-                    <var className="price">$0.00</var> 
+                    <span className="price">${price * quantity}</span> 
                 </div>
             </td>
             <td className="text-right"> 
