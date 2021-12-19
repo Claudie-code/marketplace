@@ -1,15 +1,23 @@
 import React from 'react';  
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import useAuthentication from '../../lib/hooks/useAuthentication';
 
 const UserLogin = ({ user  }) => { 
+	const { handleUserLogout } = useAuthentication();
+
+	const logout = () => {
+		handleUserLogout();
+		setTimeout(() => window.location.reload(), 1000);
+	};
+
 	return (
 		<>
 			<li><span className="nav-link">
 				{!!user ?
 					<>
-						<button className="btn btn-danger btn-sm" onClick={() => null}>logout</button>{" "}
-						<span><b>Hi, Client</b></span>
+						<button className="btn btn-danger btn-sm" onClick={logout}>logout</button>{" "}
+						<span><b>Hi, {user?.first}</b></span>
 					</> :
 					<span>
 						<Link to={'/login'}>login</Link> or <Link to={'/register'}>register</Link>
@@ -22,6 +30,7 @@ const UserLogin = ({ user  }) => {
 }
 
 const Header = () => {
+	const { user } = useSelector(state => state.user);
 	const { items } = useSelector(state => ({...state.cart}));
 	const quantity = items.length > 0 ? items.length : "";
 
@@ -32,7 +41,7 @@ const Header = () => {
 			</button>
 			<div className="collapse navbar-collapse" id="navbarTop4">
 					<ul className="navbar-nav mr-auto">
-					<UserLogin  />
+					<UserLogin user={user} />
 					<li><a href="#" className="nav-link" disabled={true}> Deals </a></li>
 					<li><Link className="nav-link" to={'/help'}>Help</Link></li>
 				</ul>

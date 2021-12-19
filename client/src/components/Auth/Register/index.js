@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import * as Input from '../Input';
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
 import useAuthentication from '../../../lib/hooks/useAuthentication';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Alert = ({ isVisible }) => (
 	isVisible &&
@@ -31,6 +31,7 @@ const options = ['Uzbekistan', 'Russia', 'United States', 'India', 'Afganistan']
 const Register = () => { 
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const { user, error } = useSelector(state => state.user);
 	const { handleUserRegistration } = useAuthentication(dispatch);
 	const {
 		formValues,
@@ -63,11 +64,10 @@ const Register = () => {
 			password, 
 			confirm_password
 		};
-		handleUserRegistration(newUser).then(() => {
-			console.log('user succesfully created')
-			setTimeout(() => history.push('/'), 2000);
+		handleUserRegistration(newUser).then((user) => {
+			console.log('user succesfully created', user)
+			user && setTimeout(() => history.push('/'), 2000);
 		})
-		setTimeout(() => history.push('/'), 2000)
 	};
 	return (
 	<>
@@ -75,6 +75,8 @@ const Register = () => {
       <article className="card-body">
 			<header className="mb-4"><h4 className="card-title">Sign up</h4></header>
 			{/* feedback et message d'erreurs */}
+			<ErrorMessage error={error} />
+			<Alert isVisible={!!user} />
  			<form name="register" onSubmit={handleOnSubmit}>
 				<div className="form-row">
 					<Input.Text label="First Name" name='first' value={first} onChange={handleOnChange} />

@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { Link, useHistory } from "react-router-dom";
 import * as Input from '../Input'
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
+import useAuthentication from '../../../lib/hooks/useAuthentication';
+import { useDispatch, useSelector } from "react-redux";
 
 const Alert = ({ isVisible }) => (
 	isVisible &&
@@ -22,7 +24,9 @@ const defaultValues = {
 }
 const Login = () => { 
   const history = useHistory();
-
+  const dispatch = useDispatch();
+  const { user, error } = useSelector(state => state.user);
+  const { handleUserLogin } = useAuthentication(dispatch);
   const {
 		formValues,
 		validate,
