@@ -67,7 +67,7 @@ const Register = () => {
 		handleUserRegistration(newUser).then((user) => {
 			console.log('user succesfully created', user)
 			user && setTimeout(() => history.push('/'), 2000);
-		})
+		});
 	};
 	return (
 	<>

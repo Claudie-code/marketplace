@@ -1,6 +1,5 @@
-import React from 'react';  
-import {Route } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';  
+import { Route } from "react-router-dom";
 import Home from './Home'
 import About from './Misc/About'
 import Help from './Misc/Help'
@@ -12,8 +11,17 @@ import Success from './Checkout/Success'
 import Cancel from './Checkout/Cancel'
 import Cart from './Cart'
 import Layout from './Layout'
+import useAuthentication from '../lib/hooks/useAuthentication';
+import { useDispatch } from 'react-redux';
 
 const App = () => {
+  const dispatch = useDispatch();
+  const { handleAuthentication } = useAuthentication(dispatch);
+  
+  useEffect(() => {
+    handleAuthentication();
+  }, []);
+
   return (
       <Layout>
         <Route exact path="/" component={Home} />

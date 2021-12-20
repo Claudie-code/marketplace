@@ -48,7 +48,12 @@ const Login = () => {
 
   const handleOnSubmit = (event) => {
 		event.preventDefault();
-		setTimeout(() => history.push('/'), 2000)
+		handleUserLogin(email, password)
+		.then(currentUser => {
+			console.log(currentUser)
+			currentUser && setTimeout(() => history.push('/'), 2000);
+		});
+		
 	};
 
   return(<>
@@ -56,6 +61,8 @@ const Login = () => {
       <div className="card-body">
         <h4 className="card-title mb-4">Sign in</h4>
         {/* feedback et message d'erreurs */}
+		<ErrorMessage error={error} />
+		<Alert isVisible={!!user} />
        	<form name="login" onSubmit={handleOnSubmit}>
           {/* 
           <a href="#" className="btn btn-facebook btn-block mb-2"> <i className="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
