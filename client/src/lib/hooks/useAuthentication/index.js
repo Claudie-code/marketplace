@@ -1,5 +1,5 @@
 import * as Realm from "realm-web";
-import { addUser } from "../../service";
+import { addUser, getUser } from "../../service";
 import { app } from '../../service/mongoDB-sdk';
 import { handleAuthenticationError, handleLogin, handleLogout } from '../../state/actions/authentication';
 
@@ -42,8 +42,10 @@ const useAuthentication = (dispatch) => {
             app.logIn(Realm.Credentials.emailPassword(email, password))
             .then(async () => {
                 const currentUser = await app.currentUser;
-                resolve(currentUser);
-                dispatch(handleLogin(currentUser));
+                getUser(currentUser).then(userProfile => {
+                    resolve(userProfile);
+                    dispatch(handleLogin(userProfile));
+                });
             })
             .catch(error => { dispatch(handleAuthenticationError(error)) });
         })
@@ -51,7 +53,11 @@ const useAuthentication = (dispatch) => {
 
     async function handleAuthentication() {
         const currentUser = await app.currentUser;
-        dispatch(handleLogin(currentUser));
+        !!currentUser && getUser(currentUser)
+        .then(userProfile => {
+            dispatch(handleLogin(userProfile));
+        })
+        .catch(error => { dispatch(handleAuthenticationError(error)) });
     };
 
     return {

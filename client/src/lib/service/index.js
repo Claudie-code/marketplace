@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+
+// GET
+
 export const getProducts = () => {
     return new Promise((onSuccess, onFail) => {
         axios
@@ -13,6 +16,22 @@ export const getProducts = () => {
         .catch((error) => { onFail(error) } );
     })
 };
+
+export const getUser = (body) => {
+    return new Promise((onSuccess, onFail) => {
+        axios
+        .get('http://localhost:5000/api/user', body.email)
+        .then((response, error) => {
+            if(!response || error) {
+                return onFail(`Response failure : ${error}`);
+            }
+            onSuccess(response.data);
+        })
+        .catch((error) => { onFail(error) } );
+    })
+};
+
+//POST
 
 export const addUser = (body) => {
     return new Promise((onSuccess, onFail) => {
