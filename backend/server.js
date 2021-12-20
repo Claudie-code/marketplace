@@ -5,6 +5,7 @@ const cors = require("cors");
 const app = express();
 const routes = express.Router();
 app.use('/api', routes);
+require('dotenv').config()
  
 // body-parser
 routes.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +17,7 @@ routes.use(cors());
 
 //mongoDB client
 const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://marketplace:marketplacepassword@cluster-marketplace.sl3f7.mongodb.net/marketplace?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster-marketplace.sl3f7.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const DATABASE = "marketplace";
 
