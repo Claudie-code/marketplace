@@ -34,7 +34,8 @@ client.connect((err) => {
 
   !err && console.log('Successfully connected to database');
   const db = client.db(DATABASE)
-  const products = db.collection("products")
+  const products = db.collection("products");
+  const users = db.collection("users");
 
   routes.get('/products', (req, res) => {
     products
@@ -47,22 +48,32 @@ client.connect((err) => {
       res.status(200).send({products});
       })
       .catch((error) => {res.send(error)})
-  })
-  const exampleObject = {
-    id: 29999,
-    category: "Clothes",
-    name: "Winter Jacket for Women",
-    price: 99
-  }
+  });
+
+  routes.get('/user', (req, res) => {
+    users
+      .findOne(req.body)
+      .then((err, results) => {
+        if (err) {
+          return res.send(err);
+        }
+        res.status(200).send(results.data);
+      })
+      .catch(error => res.send(error));
+  });
+
   routes.post('/products/add', jsonParser, (req, res) => {
     products
       .insertOne(req.body)
       .then(() => res.status(200).send(`succesfully inserted new document`))
       .catch((error) => {res.send(error)})
-  })
+  });
+
+  routes.post('/users/add', jsonParser, (req, res) => {
+    users
+      .insertOne(req.body)
+      .then(() => res.status(200).send(`succesfully inserted new user`))
+      .catch((error) => {res.send(error)})
+  });
 })
- 
-routes.get("/", (req, res) => {
-  res.send("Hello World!");
-});
 
