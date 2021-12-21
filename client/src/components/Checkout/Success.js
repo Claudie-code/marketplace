@@ -33,14 +33,14 @@ function Success({ history }) {
     setTimeout(() => { history.push('/'); }, 4000);
   };
 
-  useEffect(() => 
+  useEffect(() => {
     (async () => {
       const userProfile = await handleAuthentication();
       await dispatchAndSaveOrder(userProfile);
       await clearStorage();
       await redirectHome();
-    })
-  , []);
+    })();
+  }, []);
 
   return (
     <>
