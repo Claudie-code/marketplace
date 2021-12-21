@@ -20,7 +20,7 @@ function Payment({ isValid }) {
   });
   const order = items.map(item => processItem(item));
   const orderWithShipping = order.concat(shipping);
-  console.log(orderWithShipping)
+
   return (
     <button 
       className="btn btn-outline-primary btn-lg mt-3 btn-block" 
