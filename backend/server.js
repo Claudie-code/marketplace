@@ -5,7 +5,9 @@ const cors = require("cors");
 const app = express();
 const routes = express.Router();
 app.use('/api', routes);
-require('dotenv').config()
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
  
 // body-parser
 routes.use(bodyParser.urlencoded({ extended: false }));
@@ -77,3 +79,28 @@ client.connect((err) => {
   });
 })
 
+//stripe
+const YOUR_DOMAIN = 'http://localhost:3000';
+routes.post('/create-checkout-session', jsonParser, async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [
+        {
+          currency: 'usd',
+          quantity: 1,
+          amount: 1000,
+          name: 'coucou'
+        },
+      ],
+      mode: 'payment',
+      success_url: `${YOUR_DOMAIN}/success.html`,
+      cancel_url: `${YOUR_DOMAIN}/cancel.html`,
+    });
+  
+    res.json({ id: session.id });
+
+  } catch (error) {
+    res.status(500).send(`failed to process payment ${error}`);
+  }
+
+});
