@@ -29,7 +29,6 @@ const useAuthentication = (dispatch) => {
     };
 
     async function handleUserLogout() {
-        console.dir(app.currentUser);
         app.currentUser?.logOut()
         .then(() => {
             console.log("user successfully log out");
