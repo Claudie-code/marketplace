@@ -9,7 +9,7 @@ import {
   CHECKOUT, 
   SET_DELIVERY_CHOICE
 } from './actionTypes';
-import { getProducts } from '../../service';
+import { getProducts, addOrder } from '../../service';
 
 
  const returnProductsArrays = (items) => { 
@@ -87,5 +87,14 @@ export const fetchProducts = () => {
     .then(response => returnProductsArrays(response.data))
     .then(productsData => dispatch(getProductsSuccess(productsData)))
     .catch(error => dispatch(getProductsFailure(error)));
-  }
-}
+  };
+};
+
+export const saveOrder = (order) => {
+  return async (dispatch) => {
+    addOrder(order)
+    .then(() => dispatch(checkout()))
+    .catch(error => console.log(error));
+  };
+};
+

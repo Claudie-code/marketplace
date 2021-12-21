@@ -46,6 +46,20 @@ export const addUser = (body) => {
     })
 };
 
+export const addOrder = (body) => {
+    return new Promise((onSuccess, onFail) => {
+        axios
+        .post('http://localhost:5000/api/orders/add', body)
+        .then((response, error) => {
+            if(!response || error) {
+                return onFail(`Response failure : ${error}`);
+            }
+            onSuccess(`order successfully saved`);
+        })
+        .catch((err) => onFail(err));
+    })
+};
+
 //stripe
 export const processPayment = async (order) => {
     const stripePromise = loadStripe("pk_test_51K8qTxLNxGBQ5EoL7wAG3nZ7wl5AvGdB3vHWBeipCA185lz2L52RYh6ivkem8n6uWTJcIbjqFuoDRtaBwCMwoH3n00mJLzD4aW");
