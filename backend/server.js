@@ -8,7 +8,6 @@ app.use('/api', routes);
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
- 
 // body-parser
 routes.use(bodyParser.urlencoded({ extended: false }));
 routes.use(bodyParser.json());
@@ -38,6 +37,7 @@ client.connect((err) => {
   const db = client.db(DATABASE)
   const products = db.collection("products");
   const users = db.collection("users");
+  const orders = db.collection("orders");
 
   routes.get('/products', (req, res) => {
     products
@@ -74,7 +74,14 @@ client.connect((err) => {
   routes.post('/users/add', jsonParser, (req, res) => {
     users
       .insertOne(req.body)
-      .then(() => res.status(200).send(`succesfully inserted new user`))
+      .then(() => res.status(200).send(`succesfully inserted new document`))
+      .catch((error) => {res.send(error)})
+  });
+
+  routes.post('/orders/add', jsonParser, (req, res) => {
+    orders
+      .insertOne(req.body)
+      .then(() => res.status(200).send(`succesfully inserted new document`))
       .catch((error) => {res.send(error)})
   });
 })
@@ -84,16 +91,9 @@ const YOUR_DOMAIN = 'http://localhost:3000';
 routes.post('/create-checkout-session', jsonParser, async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({
-      line_items: [
-        {
-          currency: 'usd',
-          quantity: 1,
-          amount: 1000,
-          name: 'coucou'
-        },
-      ],
+      line_items: req.body,
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}/success.html`,
+      success_url: `${YOUR_DOMAIN}/success`,
       cancel_url: `${YOUR_DOMAIN}/cancel.html`,
     });
   
