@@ -9,7 +9,7 @@ const Cart = () => {
 	return (
 	<>
 		<Layout>
-			{true && 
+			{items.length === 0 && 
 				<p 
 					className="d-flex justify-content-center align-items-center" 
 					style={{fontSize: 20}}

@@ -20,8 +20,8 @@ const Product = ({ id, name, price, category }) => {
                     </li>
                 </ul>
                 <div>
-                    <a href="#" className="text-muted">{ category}</a>
-                    <a href="#" className="title">{ name }</a>
+                    <p href="#" className="text-muted">{ category}</p>
+                    <p href="#" className="title">{ name }</p>
                 </div>
                 <div className="price h5 mt-2">${ price }</div>
                     <div className="btn-group btn-group-toggle float-right" data-toggle="buttons">
