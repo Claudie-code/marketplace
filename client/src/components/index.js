@@ -11,6 +11,7 @@ import Success from './Checkout/Success'
 import Cancel from './Checkout/Cancel'
 import Cart from './Cart'
 import Layout from './Layout'
+import Shop from './Shop'
 import useAuthentication from '../lib/hooks/useAuthentication';
 import { useDispatch } from 'react-redux';
 
@@ -25,6 +26,7 @@ const App = () => {
   return (
       <Layout>
         <Route exact path="/" component={Home} />
+        <Route exact path="/shop" component={Shop} />
         <Route path="/about" component={About} />
         <Route path="/help" component={Help} />
         <Route path="/deals" component={Deals} />

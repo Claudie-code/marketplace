@@ -75,3 +75,25 @@
 .button-light:hover .button-icon {
     transform: translateX(.25rem);
 }
+
+@media screen and (min-width: 768px) {
+    .home__container {
+        height: 100vh;
+        grid-template-columns: max-content max-content;
+        justify-content: center;
+        align-items: center;
+    }
+    .home__sneaker {
+        order: 1;
+    }
+    .home__shape {
+        width: 376px;
+        height: 376px;
+    }
+    .home__img {
+        width: 470px;
+        top: 3.5rem;
+        right: 0;
+        left: -3rem;
+    }
+}
