@@ -18,7 +18,7 @@ routes.use(cors());
 
 //mongoDB client
 const { MongoClient } = require('mongodb');
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster-marketplace.sl3f7.mongodb.net/${process.env.DB_HOST}?retryWrites=true&w=majority`;
+const uri = process.env.DB_URL;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 const DATABASE = "marketplace";
 

@@ -20,26 +20,26 @@ const Product = ({ id, name, price, category }) => {
                     </li>
                 </ul>
                 <div>
-                    <p href="#" className="text-muted">{ category}</p>
+                    <p href="#" className="text-muted">{ category }</p>
                     <p href="#" className="title">{ name }</p>
                 </div>
                 <div className="price h5 mt-2">${ price }</div>
-                    <div className="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                        <label className="btn btn-warning active">
-                            <input type="radio" name="options" id="option1" checked />
-                            <i className="fas fa-heart"></i>
-                        </label>
+                <div className="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                    <label className="btn btn-warning active">
+                        <input type="radio" name="options" id="option1" checked />
+                        <i className="fas fa-heart"></i>
+                    </label>
 
-                        <label className="btn btn-success">
-                            <input 
-                                onClick={addToCartAction} 
-                                type="radio" 
-                                name="options" 
-                                id="option3" 
-                            />
-                            <i className="fas fa-shopping-cart"></i>
-                        </label>
-                    </div>        
+                    <label className="btn btn-success">
+                        <input 
+                            onClick={addToCartAction} 
+                            type="radio" 
+                            name="options" 
+                            id="option3" 
+                        />
+                        <i className="fas fa-shopping-cart"></i>
+                    </label>
+                </div>        
             </figcaption>
         </div>
     </div>)

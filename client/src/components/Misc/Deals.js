@@ -5,7 +5,7 @@ const About = () =>
 	<section className="section-content padding-y" style={{ marginTop:'100px'}}>
 		<div className="container">
 		<header className="section-heading">
-			<h2 className="section-title"><i class="fas fa-dollar-sign"></i>   Deals</h2>
+			<h2 className="section-title"><i className="fas fa-dollar-sign"></i>   Deals</h2>
 		</header>
 			<article>
           <p>....</p>

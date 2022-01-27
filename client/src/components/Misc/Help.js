@@ -5,7 +5,7 @@ const Help = () =>
 	<section className="section-content padding-y" style={{ marginTop:'100px'}}>
 		<div className="container">
 		<header className="section-heading">
-			<h2 className="section-title"><i class="far fa-question-circle"></i> Help</h2>
+			<h2 className="section-title"><i className="far fa-question-circle"></i> Help</h2>
 		</header>
 			<article>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

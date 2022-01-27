@@ -36,7 +36,7 @@ const App = () => {
         <Route path="/checkout" component={Checkout} />
         <Route path="/success" component={Success} />
         <Route path="/cancel" component={Cancel} />
-       </Layout>
+      </Layout>
   );
 }
 export default App;

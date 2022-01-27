@@ -1,116 +1,88 @@
-  import React from 'react';
 import Gallery from './Gallery'
-
-const Deals = () => ( 
- <section className="padding-bottom mt-5">
- <div className="card card-deal">
-     <div className="col-heading content-body">
-      <header className="section-heading">
-       <h3 className="section-title">Deals and offers</h3>
-       <p>Hygiene equipments</p>
-     </header>
-     <div className="timer">
-       <div> <span className="num">04</span> <small>Days</small></div>
-       <div> <span className="num">12</span> <small>Hours</small></div>
-       <div> <span className="num">58</span> <small>Min</small></div>
-       <div> <span className="num">02</span> <small>Sec</small></div>
-     </div>
-   </div> 
-   <div className="row no-gutters items-wrap">
-    <div className="col-md col-6">
-     <figure className="card-product-grid card-sm">
-      <a href="#" className="img-wrap"> 
-       <img src={process.env.PUBLIC_URL + 'images/items/3.jpg'} /> 
-      </a>
-      <div className="text-wrap p-3">
-       	<a href="#" className="title">Summer clothes</a>
-       	<span className="badge badge-danger"> -20% </span>
-      </div>
-   </figure>
- </div> 
- <div className="col-md col-6">
-   <figure className="card-product-grid card-sm">
-    <a href="#" className="img-wrap"> 
-     <img src={process.env.PUBLIC_URL + 'images/items/4.jpg'} /> 
-   </a>
-   <div className="text-wrap p-3">
-     <a href="#" className="title">Some category</a>
-     <span className="badge badge-danger"> -5% </span>
-   </div>
- </figure>
-</div> 
-<div className="col-md col-6">
- <figure className="card-product-grid card-sm">
-  <a href="#" className="img-wrap"> 
-   <img src={process.env.PUBLIC_URL + 'images/items/5.jpg'} /> 
- </a>
- <div className="text-wrap p-3">
-   <a href="#" className="title">Another category</a>
-   <span className="badge badge-danger"> -20% </span>
- </div>
-</figure>
-</div> 
-<div className="col-md col-6">
- <figure className="card-product-grid card-sm">
-  <a href="#" className="img-wrap"> 
-   <img src={process.env.PUBLIC_URL + 'images/items/6.jpg'} /> 
- </a>
- <div className="text-wrap p-3">
-   <a href="#" className="title">Home apparel</a>
-   <span className="badge badge-danger"> -15% </span>
- </div>
-</figure>
-</div>
-<div className="col-md col-6">
- <figure className="card-product-grid card-sm">
-  <a href="#" className="img-wrap"> 
-    <img src={process.env.PUBLIC_URL + 'images/items/7.jpg'} /> 
- </a>
- <div className="text-wrap p-3">
-   <a href="#" className="title text-truncate">Smart watches</a>
-   <span className="badge badge-danger"> -10% </span>
- </div>
-</figure>
-</div> 
-</div>
-</div>
-</section>   
-)
-
-const Slider = () => (
-<div id="carousel1_indicator" className="slider-home-banner carousel slide mt-3" data-ride="carousel">
-  <ol className="carousel-indicators">
-    <li data-target="#carousel1_indicator" data-slide-to="0" className="active"></li>
-    <li data-target="#carousel1_indicator" data-slide-to="1"></li>
-    <li data-target="#carousel1_indicator" data-slide-to="2"></li>
-  </ol>
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src="images/banners/slide1.jpg" alt="First slide" /> 
-    </div>
-    <div className="carousel-item">
-      <img src="images/banners/slide2.jpg" alt="Second slide" />
-    </div>
-    <div className="carousel-item">
-      <img src="images/banners/slide3.jpg" alt="Third slide" />
-    </div>
-  </div>
-  <a className="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="sr-only">Previous</span>
-  </a>
-  <a className="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="sr-only">Next</span>
-  </a>
-  </div>)
+import image from './img/imghome.png';
+import image2 from './img/featured1.png';
+import image3 from './img/featured2.png';
+import image4 from './img/featured3.png';
+import './home.css';
+import './featured.css';
+import { useEffect, useRef, useState } from 'react';
+import { setSection } from '../../lib/state/actions/sectionAction';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
-    return(
-      <div className="container" style={{marginTop: '130px'}}>  
-       	<Deals />
-        <Gallery />
-      </div>
-    )
+  const dispatch = useDispatch();
+  const [ offset, setOffset ] = useState(0);
+  const homeRef = useRef();
+  const featuredRef = useRef();
+
+  const scrollActive = (ref, id) => {
+      const scrollY = window.scrollY;
+      const sectionHeight = ref.current.offsetHeight;
+      const sectionTop = ref.current.offsetTop - 50;
+
+      if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        dispatch(setSection(id));
+      }
+  };
+  
+  useEffect(() => {
+      window.addEventListener('scroll', () => setOffset(window.pageYOffset));
+  }, []);
+
+  useEffect(() => {
+    scrollActive(homeRef, "home");
+    scrollActive(featuredRef, "featured");
+}, [offset]);
+
+  return(
+    <main className="l-main">  
+
+      <section className="home" id="home" ref={homeRef}>
+        <div className="home__container bd-grid">
+          <div className="home__sneaker">
+            <div className="home__shape"></div>
+            <img src={image} alt="" className="home__img" />
+          </div>
+
+          <div className="home__data">
+            <span className="home__new">New in</span>
+            {/* nom produit */}
+            <h1 className="home__title">YEEZY BOOST <br /> SPLY - 350</h1>
+            <p className="home__description">Explore the new collections of sneakers</p>
+            <a href="#" className="button">Explore now</a>
+          </div>
+        </div>
+      </section>
+      
+      <section className="featured section" id="featured" ref={featuredRef}>
+        <h2 className="section-title">FEATURED</h2>
+        <div className="featured__container bd-grid">
+          <article className="sneaker">
+            <div className="sneaker__sale">Sale</div>
+            <img src={image2} alt="" className="sneaker__img" />
+            <span className="sneaker__name">Nike Jordan</span>
+            <span className="sneaker__preci">$149.99</span>
+            <a href="" className="button-light">Add to Cart<i className='bx bx-right-arrow-alt button-icon'></i></a>
+          </article>
+          <article className="sneaker">
+            <div className="sneaker__sale">Sale</div>
+            <img src={image3} alt="" className="sneaker__img" />
+            <span className="sneaker__name">Nike Free RN</span>
+            <span className="sneaker__preci">$149.99</span>
+            <a href="" className="button-light">Add to Cart<i className='bx bx-right-arrow-alt button-icon'></i></a>
+          </article>
+          <article className="sneaker">
+            <div className="sneaker__sale">Sale</div>
+            <img src={image4} alt="" className="sneaker__img" />
+            <span className="sneaker__name">Nike Free RN</span>
+            <span className="sneaker__preci">$149.99</span>
+            <a href="" className="button-light">Add to Cart<i className='bx bx-right-arrow-alt button-icon'></i></a>
+          </article>
+        </div>
+      </section>
+      {/* <Deals />
+      <Gallery /> */}
+    </main>
+  );
 }
 export default Home;

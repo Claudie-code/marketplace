@@ -12,10 +12,10 @@ store.subscribe(() => localStorage.setItem('items', JSON.stringify(store.getStat
 
 ReactDOM.render(
   <Provider store={store}>
-      <FormProvider>
-        <App />
-      </FormProvider>
-    </Provider>,
+    <FormProvider>
+      <App />
+    </FormProvider>
+  </Provider>,
   document.getElementById('root')
 );
 
