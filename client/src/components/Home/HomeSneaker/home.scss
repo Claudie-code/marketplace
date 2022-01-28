@@ -1,0 +1,95 @@
+.home {
+    background-color: var(--dark-color-lighten);
+    overflow: hidden;
+
+    &__container {
+        height: calc(100vh - var(--header-height));
+    }
+
+    &__sneaker {
+        position: relative;
+        display: flex;
+        justify-content:center;
+        align-self: center;
+    }
+
+    &__shape {
+        width: 220px;
+        height: 220px;
+        background-color: var(--dark-color);
+        border-radius: 50%;
+    }
+
+    &__img {
+        position: absolute;
+        top: 1.5rem;
+        max-width: initial;
+        width: 275px;
+        transform: var(--rotate-img);
+    }
+
+    &__new {
+        display: block;
+        font-size: var(--smaller-font-size);
+        font-weight: var(--font-semi-bold);
+        margin-bottom: var(--mb-2);
+    }
+
+    &__title {
+        font-size: var(--bigger-font-size);
+        margin-bottom: var(--mb-1);
+    }
+
+    &__description {
+        margin-bottom: var(--mb-6);
+    }
+}
+
+
+
+.button-light {
+    display: inline-flex;
+    color: var(--dark-color);
+    font-weight: var(--font-bold);
+    align-items: center;
+}
+
+.button-icon {
+    font-size: 1.25rem;
+    margin-left: var(--mb-1);
+    transition: .3s;
+}
+
+.button-light:hover .button-icon {
+    transform: translateX(.25rem);
+}
+
+@media screen and (min-width: 768px) {
+    .home{
+        &__container {
+            height: 100vh;
+            grid-template-columns: max-content max-content;
+            justify-content: center;
+            align-items: center;
+        }
+        &__sneaker {
+            order: 1;
+        }
+        &__shape {
+            width: 376px;
+            height: 376px;
+        }
+        &__img {
+            width: 470px;
+            top: 3.5rem;
+            right: 0;
+            left: -3rem;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .home__container {
+        column-gap: 8rem;
+    }
+}

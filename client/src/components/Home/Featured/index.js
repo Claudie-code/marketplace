@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import image2 from '../img/featured1.png';
 import image3 from '../img/featured2.png';
 import image4 from '../img/featured3.png';
-import './featured.css';
+import './featured.scss';
 
 const Featured = ({ scrollActive, offset }) => {
 	const featuredRef = useRef();

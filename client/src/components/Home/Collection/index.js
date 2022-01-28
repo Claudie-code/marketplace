@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import collection1 from '../img/collection1.png';
 import collection2 from '../img/collection2.png';
-import './collection.css';
+import './collection.scss';
 
 const Collection = () => {
 	return (

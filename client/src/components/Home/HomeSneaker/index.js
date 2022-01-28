@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import Link from '../../Link';
 import image from '../img/imghome.png';
-import './home.css';
+import './home.scss';
 
 const HomeSneaker = ({ scrollActive, offset }) => {
 	const homeRef = useRef();
@@ -22,7 +23,7 @@ const HomeSneaker = ({ scrollActive, offset }) => {
 				{/* nom produit */}
 				<h1 className="home__title">YEEZY BOOST <br /> SPLY - 350</h1>
 				<p className="home__description">Explore the new collections of sneakers</p>
-				<a href="#" className="button">Explore now</a>
+				<Link href="/shop">Explore now</Link>
 			</div>
 			</div>
 		</section>

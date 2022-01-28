@@ -1,0 +1,13 @@
+.link {
+    display: inline-block;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    padding: 1.125rem 2rem;
+    font-weight: var(--font-medium);
+    border-radius: .5rem;
+    transition: .3s;
+
+    &:hover {
+        transform: translateY(-.25rem);
+    }
+}
