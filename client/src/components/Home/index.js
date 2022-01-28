@@ -15,6 +15,7 @@ const Home = () => {
   const [ offset, setOffset ] = useState(0);
 	const state = useSelector(state => ({...state.products}));
 	const { items, isLoading } = state;
+
   const scrollActive = (ref, id) => {
       const scrollY = window.scrollY;
       const sectionHeight = ref.current.offsetHeight;
@@ -28,8 +29,8 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchProducts());
     window.addEventListener('scroll', () => setOffset(window.pageYOffset));
+    return () => window.removeEventListener('scroll', () => setOffset(window.pageYOffset));
   }, []);
-  console.log("products", items)
 
   return(
     <main className="l-main">    
@@ -40,10 +41,6 @@ const Home = () => {
       <Offer />
       <New scrollActive={scrollActive} offset={offset} />
       <Newsletter />
-
-
-
-
 
       {/* <Deals />
       <Gallery /> */}

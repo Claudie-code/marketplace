@@ -5,7 +5,7 @@ import new2 from '../img/new2.png';
 import new3 from '../img/new3.png';
 import new4 from '../img/new4.png';
 import new5 from '../img/new5.png';
-import './new.css';
+import './new.scss';
 
 const New = ({ scrollActive, offset }) => {
 	const newRef = useRef();

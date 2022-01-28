@@ -1,3 +1,4 @@
+import Button from '../../Button';
 import './newsletter.css';
 
 const Newsletter = () => {
@@ -11,7 +12,7 @@ const Newsletter = () => {
 
 			<form className="newsletter__subscribe">
 				<input type="text" placeholder="@email.com" className="newsletter__input" />
-				<a href="#" className="button">Subscribe</a>
+				<Button>Subscribe</Button>
 			</form>
 			</div>
 		</section>

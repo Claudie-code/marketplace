@@ -1,7 +1,7 @@
 import { SET_SECTION } from '../actions/sectionAction';
 
 const initialState = {
-    section: "home", 
+    section: "shop", 
 };
 
 const section = (state = initialState, {type, payload}) => { 
