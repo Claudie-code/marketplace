@@ -36,3 +36,20 @@
     font-size: var(--normal-font-size);
     font-weight: var(--font-semi-bold);
 }
+
+@media screen and (min-width: 768px) {
+    .newsletter__container {
+        grid-template-columns: max-content max-content;
+        justify-content: center;
+        align-items: center;
+        padding: 4.5rem 2rem;
+        column-gap: 3rem;
+    }
+    .newsletter__description {
+        margin-bottom: 0;
+    }
+    .newsletter__subscribe {
+        width: 360px;
+        height: max-content;
+    }
+}

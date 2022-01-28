@@ -36,3 +36,19 @@
 .collection__card:hover {
     transform: translateY(-.5rem);
 }
+
+@media screen and (min-width: 576px) {
+    .collection__container {
+        grid-template-columns: 415px;
+    }
+
+    .collection__img {
+        width: 260px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .collection__container {
+        grid-template-columns: repeat(2, 415px);
+    }
+}

@@ -22,3 +22,13 @@
 .offer__img {
     width: 153px;
 }
+
+@media screen and (min-width: 576px) {
+    .offer__container {
+        grid-template-columns: max-content max-content;
+    }
+
+    .offer__date {
+        text-align: center;
+    }
+}

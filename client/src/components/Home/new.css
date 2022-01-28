@@ -62,3 +62,23 @@
 .new__sneaker-card:hover .new__sneaker-overlay{
     bottom: 0;
 }
+
+@media screen and (min-width: 576px) {
+    .new__mens {
+        align-items: center;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .new__container {
+        grid-template-columns: max-content 1fr;
+    }
+    .new__mens {
+        align-items: initial;
+        justify-content: flex-end;
+        padding: 4rem 2rem;
+    }
+    .new__mens-img {
+        margin-bottom: var(--mb-6);
+    }
+}
