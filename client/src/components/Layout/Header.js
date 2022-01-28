@@ -57,7 +57,7 @@ const Header = () => {
 					</li>
 					<li><a href="#" className="nav-link" disabled={true}> My Orders </a></li>
 					<li><a href="#" className="nav-link"> <i className="fas fa-bell"></i></a></li>
-					<li><Link to={'/cart'} className="nav-link"><i className="fas fa-shopping-cart"></i></Link></li><li> {' '}<span className="badge badge-primary">{quantity}</span></li>
+					<li><Link to={'/cart'} className="nav-link"><i className="fas fa-shopping-cart"></i></Link></li><li> {' '}<span className="badge badge-secondary">{quantity}</span></li>
 				</ul> 
 			</div> 
 			</div> 

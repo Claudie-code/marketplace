@@ -10,6 +10,9 @@
     &__logo {
         font-weight: var(--font-semi-bold);
     }
+    &__icon {
+        display: flex;
+    }
 }
 
 .show {
@@ -34,6 +37,19 @@
 .scroll-header {
     background-color: var(--white-color);
     box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+    border-radius: 0.25rem;
 }
 
 @media screen and (max-width: 768px) {

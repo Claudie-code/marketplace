@@ -7,6 +7,9 @@ const Header = () => {
     const [ show, setShow ] = useState(false);
 	const { section } = useSelector(state => state.section);	
     const [ scrollHeader, setScrollHeader ] = useState(false);
+    const { user } = useSelector(state => state.user);
+	const { items } = useSelector(state => ({...state.cart}));
+    const quantity = items.length > 0 ? items.length : "";
 
     useEffect(() => {
         window.addEventListener('scroll', () => {
@@ -74,8 +77,11 @@ const Header = () => {
                 </div>
 
                 <div className="nav__icon">
-                    <IconButton>
-                        <i className='bx bx-shopping-bag' ></i>
+                    <IconButton href="/cart">
+                        <div>
+                            <i className='bx bx-shopping-bag' ></i>
+                            <span className="badge badge-primary">{quantity}</span>
+                        </div>
                     </IconButton>
                     <IconButton>
                         <i className='bx bx-user'></i>
