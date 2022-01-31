@@ -4,10 +4,13 @@ import './nav.scss';
 import IconButton from '../../IconButton';
 import Modal from '../../Modal';
 import Login from '../../Auth/Login';
+import Register from '../../Auth/Register';
+import Button from '../../Button';
 
 const Header = () => {
     const [ showMenu, setShowMenu ] = useState(false);
     const [ showModal, setShowModal ] = useState(false);
+    const [ showSignup, setShowSignup ] = useState(false);
 	const { section } = useSelector(state => state.section);	
     const [ scrollHeader, setScrollHeader ] = useState(false);
     const { user } = useSelector(state => state.user);
@@ -67,7 +70,16 @@ const Header = () => {
 
             </nav>
             <Modal showModal={showModal} setShowModal={setShowModal}>
-                <Login />
+                {showSignup ? 
+                    <>
+                        <Register />
+                        <p className="text-center mt-4">Have an account? <Button onClick={() => setShowSignup(!showSignup)}>Log In</Button></p>
+                    </> : 
+                    <>
+                        <Login />
+                        <p>Don't have account? <Button onClick={() => setShowSignup(!showSignup)}>Sign Up</Button></p>
+                    </>
+                }
             </Modal>
         </header>
     );

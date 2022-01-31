@@ -108,8 +108,7 @@ const Register = () => {
 			</form>
 		</article>
     </div>
-    <p className="text-center mt-4">Have an account? <Link to='/login'>Log In</Link></p>
-    <br /><br /><br />
+
 </>
 )}
 export default Register
