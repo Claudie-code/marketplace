@@ -1,10 +1,17 @@
 import './icon-button.scss';
 
-const IconButton = ({ children, href }) => { 
+const IconButton = ({ children, href, onClick }) => { 
   return (
-    <a className="icon-button" href={href}>
-        { children }
-    </a>
+    <>
+      {href ?
+        <a className="icon-button" href={href}>
+          { children }
+        </a> :
+        <button className="icon-button" onClick={onClick}>
+          { children }
+        </button>
+      }
+    </>
   );
 };  
 

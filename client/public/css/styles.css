@@ -121,3 +121,8 @@ img {
     z-index: var(--z-fixed);
     background-color: var(--dark-color-lighten);
 }
+
+button {
+    border: none;
+    background: none;
+}

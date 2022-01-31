@@ -2,9 +2,12 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './nav.scss';
 import IconButton from '../../IconButton';
+import Modal from '../../Modal';
+import Login from '../../Auth/Login';
 
 const Header = () => {
-    const [ show, setShow ] = useState(false);
+    const [ showMenu, setShowMenu ] = useState(false);
+    const [ showModal, setShowModal ] = useState(false);
 	const { section } = useSelector(state => state.section);	
     const [ scrollHeader, setScrollHeader ] = useState(false);
     const { user } = useSelector(state => state.user);
@@ -20,59 +23,33 @@ const Header = () => {
     return (
         <header className={`l-header ${scrollHeader? "scroll-header" : ""}`} id="header">
             <nav className="nav bd-grid">
-                <IconButton onClick={() => setShow(!show)}>
+                <IconButton onClick={() => setShowMenu(!showMenu)}>
                     <i className='bx bxs-grid'></i>
                 </IconButton>
 
                 <a href="/" className="nav__logo">Roby</a>
 
-                <div className={`nav__menu ${show ? "show" : ""}`} id="nav-menu">
+                <div className={`nav__menu ${showMenu ? "show" : ""}`} id="nav-menu">
                     <ul className="nav__list">
-                        <li className="nav__item">
-                            <a 
-                                href="/#" 
-                                className={`nav__link ${section === "home" ? "active" : ""}`} 
-                                onClick={() => setShow(!show)}
-                            >
-                                Home
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a 
-                                href="/#featured" 
-                                className={`nav__link ${section === "featured" ? "active" : ""}`} 
-                                onClick={() => setShow(!show)}
-                            >
-                                Featured
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a 
-                                href="/#women" 
-                                className={`nav__link ${section === "women" ? "active" : ""}`} 
-                                onClick={() => setShow(!show)}
-                            >
-                                Women
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a 
-                                href="/#new" 
-                                className={`nav__link ${section === "new" ? "active" : ""}`} 
-                                onClick={() => setShow(!show)}
-                            >
-                                New
-                            </a>
-                        </li>
-                        <li className="nav__item">
-                            <a 
-                                href="/shop" 
-                                className={`nav__link ${section === "shop" ? "active" : ""}`} 
-                                onClick={() => setShow(!show)}
-                            >
-                                Shop
-                            </a>
-                        </li>
+                        {
+                            [
+                                {route: "/#", name: "Home"},
+                                {route: "/#featured", name: "Featured"},
+                                {route: "/#women", name: "Women"},
+                                {route: "/#new", name: "New"},
+                                {route: "/shop", name: "Shop"},
+                            ].map(element => (
+                                <li className="nav__item" key={element.route}>
+                                    <a 
+                                        href={element.route} 
+                                        className={`nav__link ${section === element.name.toLowerCase() ? "active" : ""}`} 
+                                        onClick={() => setShowMenu(!showMenu)}
+                                    >
+                                        {element.name}
+                                    </a>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
 
@@ -83,12 +60,15 @@ const Header = () => {
                             <span className="badge badge-primary">{quantity}</span>
                         </div>
                     </IconButton>
-                    <IconButton>
+                    <IconButton onClick={() => setShowModal(!showModal)}>
                         <i className='bx bx-user'></i>
                     </IconButton>
                 </div>
 
             </nav>
+            <Modal showModal={showModal} setShowModal={setShowModal}>
+                <Login />
+            </Modal>
         </header>
     );
 };
