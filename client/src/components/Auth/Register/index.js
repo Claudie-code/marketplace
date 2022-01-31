@@ -4,6 +4,7 @@ import * as Input from '../Input';
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
 import useAuthentication from '../../../lib/hooks/useAuthentication';
 import { useDispatch, useSelector } from "react-redux";
+import Button from '../../Button';
 
 const Alert = ({ isVisible }) => (
 	isVisible &&
@@ -19,14 +20,15 @@ const ErrorMessage = ({ error }) => (
 )
 
 const defaultValues = {
-	first: 'sandy' ,
-	last: 'last' ,
-	email: 'sandy@gmail.com' ,
-	gender: 'Female' ,
-	city: 'city' ,
-	password: 'test12345' ,
-	confirm_password: 'test12345' 
-}
+	first: '' ,
+	last: '' ,
+	email: '' ,
+	gender: '' ,
+	city: '' ,
+	password: '' ,
+	confirm_password: '' 
+};
+
 const options = ['Uzbekistan', 'Russia', 'United States', 'India', 'Afganistan']
 const Register = () => { 
 	const history = useHistory();
@@ -66,49 +68,46 @@ const Register = () => {
 		};
 		handleUserRegistration(newUser).then((user) => {
 			console.log('user succesfully created', user)
-			user && setTimeout(() => history.push('/'), 2000);
+			user && setTimeout(() => window.location.reload(), 2000);
 		});
 	};
 	return (
-	<>
-    <div className="card mx-auto" style={{maxWidth:'520px', marginTop:'140px'}} >
-      <article className="card-body">
-			<header className="mb-4"><h4 className="card-title">Sign up</h4></header>
-			{/* feedback et message d'erreurs */}
-			<ErrorMessage error={error} />
-			<Alert isVisible={!!user} />
- 			<form name="register" onSubmit={handleOnSubmit}>
-				<div className="form-row">
-					<Input.Text label="First Name" name='first' value={first} onChange={handleOnChange} />
-					<Input.Text label="Label Name" name='last'  value={last} onChange={handleOnChange} /> 
-				</div> 
-				<div className="form-group">
-					<Input.Email label="Email" style={{padding: 0}} value={email} onChange={handleOnChange}/>
-				</div> 
-				<div className="form-group">
-					<Input.Radio name="gender" label="Male" value={gender} onChange={handleOnChange} />
-					<Input.Radio name="gender" label="Female" value={gender} onChange={handleOnChange} />
-				</div> 
-				<div className="form-row">
-					<Input.Text name='city' label="City" value={city} onChange={handleOnChange} col="6"  />
-					<Input.Select name='country' options={options} label="Country" col="6" value={country} onChange={handleOnChange}/>
-				</div> 	
-				
-				<div className="form-row">	
-					<Input.Password label="Create password"  style={{padding: 0}} col="6" value={password} onChange={handleOnChange} />
-					<Input.ConfirmPassword label="Repeat password" style={{padding: 0}} col="6" value={confirm_password} onChange={handleOnChange} />
-				</div>
-				<div className="form-group">
-					<Input.Submit 
-						classNamees="btn-primary btn-block" 
-						title="Register" 
-						disabled={!isValid}
-					/> 
-			    </div>              
-			</form>
-		</article>
-    </div>
+		<div className="form">
+				<h3 className="card-title">Sign up</h3>
+				<ErrorMessage error={error} />
+				<Alert isVisible={!!user} />
+				<form className="form__container" onSubmit={handleOnSubmit}>
+					<div className="form__group">
+						<input type="radio" name="gender" id="male" placeholder="Male" value={gender} onChange={handleOnChange}/>
+						<label for="male">Male</label>
+						<input type="radio" name="gender" id="female" placeholder="Female" value={gender} onChange={handleOnChange}/>
+						<label for="female">Female</label>
+					</div> 
+					<div className="form__row">
+						<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange}/>
+						<input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange}/>
+					</div> 
+					<div className="form__group">
+						<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
+					</div> 
+					<div className="form__row">
+						<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange}/>
+						<select name="country" id="country-select">
+							<option value="">Country</option>
+							{options.map(option => <option value={option.toLocaleLowerCase()}>{option}</option>)}
+						</select>
+					</div> 	
+					
+					<div className="form__row">	
+						<input type="password" name="password" id="password" className="form__input" placeholder="Create password" value={password} onChange={handleOnChange} />
+						<input type="password" name="confirm_password" id="confirm_password" className="form__input" placeholder="Repeat password" value={confirm_password} onChange={handleOnChange} />
+					</div>
+					<div className="form-group">
+						<Button type="submit" disabled={!isValid}>Register</Button>
+					</div>              
+				</form>
 
-</>
-)}
+		</div>
+	);
+}
 export default Register

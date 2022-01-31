@@ -68,13 +68,13 @@ const Login = () => {
 				<a href="#" className="btn btn-google btn-block mb-4"> <i className="fab fa-google"></i> &nbsp  Sign in with Google</a> 
 				*/}
 				<div className="form__group" >
-					<input name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
+					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
 				</div>
 				<div className="form__group">
-					<input name="password" id="password" className="form__input" placeholder="Password" value={password} onChange={handleOnChange} />
+					<input type="password" name="password" id="password" className="form__input" placeholder="Password" value={password} onChange={handleOnChange} />
 				</div> 
 				<div className="form__submit">
-					<Button type="submit" value="Login" disabled={!isValid}>Login</Button>
+					<Button type="submit" disabled={!isValid}>Login</Button>
 				</div>  
 			</form>
 
