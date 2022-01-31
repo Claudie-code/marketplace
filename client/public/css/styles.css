@@ -125,4 +125,11 @@ img {
 button {
     border: none;
     background: none;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input,
+button {
+  outline: 0;
 }

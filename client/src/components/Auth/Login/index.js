@@ -4,6 +4,7 @@ import * as Input from '../Input'
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
 import useAuthentication from '../../../lib/hooks/useAuthentication';
 import { useDispatch, useSelector } from "react-redux";
+import Button from '../../Button';
 
 const Alert = ({ isVisible }) => (
 	isVisible &&
@@ -56,35 +57,33 @@ const Login = () => {
 		
 	};
 
-  return(<>
-		<div className="card mx-auto" style={{maxWidth: '380px', marginTop:'200px'}}>
-      <div className="card-body">
-        <h4 className="card-title mb-4">Sign in</h4>
-        {/* feedback et message d'erreurs */}
-		<ErrorMessage error={error} />
-		<Alert isVisible={!!user} />
-       	<form name="login" onSubmit={handleOnSubmit}>
-          {/* 
-          <a href="#" className="btn btn-facebook btn-block mb-2"> <i className="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
-          <a href="#" className="btn btn-google btn-block mb-4"> <i className="fab fa-google"></i> &nbsp  Sign in with Google</a> 
-          */}
-          <div className="form-group" style={{ marginBottom: 0 }}>
-            <Input.Email label="Email" style={{padding: 0}} value={email} onChange={handleOnChange}/>
-          </div>
-          <div className="form-group">
-				    <Input.Password label="Password" name="password" style={{padding: 0}} value={password} onChange={handleOnChange} />
-          </div>
-          <div className="form-group"> 
-					  <Input.Checkbox col="6">Remember</Input.Checkbox>
-				  </div>   
-          <div className="form-group">
-					  <Input.Submit classNamees="btn-primary btn-block" title="Login" disabled={!isValid} /> 
-			    </div>  
-      </form>
-      </div>
-    </div> 
-     <p className="text-center mt-4">Don't have account? <Link to='/register'>Sign Up</Link></p>
-		<br /><br />
-	</>)
+	return(
+		<>
+			<div className="card mx-auto">
+				<div className="card-body">
+					<h4 className="card-title mb-4">Sign in</h4>
+					<ErrorMessage error={error} />
+					<Alert isVisible={!!user} />
+					<form name="login" onSubmit={handleOnSubmit}>
+						{/* 
+						<a href="#" className="btn btn-facebook btn-block mb-2"> <i className="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
+						<a href="#" className="btn btn-google btn-block mb-4"> <i className="fab fa-google"></i> &nbsp  Sign in with Google</a> 
+						*/}
+						<div className="form__group" >
+							<input name="email" id="email" className="form__style" placeholder="Email" value={email} onChange={handleOnChange}/>
+						</div>
+						<div className="form__group">
+							<input name="password" id="password" className="form__style" placeholder="Password" value={password} onChange={handleOnChange} />
+						</div> 
+						<div className="form__group">
+							<Button type="submit" value="Login" disabled={!isValid}>Login</Button>
+						</div>  
+					</form>
+				</div>
+			</div> 
+			<p className="text-center mt-4">Don't have account? <Link to='/register'>Sign Up</Link></p>
+		</>
+	);
 }  
-export default Login
+
+export default Login;
