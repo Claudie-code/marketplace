@@ -1,0 +1,42 @@
+.dropdown {
+    &__button {
+        padding: 1rem 2.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--dark-color-light);
+        text-transform: uppercase;
+    }
+
+    &__content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+}
+
+.show__model {
+    display: block;
+}
+
+.shop__container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+}
+
+.sneaker {
+    &__pages {
+        margin-top: var(--mb-6);
+    }
+
+    &__pag {
+        padding: .5rem 1rem;
+        border: 1px solid var(--dark-color);
+        margin-right: .2rem;
+
+        &:hover {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+        }
+    }
+}
