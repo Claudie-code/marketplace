@@ -8,11 +8,11 @@ const useAuthentication = (dispatch) => {
         const pattern = new RegExp(
             "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
         );
-        // const userProfile = {
-        //     ...newUser,
-        //     password: undefined,
-        //     confirm_password: undefined,
-        // };
+        const userProfile = {
+            ...newUser,
+            password: undefined,
+            confirm_password: undefined,
+        };
         return new Promise((resolve, reject) => {
             if (newUser.password !== newUser.confirm_password) {
                 const errorIdentical = "passwords are not the same";
@@ -26,18 +26,27 @@ const useAuthentication = (dispatch) => {
             }
             app.emailPasswordAuth
             .registerUser(newUser.email, newUser.password)
-            .then((test) => {
-                console.log("ttest", test)
-                // const credentials = Realm.Credentials.emailPassword(newUser.email, newUser.password);
-                // app.logIn(credentials).then(user => {
-                //     console.log("user", user)
-                //     addUser(userProfile);
-                //     resolve(user);
-                //     dispatch(handleLogin(userProfile));
-                // }).catch(err => { dispatch(handleAuthenticationError(err)); });;
+            .then(() => {
+                addUser(userProfile);
+                resolve(`email confirmation sent to ${newUser.email}`);
             })
             .catch(err => { dispatch(handleAuthenticationError(err)); });
         });
+    };
+
+    const handleEmailConfirmation = (token, tokenId) => { 
+        return new Promise((resolve, reject) => {
+            if(!token && !tokenId) {
+                return reject("missing tokens");
+            }
+            app.emailPasswordAuth
+            .confirmUser({ token, tokenId })
+            .then(() => {
+                resolve("email confirmed");
+            })
+            .catch(err => reject("userpass token is expired or invalid"));
+        });
+
     };
 
     async function handleUserLogout() {
@@ -75,7 +84,8 @@ const useAuthentication = (dispatch) => {
         handleUserRegistration,
         handleUserLogout,
         handleUserLogin,
-        handleAuthentication
+        handleAuthentication,
+        handleEmailConfirmation
     };
 };
 

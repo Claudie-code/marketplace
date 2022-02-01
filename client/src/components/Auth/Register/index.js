@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from "react-router-dom";
 import * as Input from '../Input';
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
@@ -20,6 +20,13 @@ const ErrorMessage = ({ error }) => (
     </div>
 );
 
+const ConfirmEmail = ({ message }) => (
+	message &&
+	<div className="alert alert-info mt-3">
+		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>{message}</p>
+    </div>
+);
+
 const defaultValues = {
 	first: '' ,
 	last: '' ,
@@ -34,6 +41,7 @@ const options = ['France', 'Italy', 'Spain', 'Belgium']
 const Register = () => { 
 	const history = useHistory();
 	const dispatch = useDispatch();
+	const [ messageConfirmEmail, setMessageConfirmEmail ] = useState("");
 	const { user, error } = useSelector(state => state.user);
 	const { handleUserRegistration } = useAuthentication(dispatch);
 	const {
@@ -67,10 +75,8 @@ const Register = () => {
 			password, 
 			confirm_password
 		};
-		handleUserRegistration(newUser).then((user) => {
-			console.log('user succesfully created', user)
-			user && setTimeout(() => window.location.reload(), 2000);
-			user && setTimeout(() => window.location.reload(), 2000);
+		handleUserRegistration(newUser).then((response) => {
+			setMessageConfirmEmail(response)
 		}).catch((error) => console.log('error creating user :', error));
 	};
 	return (
@@ -78,11 +84,12 @@ const Register = () => {
 				<h3 className="card-title">Sign up</h3>
 				<ErrorMessage error={error} />
 				<Alert isVisible={!!user} />
+				<ConfirmEmail message={messageConfirmEmail} />
 				<form className="form__container" onSubmit={handleOnSubmit}>
 					<div className="form__group">
-						<input type="radio" name="gender" id="male" placeholder="Male" value={gender} onChange={handleOnChange}/>
+						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange}/>
 						<label htmlFor="male">Male</label>
-						<input type="radio" name="gender" id="female" placeholder="Female" value={gender} onChange={handleOnChange}/>
+						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange}/>
 						<label htmlFor="female">Female</label>
 					</div> 
 					<div className="form__row">

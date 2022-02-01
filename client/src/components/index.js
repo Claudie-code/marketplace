@@ -6,6 +6,7 @@ import Help from './Misc/Help'
 import Deals from './Misc/Deals'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
+import Confirmation from './Auth/Confirmation'
 import Checkout from './Checkout'
 import Success from './Checkout/Success'
 import Cancel from './Checkout/Cancel'
@@ -33,6 +34,7 @@ const App = () => {
       
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/confirmation" component={Confirmation} />
       
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
