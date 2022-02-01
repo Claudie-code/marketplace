@@ -65,10 +65,10 @@ const Login = () => {
 			<Alert isVisible={!!user} />
 			<form className="form__container" name="login" onSubmit={handleOnSubmit}>
 				<div className="form__group" >
-					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
+					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required />
 				</div>
 				<div className="form__group">
-					<input type="password" name="password" id="password" className="form__input" placeholder="Password" value={password} onChange={handleOnChange} />
+					<input type="password" name="password" id="password" className="form__input" placeholder="Password" value={password} onChange={handleOnChange} required />
 				</div> 
 				<div className="form__submit">
 					<Button type="submit" disabled={!isValid}>Login</Button>

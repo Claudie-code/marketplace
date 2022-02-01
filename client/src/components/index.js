@@ -11,6 +11,7 @@ import Checkout from './Checkout'
 import Success from './Checkout/Success'
 import Cancel from './Checkout/Cancel'
 import Cart from './Cart'
+import Account from './Account';
 import Layout from './Layout'
 import Shop from './Shop'
 import useAuthentication from '../lib/hooks/useAuthentication';
@@ -34,6 +35,7 @@ const App = () => {
       
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/account" component={Account} />
         <Route path="/confirmation" component={Confirmation} />
       
         <Route path="/cart" component={Cart} />

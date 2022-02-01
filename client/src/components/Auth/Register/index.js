@@ -87,20 +87,20 @@ const Register = () => {
 				<ConfirmEmail message={messageConfirmEmail} />
 				<form className="form__container" onSubmit={handleOnSubmit}>
 					<div className="form__group">
-						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange}/>
+						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange} required/>
 						<label htmlFor="male">Male</label>
-						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange}/>
+						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange} required/>
 						<label htmlFor="female">Female</label>
 					</div> 
 					<div className="form__row">
-						<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange}/>
-						<input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange}/>
+						<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange} required/>
+						<input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange} required/>
 					</div> 
 					<div className="form__group">
-						<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
+						<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required/>
 					</div> 
 					<div className="form__row">
-						<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange}/>
+						<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange} required/>
 						<select name="country" id="country-select" value={country}>
 							<option value="">Country</option>
 							{options.map(option => <option key={option}value={option.toLocaleLowerCase()}>{option}</option>)}
@@ -108,8 +108,8 @@ const Register = () => {
 					</div> 	
 					
 					<div className="form__row">	
-						<input type="password" name="password" id="password" className="form__input" placeholder="Create password" value={password} onChange={handleOnChange} />
-						<input type="password" name="confirm_password" id="confirm_password" className="form__input" placeholder="Repeat password" value={confirm_password} onChange={handleOnChange} />
+						<input type="password" name="password" id="password" className="form__input" placeholder="Create password" value={password} onChange={handleOnChange} required />
+						<input type="password" name="confirm_password" id="confirm_password" className="form__input" placeholder="Repeat password" value={confirm_password} onChange={handleOnChange} required />
 					</div>
 					<div className="form-group">
 						<Button type="submit" disabled={!isValid}>Register</Button>

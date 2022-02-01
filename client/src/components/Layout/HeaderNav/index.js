@@ -6,6 +6,34 @@ import Modal from '../../Modal';
 import Login from '../../Auth/Login';
 import Register from '../../Auth/Register';
 import Button from '../../Button';
+import useAuthentication from '../../../lib/hooks/useAuthentication';
+
+const UserLogin = ({ user, setShowModal, showModal  }) => { 
+	const { handleUserLogout } = useAuthentication();
+
+	const logout = () => {
+		handleUserLogout();
+		setTimeout(() => window.location.reload(), 1000);
+	};
+
+	return (
+		<>
+            {!!user ?
+                <>
+                    <IconButton href="/account">
+                        <i className='bx bx-user'></i>
+                    </IconButton>
+                    <IconButton onClick={logout}>
+                        <i class='bx bx-log-out'></i>
+                    </IconButton>
+                </> :
+                <IconButton onClick={() => setShowModal(!showModal)}>
+                    <i className='bx bx-user'></i>
+                </IconButton>
+            }
+		</>
+	);
+};
 
 const Header = () => {
     const [ showMenu, setShowMenu ] = useState(false);
@@ -63,9 +91,7 @@ const Header = () => {
                             <span className="badge badge-primary">{quantity}</span>
                         </div>
                     </IconButton>
-                    <IconButton onClick={() => setShowModal(!showModal)}>
-                        <i className='bx bx-user'></i>
-                    </IconButton>
+                    <UserLogin user={user} setShowModal={setShowModal} showModal={showModal}/>
                 </div>
 
             </nav>

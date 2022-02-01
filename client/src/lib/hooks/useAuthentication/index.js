@@ -14,6 +14,11 @@ const useAuthentication = (dispatch) => {
             confirm_password: undefined,
         };
         return new Promise((resolve, reject) => {
+            if (!Object.values(userProfile).every(element => element !== "")) {
+                const errorRequired = "Please complete all fields";
+                reject(errorRequired);
+                return dispatch(handleAuthenticationError({error : errorRequired}));
+            };
             if (newUser.password !== newUser.confirm_password) {
                 const errorIdentical = "passwords are not the same";
                 reject(errorIdentical);
