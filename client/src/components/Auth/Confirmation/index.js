@@ -14,7 +14,7 @@ const Confirmation = () => {
         handleEmailConfirmation(token, tokenId)
         .then((response) => setMessage(response))
         .catch((error) => setMessage(error))
-    }, []);
+    }, [token, tokenId]);
 
     return(
         <p style={{padding: '7rem 0', textAlign: 'center'}}>{message}</p>

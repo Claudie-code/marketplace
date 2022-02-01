@@ -13,12 +13,12 @@ const Featured = ({ scrollActive, offset, featuredItems }) => {
 			<h2 className="section-title">FEATURED</h2>
 			<div className="featured__container bd-grid">
 				{featuredItems.map(featuredItem => (
-					<article className="sneaker">
+					<article className="sneaker" key={featuredItem.name}>
 						<div className="sneaker__sale">Sale</div>
 						<img src={featuredItem.image} alt={featuredItem.name} className="sneaker__img" />
 						<span className="sneaker__name">{featuredItem.brand} {featuredItem.model}</span>
 						<span className="sneaker__preci">${featuredItem.price.$numberDecimal}</span>
-						<a href="" title={`link ${featuredItem.name}`} className="button-light">Add to Cart<i className='bx bx-right-arrow-alt button-icon'></i></a>
+						<a href="" title={`link ${featuredItem.name}`} className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
 					</article>
 				))}
 			</div>

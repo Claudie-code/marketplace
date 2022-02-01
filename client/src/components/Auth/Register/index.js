@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from "react-router-dom";
-import * as Input from '../Input';
 import { useFormValidation } from '../../../lib/hooks/useFormValidation';
 import useAuthentication from '../../../lib/hooks/useAuthentication';
 import { useDispatch, useSelector } from "react-redux";
@@ -33,13 +31,13 @@ const defaultValues = {
 	email: '' ,
 	gender: '' ,
 	city: '' ,
+	country: '',
 	password: '' ,
 	confirm_password: '' 
 };
 
 const options = ['France', 'Italy', 'Spain', 'Belgium']
 const Register = () => { 
-	const history = useHistory();
 	const dispatch = useDispatch();
 	const [ messageConfirmEmail, setMessageConfirmEmail ] = useState("");
 	const { user, error } = useSelector(state => state.user);
@@ -87,9 +85,9 @@ const Register = () => {
 				<ConfirmEmail message={messageConfirmEmail} />
 				<form className="form__container" onSubmit={handleOnSubmit}>
 					<div className="form__group">
-						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange} required/>
+						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange} checked={gender === "male"} required/>
 						<label htmlFor="male">Male</label>
-						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange} required/>
+						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange} checked={gender === "female"} required/>
 						<label htmlFor="female">Female</label>
 					</div> 
 					<div className="form__row">

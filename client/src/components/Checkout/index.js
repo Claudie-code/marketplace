@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useFormValidation } from '../../lib/hooks/useFormValidation';
 import { useDispatch, useSelector } from "react-redux";
-import * as Input from '../Auth/Input'
 import Payment from './Payment'
 import DeliveryBox from './DeliveryBox'
 import { setDelivery } from '../../lib/state/actions/index';
@@ -57,18 +56,18 @@ const Checkout = () => {
 				</div>
 
 				<div className="form-row">
-					<Input.Text label="First name" name="first" onChange={handleOnChange} value={first}/>
-					<Input.Text label="Last name" name="last"  onChange={handleOnChange} value={last}/>
+					{/* <Input.Text label="First name" name="first" onChange={handleOnChange} value={first}/>
+					<Input.Text label="Last name" name="last"  onChange={handleOnChange} value={last}/> */}
 				</div> 
 
 				<div className="form-row">
-					<Input.Email label="Email" onChange={handleOnChange} col="6" value={email}/>	
+					{/* <Input.Email label="Email" onChange={handleOnChange} col="6" value={email}/>	 */}
 				</div> 
 				<div className="form-row">
-					<Input.Select name='country' options={options}  label="Country" col="6" onChange={handleOnChange} value={country}/>
-					<Input.Text label="City" name='city'onChange={handleOnChange} value={city} />
+					{/* <Input.Select name='country' options={options}  label="Country" col="6" onChange={handleOnChange} value={country}/>
+					<Input.Text label="City" name='city'onChange={handleOnChange} value={city} /> */}
 				</div> 
-					<Input.TextArea label="Address" name="address" onChange={handleOnChange} /> 
+					{/* <Input.TextArea label="Address" name="address" onChange={handleOnChange} />  */}
 				</div> 
 				<div className="form-row" style={{padding: '0 25px 30px'}}>
 					<Payment isValid={!isValid} />	

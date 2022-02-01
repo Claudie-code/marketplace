@@ -40,7 +40,7 @@ const Home = () => {
     return () => window.removeEventListener('scroll', () => setOffset(window.pageYOffset));
   }, []);
 
-  return(
+  return (
     <main className="l-main">    
       <Loading isLoading={isLoading} />
 			<Empty isVisible={!!items} />

@@ -1,3 +1,7 @@
+.shop__container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+}
+
 .sneaker__pages {
     margin-top: var(--mb-6);
 }

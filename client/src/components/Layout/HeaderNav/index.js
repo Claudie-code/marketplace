@@ -24,7 +24,7 @@ const UserLogin = ({ user, setShowModal, showModal  }) => {
                         <i className='bx bx-user'></i>
                     </IconButton>
                     <IconButton onClick={logout}>
-                        <i class='bx bx-log-out'></i>
+                        <i className='bx bx-log-out'></i>
                     </IconButton>
                 </> :
                 <IconButton onClick={() => setShowModal(!showModal)}>
