@@ -23,7 +23,7 @@ const New = ({ scrollActive, offset, newItems }) => {
 
 			<div className="new__sneaker">
 				{newItems.map(newItem => (
-					<div className="new__sneaker-card">
+					<div className="new__sneaker-card" key={newItem.name}>
 						<img src={newItem.image} alt={newItem.name} className="new__sneaker-img" />
 						<div className="new__sneaker-overlay">
 							<Link href="/" title={`link ${newItem.name}`}>Explore</Link>
