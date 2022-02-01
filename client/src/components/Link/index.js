@@ -1,9 +1,9 @@
 import './link.scss';
 
-const Link = ({ children, href }) => { 
+const Link = ({ children, href, title }) => { 
 
 	return (
-        <a href={href} className="link">{ children }</a>
+        <a href={href} title={title} className="link">{ children }</a>
 	)
 };
 

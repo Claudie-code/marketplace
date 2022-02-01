@@ -1,13 +1,9 @@
 import { useEffect, useRef } from 'react';
 import Link from '../../Link';
 import new1 from '../img/new1.png';
-import new2 from '../img/new2.png';
-import new3 from '../img/new3.png';
-import new4 from '../img/new4.png';
-import new5 from '../img/new5.png';
 import './new.scss';
 
-const New = ({ scrollActive, offset }) => {
+const New = ({ scrollActive, offset, newItems }) => {
 	const newRef = useRef();
 
 	useEffect(() => {
@@ -26,33 +22,14 @@ const New = ({ scrollActive, offset }) => {
 			</div>
 
 			<div className="new__sneaker">
-				<div className="new__sneaker-card">
-				<img src={new2} alt="" className="new__sneaker-img" />
-				<div className="new__sneaker-overlay">
-					<Link>Explore</Link>
-				</div>
-				</div>
-
-				<div className="new__sneaker-card">
-				<img src={new3} alt="" className="new__sneaker-img" />
-				<div className="new__sneaker-overlay">
-					<Link href="/">Explore</Link>
-				</div>
-				</div>
-
-				<div className="new__sneaker-card">
-				<img src={new4} alt="" className="new__sneaker-img" />
-				<div className="new__sneaker-overlay">
-					<Link>Explore</Link>
-				</div>
-				</div>
-
-				<div className="new__sneaker-card">
-				<img src={new5} alt="" className="new__sneaker-img" />
-				<div className="new__sneaker-overlay">
-					<Link>Explore</Link>
-				</div>
-				</div>
+				{newItems.map(newItem => (
+					<div className="new__sneaker-card">
+						<img src={newItem.image} alt={newItem.name} className="new__sneaker-img" />
+						<div className="new__sneaker-overlay">
+							<Link href="/" title={`link ${newItem.name}`}>Explore</Link>
+						</div>
+					</div>
+				))}
 			</div>
 			</div>
 		</section>

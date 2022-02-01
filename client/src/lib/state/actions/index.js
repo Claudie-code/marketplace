@@ -11,21 +11,6 @@ import {
 } from './actionTypes';
 import { getProducts, addOrder } from '../../service';
 
-
- const returnProductsArrays = (items) => { 
-  let TwoDimensionalArray = []
-  let remainder = items.length % 9
-  let i = 0
-  while (i < (items.length - remainder)) {
-    let array = items.slice(i, i + 9)
-    TwoDimensionalArray.push(array)
-    i += 9 
-  }
-  const array = items.slice(i)
-  TwoDimensionalArray.push(array)
-  return TwoDimensionalArray
-}
-
 export function getProductsPending() { 
   return {
     type: GET_PRODUCTS_PENDING
@@ -84,8 +69,7 @@ export const fetchProducts = () => {
   return async (dispatch) => {
     dispatch(getProductsPending);
     getProducts()
-    .then(response => returnProductsArrays(response.data))
-    .then(productsData => dispatch(getProductsSuccess(productsData)))
+    .then(response => dispatch(getProductsSuccess(response.data)))
     .catch(error => dispatch(getProductsFailure(error)));
   };
 };

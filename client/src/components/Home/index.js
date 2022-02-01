@@ -10,11 +10,19 @@ import New from './New';
 import Newsletter from './Newsletter';
 import { fetchProducts } from '../../lib/state/actions';
 
+const Empty = ({ isVisible }) => !isVisible && <p style={{paddingTop: "7rem"}}>No Listing available ... </p>;
+
+const Loading = ({ isLoading }) => isLoading && <p style={{paddingTop: "7rem"}}>Loading... </p>;
+
 const Home = () => {
   const dispatch = useDispatch();
   const [ offset, setOffset ] = useState(0);
 	const state = useSelector(state => ({...state.products}));
 	const { items, isLoading } = state;
+  const homeItem = items[0];
+  const featuredItems = items.filter(item => item.model === "Air Jordan 1 High");
+  const womenItems = items.filter(item => item.model === "Dunk Low");
+  const newItems = items.filter(item => item.model === "Yeezy Boost 350");
 
   const scrollActive = (ref, id) => {
       const scrollY = window.scrollY;
@@ -34,16 +42,15 @@ const Home = () => {
 
   return(
     <main className="l-main">    
-      <HomeSneaker scrollActive={scrollActive} offset={offset} />
-      <Featured scrollActive={scrollActive} offset={offset} />
+      <Loading isLoading={isLoading} />
+			<Empty isVisible={!!items} />
+      <HomeSneaker scrollActive={scrollActive} offset={offset} homeItem={homeItem} />
+      <Featured scrollActive={scrollActive} offset={offset} featuredItems={featuredItems} />
       <Collection />
-      <Women scrollActive={scrollActive} offset={offset} />
+      <Women scrollActive={scrollActive} offset={offset} womenItems={womenItems} />
       <Offer />
-      <New scrollActive={scrollActive} offset={offset} />
+      <New scrollActive={scrollActive} offset={offset} newItems={newItems} />
       <Newsletter />
-
-      {/* <Deals />
-      <Gallery /> */}
     </main>
   );
 }
