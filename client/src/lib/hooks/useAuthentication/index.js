@@ -5,24 +5,36 @@ import { handleAuthenticationError, handleLogin, handleLogout } from '../../stat
 
 const useAuthentication = (dispatch) => {
     const handleUserRegistration = (newUser) => { 
-        if (newUser.password !== newUser.confirm_password) {
-            return dispatch(handleAuthenticationError({error : "passwords are not the same"}));
-        };
-        const userProfile = {
-            ...newUser,
-            password: undefined,
-            confirm_password: undefined,
-        };
+        const pattern = new RegExp(
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-+_!@#$%^&*.,?]).+$"
+        );
+        // const userProfile = {
+        //     ...newUser,
+        //     password: undefined,
+        //     confirm_password: undefined,
+        // };
         return new Promise((resolve, reject) => {
+            if (newUser.password !== newUser.confirm_password) {
+                const errorIdentical = "passwords are not the same";
+                reject(errorIdentical);
+                return dispatch(handleAuthenticationError({error : errorIdentical}));
+            };
+            if (newUser.password.length < 8 || !pattern.test(newUser.password)) {
+                const errorValidator = 'Password must contain at least 8 characters and must contain at least one capital letter and one numeric character.';
+                reject(errorValidator);
+                return dispatch(handleAuthenticationError({error : errorValidator}));
+            }
             app.emailPasswordAuth
             .registerUser(newUser.email, newUser.password)
-            .then(() => {
-                const credentials = Realm.Credentials.emailPassword(newUser.email, newUser.password);
-                app.logIn(credentials).then(user => {
-                    addUser(userProfile);
-                    resolve(user);
-                    dispatch(handleLogin(userProfile));
-                });
+            .then((test) => {
+                console.log("ttest", test)
+                // const credentials = Realm.Credentials.emailPassword(newUser.email, newUser.password);
+                // app.logIn(credentials).then(user => {
+                //     console.log("user", user)
+                //     addUser(userProfile);
+                //     resolve(user);
+                //     dispatch(handleLogin(userProfile));
+                // }).catch(err => { dispatch(handleAuthenticationError(err)); });;
             })
             .catch(err => { dispatch(handleAuthenticationError(err)); });
         });

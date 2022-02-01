@@ -11,13 +11,14 @@ const Alert = ({ isVisible }) => (
 	<div className="alert alert-info mt-3">
 		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>User successfully created</p>
     </div>
-)
+);
+
 const ErrorMessage = ({ error }) => (
 	error && 
 	<div className="alert alert-danger mt-3">
 		<p className="icontext" style={{ color: 'crimson' }}><i className="icon text-danger fas fa-exclamation-circle"></i> {' '}{error?.error}</p>
     </div>
-)
+);
 
 const defaultValues = {
 	first: '' ,
@@ -29,7 +30,7 @@ const defaultValues = {
 	confirm_password: '' 
 };
 
-const options = ['Uzbekistan', 'Russia', 'United States', 'India', 'Afganistan']
+const options = ['France', 'Italy', 'Spain', 'Belgium']
 const Register = () => { 
 	const history = useHistory();
 	const dispatch = useDispatch();
@@ -69,7 +70,8 @@ const Register = () => {
 		handleUserRegistration(newUser).then((user) => {
 			console.log('user succesfully created', user)
 			user && setTimeout(() => window.location.reload(), 2000);
-		});
+			user && setTimeout(() => window.location.reload(), 2000);
+		}).catch((error) => console.log('error creating user :', error));
 	};
 	return (
 		<div className="form">
@@ -79,9 +81,9 @@ const Register = () => {
 				<form className="form__container" onSubmit={handleOnSubmit}>
 					<div className="form__group">
 						<input type="radio" name="gender" id="male" placeholder="Male" value={gender} onChange={handleOnChange}/>
-						<label for="male">Male</label>
+						<label htmlFor="male">Male</label>
 						<input type="radio" name="gender" id="female" placeholder="Female" value={gender} onChange={handleOnChange}/>
-						<label for="female">Female</label>
+						<label htmlFor="female">Female</label>
 					</div> 
 					<div className="form__row">
 						<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange}/>
@@ -92,9 +94,9 @@ const Register = () => {
 					</div> 
 					<div className="form__row">
 						<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange}/>
-						<select name="country" id="country-select">
+						<select name="country" id="country-select" value={country}>
 							<option value="">Country</option>
-							{options.map(option => <option value={option.toLocaleLowerCase()}>{option}</option>)}
+							{options.map(option => <option key={option}value={option.toLocaleLowerCase()}>{option}</option>)}
 						</select>
 					</div> 	
 					

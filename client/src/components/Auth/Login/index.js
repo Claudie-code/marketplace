@@ -20,9 +20,10 @@ const ErrorMessage = ({ error }) => (
 )
 
 const defaultValues = {
-	email: 'sandy@gmail.com' ,
+	email: '' ,
 	password: '' ,
-}
+};
+
 const Login = () => { 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const Login = () => {
 		validate(formValues['login'] ?? {});
 	}, [formValues]);
 
-  const handleOnSubmit = (event) => {
+  	const handleOnSubmit = (event) => {
 		event.preventDefault();
 		handleUserLogin(email, password)
 		.then(currentUser => {
@@ -63,10 +64,6 @@ const Login = () => {
 			<ErrorMessage error={error} />
 			<Alert isVisible={!!user} />
 			<form className="form__container" name="login" onSubmit={handleOnSubmit}>
-				{/* 
-				<a href="#" className="btn btn-facebook btn-block mb-2"> <i className="fab fa-facebook-f"></i> &nbsp  Sign in with Facebook</a>
-				<a href="#" className="btn btn-google btn-block mb-4"> <i className="fab fa-google"></i> &nbsp  Sign in with Google</a> 
-				*/}
 				<div className="form__group" >
 					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange}/>
 				</div>
@@ -77,7 +74,6 @@ const Login = () => {
 					<Button type="submit" disabled={!isValid}>Login</Button>
 				</div>  
 			</form>
-
 		</div>
 	);
 }  
