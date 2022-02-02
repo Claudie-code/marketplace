@@ -18,11 +18,12 @@ const Shop = () => {
     const checkedResults = Object.keys(checkedItems).filter(key => checkedItems[key]);
     console.log(checkedResults)
     const handleChange = event => {
-        setCheckedItems({
-          ...checkedItems,
-          [event.target.name]: event.target.checked
-        });
-        if (event.target.checked) getFilterData();
+        const newCheckedItems = {
+            ...checkedItems,
+            [event.target.name]: event.target.checked
+        };
+        setCheckedItems(newCheckedItems);
+        getFilterData(newCheckedItems);
     };
 
     const checkboxes = [
@@ -44,8 +45,9 @@ const Shop = () => {
         dispatch(fetchProducts());
     }, []);
 
-    const getFilterData = () => {
+    const getFilterData = (newCheckedItems) => {
         const params = new URLSearchParams();
+        const checkedResults = Object.keys(newCheckedItems).filter(key => newCheckedItems[key]);
         checkedResults.forEach(value => params.append('model', value));
         history.replace({ pathname: location.pathname, search: params.toString() });
     };
