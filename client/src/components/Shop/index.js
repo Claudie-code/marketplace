@@ -13,14 +13,15 @@ const Shop = () => {
     const { items } = useSelector(state => state.products);
     const { slug } = useParams();
     const brandResults = slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items;
-    const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : [];
+    const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : ["yeezy350", "jordanHigh", "dunkLow"];
     const [ checkedItems, setCheckedItems ] = useState(initialState);
     const [ modelResults, setModelResults ] = useState([]);
-    const [ showModel, setShowModel ] = useState(false);
+    const [ showModelMenu, setShowModelMenu ] = useState(false);
+    const [ showBrandMenu, setShowBrandMenu ] = useState(false);
 
     const handleChange = event => {
         event.stopPropagation();
-        setShowModel(!showModel)
+        setShowModelMenu(!showModelMenu)
         let newCheckedItems;
         if (event.target.checked) {
             if (checkedItems.includes(event.target.name)) return;
@@ -33,7 +34,18 @@ const Shop = () => {
         getFilterData(newCheckedItems);
     };
 
-    const checkboxes = [
+    const brandCheckboxes = [
+        {
+            id: "adidas",
+            label: "Adidas"
+        },
+        {
+            id: "nike",
+            label: "Nike"
+        },
+    ];
+
+    const modelCheckboxes = [
         {
             name: "yeezy350",
             label: "Yeezy Boost 350"
@@ -64,18 +76,31 @@ const Shop = () => {
     };
 
     return (
-        <section className="featured section" id="shop" onClick={() => setShowModel(false)}>
+        <section className="featured section" id="shop" 
+            onClick={() => { setShowModelMenu(false); setShowBrandMenu(false) }}>
             <h2 className="section-title">All Products</h2>
 
             <div className="bd-grid">
                 <div className="dropdown">
-                    <button className="dropdown__button" onClick={(event) => {event.stopPropagation(); setShowModel(!showModel)}}>Model</button>
-                    <div className={`dropdown__content ${showModel ? "show__model" : ""}`}>
-                        {checkboxes.map(element => (
+                    <button className="dropdown__button" onClick={(event) => {event.stopPropagation(); setShowBrandMenu(!showBrandMenu)}}>Brand</button>
+                    <div className={`dropdown__content ${showBrandMenu ? "show__brand" : ""}`}>
+                        {brandCheckboxes.map(element => (
                             <div className="dropdown__checkbox" key={element.name}>
                                 <input className="dropdown__icon" type="checkbox"  id={element.name} name={element.name}
                                     checked={checkedItems.includes(element.name)} onChange={handleChange} />
                                 <label htmlFor={element.name}>{element.label}</label>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <div className="dropdown">
+                    <button className="dropdown__button" onClick={(event) => {event.stopPropagation(); setShowModelMenu(!showModelMenu)}}>Model</button>
+                    <div className={`dropdown__content ${showModelMenu ? "show__model" : ""}`}>
+                        {modelCheckboxes.map(element => (
+                            <div className="dropdown__checkbox" key={element.id}>
+                                <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                                <label htmlFor={element.id}>{element.label}</label>
                             </div>
                         ))}
                     </div>

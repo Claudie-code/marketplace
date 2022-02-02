@@ -3,6 +3,7 @@
         padding: 1rem 2.5rem;
         border-radius: 0.5rem;
         border: 1px solid var(--dark-color-light);
+        background-color: var(--dark-color-lighten);
         text-transform: uppercase;
         margin: 1rem 0;
     }
@@ -28,6 +29,11 @@
 .show__model {
     display: block;
 }
+
+.show__brand {
+    display: block;
+}
+
 
 .shop__container {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
