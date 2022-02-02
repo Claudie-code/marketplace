@@ -3,25 +3,26 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { fetchProducts } from '../../lib/state/actions';
+import queryString from 'query-string';
 import './shop.scss';
 
 const Shop = () => { 
     const history = useHistory();
     const location = useLocation();
-    const [ checkedItems, setCheckedItems ] = useState({});
+    const params = queryString.parse(location.search)
+    const [ checkedItems, setCheckedItems ] = useState(params);
     const [ showModel, setShowModel ] = useState(false);
     const dispatch = useDispatch();
     const { slug } = useParams();
     const { items } = useSelector(state => state.products);
     const results = slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items;
 
+    console.log("params", params)
     const handleChange = event => {
         setCheckedItems({
           ...checkedItems,
           [event.target.name]: event.target.checked
         });
-        const params = new URLSearchParams(event.target.name);
-        history.replace({ pathname: location.pathname, search: params.toString() });
     };
 
     const checkboxes = [
@@ -43,19 +44,23 @@ const Shop = () => {
         dispatch(fetchProducts());
     }, []);
 
+    useEffect(() => {
+        history.replace({ pathname: location.pathname, search: new URLSearchParams(checkedItems).toString() });
+    }, [checkedItems]);
+
     return (
         <section className="featured section" id="shop">
             <h2 className="section-title">All Products</h2>
 
             <div className="bd-grid">
                 <div className="dropdown">
-                    <button class="dropdown__button" onClick={() => setShowModel(!showModel)}>Model</button>
-                    <div class={`dropdown__content ${showModel ? "show__model" : ""}`}>
+                    <button className="dropdown__button" onClick={() => setShowModel(!showModel)}>Model</button>
+                    <div className={`dropdown__content ${showModel ? "show__model" : ""}`}>
                         {checkboxes.map(element => (
-                            <div>
+                            <div key={element.name}>
                                 <input type="checkbox" id={element.name} name={element.name}
                                     checked={checkedItems[element.name]} onChange={handleChange} />
-                                <label for={element.name}>{element.label}</label>
+                                <label htmlFor={element.name}>{element.label}</label>
                             </div>
                         ))}
                     </div>
@@ -65,7 +70,7 @@ const Shop = () => {
             <div className="featured__container shop__container bd-grid">
 
                 {results.map(result => (
-                <article className="sneaker">
+                <article className="sneaker" key={result.name}>
                     <img src={result.image} alt={result.name} className="sneaker__img" />
                     <span className="sneaker__name">{result.model} <br /> {result.name}</span>
                     <span className="sneaker__preci">${result.price.$numberDecimal}</span>
