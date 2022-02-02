@@ -9,20 +9,20 @@ import './shop.scss';
 const Shop = () => { 
     const history = useHistory();
     const location = useLocation();
-    const params = queryString.parse(location.search)
-    const [ checkedItems, setCheckedItems ] = useState(params);
+    const [ checkedItems, setCheckedItems ] = useState({});
     const [ showModel, setShowModel ] = useState(false);
     const dispatch = useDispatch();
     const { slug } = useParams();
     const { items } = useSelector(state => state.products);
-    const results = slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items;
-
-    console.log("params", params)
+    const brandResults = slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items;
+    const checkedResults = Object.keys(checkedItems).filter(key => checkedItems[key]);
+    console.log(checkedResults)
     const handleChange = event => {
         setCheckedItems({
           ...checkedItems,
           [event.target.name]: event.target.checked
         });
+        if (event.target.checked) getFilterData();
     };
 
     const checkboxes = [
@@ -44,9 +44,11 @@ const Shop = () => {
         dispatch(fetchProducts());
     }, []);
 
-    useEffect(() => {
-        history.replace({ pathname: location.pathname, search: new URLSearchParams(checkedItems).toString() });
-    }, [checkedItems]);
+    const getFilterData = () => {
+        const params = new URLSearchParams();
+        checkedResults.forEach(value => params.append('model', value));
+        history.replace({ pathname: location.pathname, search: params.toString() });
+    };
 
     return (
         <section className="featured section" id="shop">
@@ -68,15 +70,15 @@ const Shop = () => {
             </div>  
             
             <div className="featured__container shop__container bd-grid">
-
-                {results.map(result => (
+{/* 
+                {brandResults.map(brandResult => (
                 <article className="sneaker" key={result.name}>
                     <img src={result.image} alt={result.name} className="sneaker__img" />
                     <span className="sneaker__name">{result.model} <br /> {result.name}</span>
                     <span className="sneaker__preci">${result.price.$numberDecimal}</span>
                     <a href="" title={`link ${result.name}`} className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
                 </article>
-                ))}
+                ))} */}
 
             </div>
 
