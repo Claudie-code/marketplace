@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false,
   error: null,
   pageIndex: 0,
-  items: [],
+  brands: [],
 };
 const brands = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -22,7 +22,7 @@ const brands = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        items: payload.data,
+        brands: payload.data,
       };
     case GET_BRANDS_FAILURE:
       return {

@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { fetchBrands } from '../../../lib/state/actions';
 
 const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem }) => { 
+    const dispatch = useDispatch();
     const ref = useRef();
     const history = useHistory();
     const location = useLocation();
@@ -30,6 +32,15 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         },
     ];
 
+    const getFilterPathnameUrl = (newCheckedItem) => {
+        if (newCheckedItem === "allproducts") {
+            setBrandResults(items);
+        } else {
+            setBrandResults(items.filter(item => item.brand.toLowerCase() === newCheckedItem.toLowerCase()));
+        }
+        history.replace({ pathname: "/shop/" + newCheckedItem, search: location.search });
+    };
+
     useEffect(() => {
         const checkIfClickedOutside = e => {
           if (showMenu && ref.current && !ref.current.contains(e.target)) {
@@ -42,15 +53,6 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         }
     }, [showMenu]);
 
-    const getFilterPathnameUrl = (newCheckedItem) => {
-        if (newCheckedItem === "allproducts") {
-            setBrandResults(items);
-        } else {
-            setBrandResults(items.filter(item => item.brand.toLowerCase() === newCheckedItem.toLowerCase()));
-        }
-        history.replace({ pathname: "/shop/" + newCheckedItem, search: location.search });
-    };
-
     useEffect(() => {
         if (brandCheckedItem !== "allproducts") {
             setBrandResults(items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()));
@@ -58,6 +60,10 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
             setBrandResults(items);
         }
     }, [items, brandCheckedItem]);
+
+    useEffect(() => {
+        dispatch(fetchBrands());
+    }, []);
         
     return (
         <div ref={ref}> 

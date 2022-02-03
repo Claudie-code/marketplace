@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchProducts } from '../../lib/state/actions';
+import { fetchProducts, fetchBrands, fetchModels } from '../../lib/state/actions';
 import Dropdown from './Dropdown.js';
 import DropdownRadio from './DropdownRadio.js';
 import './shop.scss';
@@ -15,8 +15,6 @@ const Shop = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
-        dispatch(fetchBrands());
-        dispatch(fetchModels());
     }, []);
         
     return (

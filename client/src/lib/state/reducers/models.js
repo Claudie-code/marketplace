@@ -9,7 +9,7 @@ const initialState = {
   isLoading: false,
   error: null,
   pageIndex: 0,
-  items: [],
+  models: [],
 };
 const models = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -22,7 +22,7 @@ const models = (state = initialState, { type, payload }) => {
       return {
         ...state,
         isLoading: false,
-        items: payload.data,
+        models: payload.data,
       };
     case GET_MODELS_FAILURE:
       return {

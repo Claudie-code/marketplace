@@ -15,7 +15,7 @@ import {
   CHECKOUT, 
   SET_DELIVERY_CHOICE
 } from './actionTypes';
-import { getProducts, addOrder } from '../../service';
+import { getProducts, getModels, getBrands, addOrder } from '../../service';
 
 export function getProductsPending() { 
   return {
