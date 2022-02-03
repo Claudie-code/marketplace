@@ -118,7 +118,6 @@ const Shop = () => {
         setModelResults(brandResults.filter(element => checkedItems.some(checkedItem => checkedItem === element.modelid)));
     }, [location.pathname, brandResults]);
         
-    console.log(brandResults, modelResults)
     return (
         <section className="featured section" id="shop"  >
             <h2 className="section-title">All Products</h2>
@@ -140,7 +139,15 @@ const Shop = () => {
                     <button className="dropdown__button" onClick={(event) => {setShowModelMenu(!showModelMenu)}}>Model</button>
                     <div className={`dropdown__content ${showModelMenu ? "show__model" : ""}`} onClick={event => event.stopPropagation()}>
                         {modelCheckboxes.map(element => {
-                            if (element.brandid === brandCheckedItem) {
+                            if (brandCheckedItem === "allproducts") {
+                                return (
+                                    <div className="dropdown__checkbox" key={element.id}>
+                                        <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                                            checked={checkedItems.includes(element.id)} onChange={event => handleChange(event, setCheckedItems, checkedItems, getFilterSearchUrl)} />
+                                        <label htmlFor={element.id}>{element.label}</label>
+                                    </div>
+                                );
+                            } else if (element.brandid === brandCheckedItem) {
                                 return (
                                     <div className="dropdown__checkbox" key={element.id}>
                                         <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
