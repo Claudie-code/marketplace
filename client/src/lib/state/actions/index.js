@@ -5,6 +5,12 @@ import {
   GET_PRODUCTS_PENDING, 
   GET_PRODUCTS_SUCCESS, 
   GET_PRODUCTS_FAILURE,
+  GET_BRANDS_PENDING, 
+  GET_BRANDS_SUCCESS, 
+  GET_BRANDS_FAILURE,
+  GET_MODELS_PENDING, 
+  GET_MODELS_SUCCESS, 
+  GET_MODELS_FAILURE,
   UPDATE_CART,
   CHECKOUT, 
   SET_DELIVERY_CHOICE
@@ -25,6 +31,42 @@ export function getProductsSuccess(data) {
 export function getProductsFailure(error) { 
  return {
     type: GET_PRODUCTS_FAILURE, 
+     payload: { error }
+  };
+}
+
+export function getBrandsPending() { 
+  return {
+    type: GET_BRANDS_PENDING
+  };
+}
+export function getBrandsSuccess(data) { 
+  return {
+    type: GET_BRANDS_SUCCESS, 
+     payload: { data }
+  };
+}
+export function getBrandsFailure(error) { 
+ return {
+    type: GET_BRANDS_FAILURE, 
+     payload: { error }
+  };
+}
+
+export function getModelsPending() { 
+  return {
+    type: GET_MODELS_PENDING
+  };
+}
+export function getModelsSuccess(data) { 
+  return {
+    type: GET_MODELS_SUCCESS, 
+     payload: { data }
+  };
+}
+export function getModelsFailure(error) { 
+ return {
+    type: GET_MODELS_FAILURE, 
      payload: { error }
   };
 }
@@ -71,6 +113,24 @@ export const fetchProducts = () => {
     getProducts()
     .then(response => dispatch(getProductsSuccess(response.data)))
     .catch(error => dispatch(getProductsFailure(error)));
+  };
+};
+
+export const fetchBrands = () => {
+  return async (dispatch) => {
+    dispatch(getBrandsPending);
+    getBrands()
+    .then(response => dispatch(getBrandsSuccess(response.data)))
+    .catch(error => dispatch(getBrandsFailure(error)));
+  };
+};
+
+export const fetchModels = () => {
+  return async (dispatch) => {
+    dispatch(getBrandsPending);
+    getModels()
+    .then(response => dispatch(getModelsSuccess(response.data)))
+    .catch(error => dispatch(getModelsFailure(error)));
   };
 };
 

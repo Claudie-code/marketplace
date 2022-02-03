@@ -20,6 +20,34 @@ export const getProducts = () => {
     })
 };
 
+export const getModels = () => {
+    return new Promise((onSuccess, onFail) => {
+        axiosInstance
+        .get('/models')
+        .then((response, error) => {
+            if(!response || error) {
+                return onFail(`Response failure : ${error}`);
+            }
+            onSuccess(response);
+        })
+        .catch((error) => { onFail(error) } );
+    })
+};
+
+export const getBrands = () => {
+    return new Promise((onSuccess, onFail) => {
+        axiosInstance
+        .get('/brands')
+        .then((response, error) => {
+            if(!response || error) {
+                return onFail(`Response failure : ${error}`);
+            }
+            onSuccess(response);
+        })
+        .catch((error) => { onFail(error) } );
+    })
+};
+
 export const getUser = (body) => {
     return new Promise((onSuccess, onFail) => {
         axiosInstance

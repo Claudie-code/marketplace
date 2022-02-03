@@ -36,6 +36,8 @@ client.connect((err) => {
   !err && console.log('Successfully connected to database');
   const db = client.db(DATABASE)
   const products = db.collection("products");
+  const brands = db.collection("brands");
+  const models = db.collection("models");
   const users = db.collection("users");
   const orders = db.collection("orders");
 
@@ -48,6 +50,32 @@ client.connect((err) => {
         return res.send(err)
       }
       res.status(200).send({products});
+      })
+      .catch((error) => {res.send(error)})
+  });
+
+  routes.get('/models', (req, res) => {
+    models
+      .find()
+      .toArray()
+      .then((err, models) => {
+      if(err) {
+        return res.send(err)
+      }
+      res.status(200).send({models});
+      })
+      .catch((error) => {res.send(error)})
+  });
+
+  routes.get('/brands', (req, res) => {
+    brands
+      .find()
+      .toArray()
+      .then((err, brands) => {
+      if(err) {
+        return res.send(err)
+      }
+      res.status(200).send({brands});
       })
       .catch((error) => {res.send(error)})
   });
