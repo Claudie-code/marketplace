@@ -1,7 +1,6 @@
 import './modal.scss';
 
 const Modal = ({ showModal, setShowModal, children }) => { 
-
     return (
         <div className={`modal ${showModal && "showModal"}`} onClick={() => setShowModal(!showModal)}>	
             <div 

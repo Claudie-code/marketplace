@@ -5,33 +5,39 @@ import { useParams, useHistory, useLocation } from 'react-router-dom';
 import { fetchProducts } from '../../lib/state/actions';
 import queryString from 'query-string';
 import './shop.scss';
+import { useRef } from 'react';
 
 const Shop = () => { 
+    const ref = useRef();
     const history = useHistory();
     const location = useLocation();
     const dispatch = useDispatch();
     const { items } = useSelector(state => state.products);
     const { slug } = useParams();
-    const brandResults = slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items;
+    const [ brandCheckedItems, setBrandCheckedItems ] = useState("adidas");
+    const [ brandResults, setBrandResults ] = useState(slug ? items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()) : items);
     const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : ["yeezy350", "jordanHigh", "dunkLow"];
     const [ checkedItems, setCheckedItems ] = useState(initialState);
-    const [ modelResults, setModelResults ] = useState([]);
+    const [ modelResults, setModelResults ] = useState(brandResults.filter(element => checkedItems.some(checkedItem => checkedItem === element.modelid)));
     const [ showModelMenu, setShowModelMenu ] = useState(false);
     const [ showBrandMenu, setShowBrandMenu ] = useState(false);
 
-    const handleChange = event => {
-        event.stopPropagation();
-        setShowModelMenu(!showModelMenu)
+    const handleChange = (event, setChecked, checked, getFilter) => {
         let newCheckedItems;
         if (event.target.checked) {
-            if (checkedItems.includes(event.target.name)) return;
-            newCheckedItems = [...checkedItems, event.target.name];
-            setCheckedItems(newCheckedItems);
+            if (checked.includes(event.target.id)) return;
+            newCheckedItems = [...checked, event.target.id];
+            setChecked(newCheckedItems);
         } else {
-            newCheckedItems = checkedItems.filter(item => item !== event.target.name);
-            setCheckedItems(newCheckedItems);
+            newCheckedItems = checked.filter(item => item !== event.target.id);
+            setChecked(newCheckedItems);
         }
-        getFilterData(newCheckedItems);
+        getFilter(newCheckedItems);
+    };
+
+    const handleChangeBrand = (event, setChecked, checked, getFilter) => {
+        setBrandCheckedItems(event.target.id)
+        getFilter(event.target.id);
     };
 
     const brandCheckboxes = [
@@ -47,15 +53,15 @@ const Shop = () => {
 
     const modelCheckboxes = [
         {
-            name: "yeezy350",
+            id: "yeezy350",
             label: "Yeezy Boost 350"
         },
         {
-            name: "jordanHigh",
+            id: "jordanHigh",
             label: "Air Jordan 1 High"
         },
         {
-            name: "dunkLow",
+            id: "dunkLow",
             label: "Dunk Low"
         }
     ];
@@ -65,41 +71,57 @@ const Shop = () => {
     }, []);
 
     useEffect(() => {
-        setModelResults(brandResults.filter(element => initialState.some(checkedItem => checkedItem === element.modelid)))
-    }, [brandResults]);
+        const checkIfClickedOutside = e => {
+          if (showModelMenu && ref.current && !ref.current.contains(e.target)) {
+            setShowModelMenu(false)
+          }
+        }
+        document.addEventListener("mousedown", checkIfClickedOutside)
+        return () => {
+          document.removeEventListener("mousedown", checkIfClickedOutside)
+        }
+    }, [showModelMenu])
 
-    const getFilterData = (newCheckedItems) => {
+    const getFilterSearchUrl = (newCheckedItems) => {
         const params = new URLSearchParams();
         setModelResults(brandResults.filter(element => newCheckedItems.some(newCheckedItem => newCheckedItem === element.modelid)));
         newCheckedItems.forEach(value => params.append('model', value));
         history.push({ pathname: location.pathname, search: params.toString() });
     };
 
+    const getFilterPathnameUrl = (newCheckedItems) => {
+        setBrandResults(items.filter(item => item.brand.toLowerCase() === newCheckedItems.toLowerCase()));
+        history.replace({ pathname: "/shop/" + newCheckedItems, search: location.search });
+    };
+
+    useEffect(() => {
+        setModelResults(brandResults.filter(element => checkedItems.some(checkedItem => checkedItem === element.modelid)));
+    }, [location.pathname]);
+    console.log(brandResults, modelResults)
     return (
-        <section className="featured section" id="shop" 
-            onClick={() => { setShowModelMenu(false); setShowBrandMenu(false) }}>
+        <section className="featured section" id="shop"  >
             <h2 className="section-title">All Products</h2>
 
-            <div className="bd-grid">
-                <div className="dropdown">
-                    <button className="dropdown__button" onClick={(event) => {event.stopPropagation(); setShowBrandMenu(!showBrandMenu)}}>Brand</button>
-                    <div className={`dropdown__content ${showBrandMenu ? "show__brand" : ""}`}>
+            <div className="dropdown bd-grid" >
+                <div > 
+                    <button className="dropdown__button" onClick={(event) => {setShowBrandMenu(!showBrandMenu)}}>Brand</button>
+                    <div className={`dropdown__content ${showBrandMenu ? "show__brand" : ""}`} onClick={event => event.stopPropagation()}>
                         {brandCheckboxes.map(element => (
-                            <div className="dropdown__checkbox" key={element.name}>
-                                <input className="dropdown__icon" type="checkbox"  id={element.name} name={element.name}
-                                    checked={checkedItems.includes(element.name)} onChange={handleChange} />
-                                <label htmlFor={element.name}>{element.label}</label>
+                            <div className="dropdown__checkbox" key={element.id}>
+                                <input className="dropdown__icon" type="radio"  id={element.id} name="brand"
+                                    checked={brandCheckedItems === element.id} onChange={event => handleChangeBrand(event, setBrandCheckedItems, brandCheckedItems, getFilterPathnameUrl)} />
+                                <label htmlFor={element.id}>{element.label}</label>
                             </div>
                         ))}
                     </div>
                 </div>
-                <div className="dropdown">
-                    <button className="dropdown__button" onClick={(event) => {event.stopPropagation(); setShowModelMenu(!showModelMenu)}}>Model</button>
-                    <div className={`dropdown__content ${showModelMenu ? "show__model" : ""}`}>
+                <div ref={ref}>
+                    <button className="dropdown__button" onClick={(event) => {setShowModelMenu(!showModelMenu)}}>Model</button>
+                    <div className={`dropdown__content ${showModelMenu ? "show__model" : ""}`} onClick={event => event.stopPropagation()}>
                         {modelCheckboxes.map(element => (
                             <div className="dropdown__checkbox" key={element.id}>
                                 <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
-                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                                    checked={checkedItems.includes(element.id)} onChange={event => handleChange(event, setCheckedItems, checkedItems, getFilterSearchUrl)} />
                                 <label htmlFor={element.id}>{element.label}</label>
                             </div>
                         ))}
