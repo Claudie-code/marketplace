@@ -9,6 +9,7 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
     const history = useHistory();
     const location = useLocation();
     const { items } = useSelector(state => state.products);
+    const { brands } = useSelector(state => state.brands);
     const { slug } = useParams();
     const [ showMenu, setShowMenu ] = useState(false);
 
@@ -17,26 +18,11 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         getFilterPathnameUrl(event.target.id);
     };
 
-    const brands = [
-        {
-            id: "allproducts",
-            label: "All products"
-        },
-        {
-            id: "adidas",
-            label: "Adidas"
-        },
-        {
-            id: "nike",
-            label: "Nike"
-        },
-    ];
-
     const getFilterPathnameUrl = (newCheckedItem) => {
         if (newCheckedItem === "allproducts") {
             setBrandResults(items);
         } else {
-            setBrandResults(items.filter(item => item.brand.toLowerCase() === newCheckedItem.toLowerCase()));
+            setBrandResults(items.filter(item => item.brandid.toLowerCase() === newCheckedItem.toLowerCase()));
         }
         history.replace({ pathname: "/shop/" + newCheckedItem, search: location.search });
     };
@@ -55,7 +41,7 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
 
     useEffect(() => {
         if (brandCheckedItem !== "allproducts") {
-            setBrandResults(items.filter(item => item.brand.toLowerCase() === slug.toLowerCase()));
+            setBrandResults(items.filter(item => item.brandid.toLowerCase() === slug.toLowerCase()));
         } else {
             setBrandResults(items);
         }
@@ -69,11 +55,11 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         <div ref={ref}> 
             <button className="dropdown__button" onClick={(event) => {setShowMenu(!showMenu)}}>Brand</button>
             <div className={`dropdown__content ${showMenu ? "show__brand" : ""}`} onClick={event => event.stopPropagation()}>
-                {brands.map(element => (
+                {brands?.map(element => (
                     <div className="dropdown__checkbox" key={element.id}>
                         <input className="dropdown__icon" type="radio"  id={element.id} name="brand"
                             checked={brandCheckedItem === element.id} onChange={handleChange} />
-                        <label htmlFor={element.id}>{element.label}</label>
+                        <label htmlFor={element.id}>{element.name}</label>
                     </div>
                 ))}
             </div>

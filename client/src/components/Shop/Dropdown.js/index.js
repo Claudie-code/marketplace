@@ -5,33 +5,13 @@ import { fetchModels } from '../../../lib/state/actions';
 
 const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
     const dispatch = useDispatch();
-    const modelCheckboxes = [
-        {
-            _id: "yeezy350",
-            name: "Yeezy Boost 350",
-            brandid: "adidas"
-        },
-        {
-            id: "jordanHigh",
-            label: "Air Jordan 1 High",
-            brandid: "nike"
-        },
-        {
-            id: "dunkLow",
-            label: "Dunk Low",
-            brandid: "nike"
-        }
-    ]; 
     const { models } = useSelector(state => state.models);
-    console.log("it", models)
     const ref = useRef();
     const history = useHistory();
     const location = useLocation();
-    const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model._id);
+    const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model.id);
     const [ checkedItems, setCheckedItems ] = useState(initialState);
     const [ showMenu, setShowMenu ] = useState(false);
-    
-    
 
     const handleChange = (event) => {
         let newCheckedItems;
@@ -59,7 +39,6 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
     }, [showMenu]);
 
     const getFilterSearchUrl = (newCheckedItems) => {
-        console.log("modelid", newCheckedItems, brandResults)
         const params = new URLSearchParams();
         setModelResults(brandResults.filter(element => newCheckedItems.some(newCheckedItem => newCheckedItem === element.modelid)));
         newCheckedItems.forEach(value => params.append('model', value));
@@ -68,7 +47,11 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
 
     useEffect(() => {
         setModelResults(brandResults.filter(element => checkedItems.some(checkedItem => checkedItem === element.modelid)));
-    }, [location.pathname, brandResults]);
+    }, [location.pathname, brandResults, checkedItems]);
+
+    useEffect(() => {
+        setCheckedItems(new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model.id));
+    }, [location.search, brandResults]);
 
     useEffect(() => {
         dispatch(fetchModels());
@@ -79,21 +62,21 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
             <button className="dropdown__button" onClick={() => setShowMenu(!showMenu)}>Model</button>
             <div className={`dropdown__content ${showMenu ? "show__model" : ""}`} 
                 onClick={event => event.stopPropagation()}>
-                {models.map(element => {
+                {models?.map(element => {
                     if (brandCheckedItem === "allproducts") {
                         return (
-                            <div className="dropdown__checkbox" key={element._id}>
-                                <input className="dropdown__icon" type="checkbox"  id={element._id} name={element._id}
-                                    checked={checkedItems.includes(element._id)} onChange={handleChange} />
-                                <label htmlFor={element._id}>{element.name}</label>
+                            <div className="dropdown__checkbox" key={element.id}>
+                                <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                                <label htmlFor={element.id}>{element.name}</label>
                             </div>
                         );
-                    } else if (element.brand === brandCheckedItem) {
+                    } else if (element.brandid === brandCheckedItem) {
                         return (
-                            <div className="dropdown__checkbox" key={element._id}>
-                                <input className="dropdown__icon" type="checkbox"  id={element._id} name={element._id}
-                                    checked={checkedItems.includes(element._id)} onChange={handleChange} />
-                                <label htmlFor={element._id}>{element.name}</label>
+                            <div className="dropdown__checkbox" key={element.id}>
+                                <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                                <label htmlFor={element.id}>{element.name}</label>
                             </div>
                         );
                     }
