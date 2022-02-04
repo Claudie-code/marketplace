@@ -15,7 +15,7 @@ const Women = ({ scrollActive, offset, womenItems }) => {
 				{womenItems.map(womanItem => (
 					<article className="sneaker" key={womanItem.name}>
 						<img src={womanItem.image} alt={womanItem.name} className="sneaker__img" />
-						<span className="sneaker__name">{womanItem.brand} {womanItem.model}</span>
+						<span className="sneaker__name">{womanItem.brand[0].name} {womanItem.model[0].name}</span>
 						<span className="sneaker__preci">${womanItem.price.$numberDecimal}</span>
 						<a href="" title={`link ${womanItem.name}`} className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
 					</article>

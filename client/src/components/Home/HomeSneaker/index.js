@@ -21,7 +21,7 @@ const HomeSneaker = ({ scrollActive, offset, homeItem }) => {
 
 					<div className="home__data">
 						<span className="home__new">New in</span>
-						<h1 className="home__title">{homeItem.brand.toUpperCase()} <br /> {homeItem.model.toUpperCase()}</h1>
+						<h1 className="home__title">{homeItem.brand[0].name.toUpperCase()} <br /> {homeItem.model[0].name.toUpperCase()}</h1>
 						<p className="home__description">Explore the new collections of sneakers</p>
 						<Link href="/shop" title="link to shop">Explore now</Link>
 					</div>

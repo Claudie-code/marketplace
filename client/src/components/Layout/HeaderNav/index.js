@@ -64,7 +64,7 @@ const Header = () => {
                     <ul className="nav__list">
                         {
                             [
-                                {route: "/#", name: "Home"},
+                                {route: "/#home", name: "Home"},
                                 {route: "/#featured", name: "Featured"},
                                 {route: "/#women", name: "Women"},
                                 {route: "/#new", name: "New"},

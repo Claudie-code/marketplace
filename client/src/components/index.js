@@ -13,6 +13,7 @@ import Cart from './Cart'
 import Account from './Account';
 import Layout from './Layout'
 import Shop from './Shop'
+import ProductPage from './ProductPage';
 import useAuthentication from '../lib/hooks/useAuthentication';
 import { useDispatch } from 'react-redux';
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/shop/:slug" component={Shop} />
+        <Route exact path="/products/:slug" component={ProductPage} />
         <Route path="/about" component={About} />
         <Route path="/help" component={Help} />
       

@@ -20,9 +20,9 @@ const Home = () => {
 	const state = useSelector(state => ({...state.products}));
 	const { items, isLoading } = state;
   const homeItem = items[0];
-  const featuredItems = items.filter(item => item.model === "Air Jordan 1 High");
-  const womenItems = items.filter(item => item.model === "Dunk Low");
-  const newItems = items.filter(item => item.model === "Yeezy Boost 350");
+  const featuredItems = items.filter(item => item.modelid === "airjordan1high");
+  const womenItems = items.filter(item => item.modelid === "dunklow");
+  const newItems = items.filter(item => item.modelid === "yeezyboost350");
 
   const scrollActive = (ref, id) => {
       const scrollY = window.scrollY;
@@ -39,7 +39,7 @@ const Home = () => {
     window.addEventListener('scroll', () => setOffset(window.pageYOffset));
     return () => window.removeEventListener('scroll', () => setOffset(window.pageYOffset));
   }, []);
-
+  
   return (
     <main className="l-main">    
       <Loading isLoading={isLoading} />
