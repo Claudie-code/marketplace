@@ -43,15 +43,32 @@ client.connect((err) => {
 
   routes.get('/products', (req, res) => {
     products
-      .find()
-      .toArray()
-      .then((err, products) => {
-      if(err) {
-        return res.send(err)
+    .aggregate([
+      {
+          $lookup:{
+           from:"brands",
+           localField:"brandid",
+           foreignField:"id",
+           as:"brand"
+          },
+      },
+      {
+        $lookup:{
+         from:"models",
+         localField:"modelid",
+         foreignField:"id",
+         as:"model"
+        },
       }
-      res.status(200).send({products});
-      })
-      .catch((error) => {res.send(error)})
+    ])
+    .toArray()
+    .then((err, products) => {
+    if(err) {
+      return res.send(err)
+    }
+    res.status(200).send({products});
+    })
+    .catch((error) => {res.send(error)})
   });
 
   routes.get('/models', (req, res) => {
