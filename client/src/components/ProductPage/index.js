@@ -55,6 +55,7 @@ function ProductPage() {
                                 </select>
                             </div>
                             <Button onClick={addToCartAction}>Add to cart</Button>
+                            <a href="/cart" title="link cart" className="button-light product__link">Cart <i className='bx bx-right-arrow-alt button-icon'></i></a>
                         </div>
                     </div>
                 </>

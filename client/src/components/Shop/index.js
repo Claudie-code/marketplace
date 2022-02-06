@@ -39,12 +39,6 @@ const Shop = () => {
 
                 {modelResults.map(modelResult => (
                     <ProductCard {...modelResult} />
-                    // <article className="sneaker" key={modelResult.name}>
-                    //     <img src={modelResult.image} alt={modelResult.name} className="sneaker__img" />
-                    //     <span className="sneaker__name">{modelResult.model[0].name} <br /> {modelResult.name}</span>
-                    //     <span className="sneaker__preci">${modelResult.price.$numberDecimal}</span>
-                    //     <a href={`/products/${modelResult.name}`} title={`product page ${modelResult.name}`} className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
-                    // </article>
                 ))}
 
             </div>

@@ -11,4 +11,8 @@
         gap: 1rem;
         flex-direction: column;
     }
+    
+    &__link {
+        align-self: self-end;
+    }
 }
