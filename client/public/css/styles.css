@@ -135,3 +135,10 @@ button {
   outline: 0;
   cursor: pointer;
 }
+
+select {
+    width: 100%;
+    padding: 1rem;
+    border-radius: .5rem;
+    border: 1px solid var(--dark-color-light);
+}
