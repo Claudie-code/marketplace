@@ -10,7 +10,7 @@ const Collection = () => {
 				<div className="collection__data">
 				<h3 className="collection__name">Nike</h3>
 				<p className="collection__description">New collection 2022</p>
-				<a href="#" className="button-light">Buy now <i className='bx bx-right-arrow-alt button-icon'></i></a>
+				<a href="/shop/nike" title="nike collection" className="button-light">Buy now <i className='bx bx-right-arrow-alt button-icon'></i></a>
 				</div>
 
 				<img src={collection1} alt="" className="collection__img" />
@@ -18,9 +18,9 @@ const Collection = () => {
 
 			<div className="collection__card">
 				<div className="collection__data">
-				<h3 className="collection__name">Addidas</h3>
+				<h3 className="collection__name">Adidas</h3>
 				<p className="collection__description">New collection 2022</p>
-				<a href="#" className="button-light">Buy now <i className='bx bx-right-arrow-alt button-icon'></i></a>
+				<a href="/shop/adidas" title="adidas collection" className="button-light">Buy now <i className='bx bx-right-arrow-alt button-icon'></i></a>
 				</div>
 
 				<img src={collection2} alt="" className="collection__img" />

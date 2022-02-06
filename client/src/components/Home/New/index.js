@@ -18,7 +18,7 @@ const New = ({ scrollActive, offset, newItems }) => {
 				<img src={new1} alt="" className="new__mens-img" />
 				<h3 className="new__title">Mens Shoes</h3>
 				<span className="new__preci">From $79.99</span>
-				<a href="#" className="button-light">View Collection <i className='bx bx-right-arrow-alt button-icon'></i></a>
+				<a href="/shop/adidas" title="adidas collection" className="button-light">View Collection <i className='bx bx-right-arrow-alt button-icon'></i></a>
 			</div>
 
 			<div className="new__sneaker">
@@ -26,7 +26,7 @@ const New = ({ scrollActive, offset, newItems }) => {
 					<div className="new__sneaker-card" key={newItem.name}>
 						<img src={newItem.image} alt={newItem.name} className="new__sneaker-img" />
 						<div className="new__sneaker-overlay">
-							<Link href="/" title={`link ${newItem.name}`}>Explore</Link>
+							<Link href={`/products/${newItem.name}`} title={`product page ${newItem.name}`}>Explore</Link>
 						</div>
 					</div>
 				))}

@@ -25,13 +25,13 @@ const Home = () => {
   const newItems = items.filter(item => item.modelid === "yeezyboost350");
 
   const scrollActive = (ref, id) => {
-      const scrollY = window.scrollY;
-      const sectionHeight = ref.current.offsetHeight;
-      const sectionTop = ref.current.offsetTop - 50;
+    const scrollY = window.scrollY;
+    const sectionHeight = ref.current.offsetHeight;
+    const sectionTop = ref.current.offsetTop - 50;
 
-      if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-        dispatch(setSection(id));
-      }
+    if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+      dispatch(setSection(id));
+    }
   };
   
   useEffect(() => {
