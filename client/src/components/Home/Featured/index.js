@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import ProductPage from '../ProductCard';
+import ProductCard from '../ProductCard';
 import './featured.scss';
 
 const Featured = ({ scrollActive, offset, featuredItems }) => {
@@ -13,9 +13,11 @@ const Featured = ({ scrollActive, offset, featuredItems }) => {
 		<section className="featured section" id="featured" ref={featuredRef}>
 			<h2 className="section-title">FEATURED</h2>
 			<div className="featured__container bd-grid">
-				{featuredItems.map(featuredItem => (
-					<ProductPage {...featuredItem} sale={true} />
-				))}
+				{featuredItems ? 
+					featuredItems.map(featuredItem => (
+						<ProductCard {...featuredItem} sale={true} />
+					)) : <ProductCard sale={true} />
+				}
 			</div>
 		</section>
 	);

@@ -43,7 +43,9 @@ function ProductPage() {
                     <h2 className="section-title">{product.brand[0].name}</h2>
                     <div className="product__container">
                         <div>
-                            <img src={product.image} alt={product.name} className="product__img" />
+                            <div>
+                                <img src={product.image} alt={product.name} className="product__img" />
+                            </div>
                             <div className="product__carousel">
                                 <div>
                                     <img src={product.image} alt={product.name} className="product__small-img" />  

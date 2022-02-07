@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import ProductPage from '../ProductCard';
+import ProductCard from '../ProductCard';
 import './women.css';
 
 const Women = ({ scrollActive, offset, womenItems }) => {
@@ -13,9 +13,11 @@ const Women = ({ scrollActive, offset, womenItems }) => {
 		<section className="women section" id="women" ref={womenRef}>
 			<h2 className="section-title">WOMEN SNEAKERS</h2>
 			<div className="women__container bd-grid">
-				{womenItems.map(womanItem => (
-					<ProductPage {...womanItem} />
-				))}
+				{womenItems ? 
+					womenItems.map(womanItem => (
+						<ProductCard {...womanItem} />
+					)) : <ProductCard />
+				}
 			</div>
 		</section>
 	);

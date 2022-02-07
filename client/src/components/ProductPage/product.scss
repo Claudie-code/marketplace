@@ -7,7 +7,8 @@
     }
 
     &__img {
-        padding: 3rem;
+        padding: 4rem;
+        width: 100%;
     }
 
     &__description {
@@ -95,4 +96,10 @@
 
 .large {
     grid-column: span 2;
+}
+
+@media screen and (max-width: 750px) {
+    .product__container {
+        grid-template-columns: 100%;
+    }
 }

@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
 import Link from '../../Link';
+import Loader from '../../Loader';
 import new1 from '../img/new1.png';
 import './new.scss';
 
-const New = ({ scrollActive, offset, newItems }) => {
+const New = ({ scrollActive, offset, newItems, isLoading }) => {
 	const newRef = useRef();
 
 	useEffect(() => {
@@ -22,14 +23,22 @@ const New = ({ scrollActive, offset, newItems }) => {
 			</div>
 
 			<div className="new__sneaker">
-				{newItems.map(newItem => (
+				{newItems && !isLoading ? 
+					newItems.map(newItem => (
 					<div className="new__sneaker-card" key={newItem.name}>
 						<img src={newItem.image} alt={newItem.name} className="new__sneaker-img" />
 						<div className="new__sneaker-overlay">
 							<Link href={`/products/${newItem.name}`} title={`product page ${newItem.name}`}>Explore</Link>
 						</div>
 					</div>
-				))}
+					)) : 
+					<div className="new__sneaker-card">
+						<Loader />
+						<div className="new__sneaker-overlay">
+							<Link>Explore</Link>
+						</div>
+					</div>
+				}
 			</div>
 			</div>
 		</section>

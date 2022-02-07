@@ -10,10 +10,6 @@ import New from './New';
 import Newsletter from './Newsletter';
 import { fetchProducts } from '../../lib/state/actions';
 
-const Empty = ({ isVisible }) => !isVisible && <p style={{paddingTop: "7rem"}}>No Listing available ... </p>;
-
-const Loading = ({ isLoading }) => isLoading && <p style={{paddingTop: "7rem"}}>Loading... </p>;
-
 const Home = () => {
   const dispatch = useDispatch();
   const [ offset, setOffset ] = useState(0);
@@ -42,14 +38,12 @@ const Home = () => {
   
   return (
     <main className="l-main">    
-      <Loading isLoading={isLoading} />
-			<Empty isVisible={!!items} />
-      <HomeSneaker scrollActive={scrollActive} offset={offset} homeItem={homeItem} />
+      <HomeSneaker scrollActive={scrollActive} offset={offset} homeItem={homeItem} isLoading={isLoading} />
       <Featured scrollActive={scrollActive} offset={offset} featuredItems={featuredItems} />
       <Collection />
       <Women scrollActive={scrollActive} offset={offset} womenItems={womenItems} />
       <Offer />
-      <New scrollActive={scrollActive} offset={offset} newItems={newItems} />
+      <New scrollActive={scrollActive} offset={offset} newItems={newItems} isLoading={isLoading} />
       <Newsletter />
     </main>
   );
