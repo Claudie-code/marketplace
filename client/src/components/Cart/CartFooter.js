@@ -1,10 +1,11 @@
 import React from 'react';  
 import { Link } from "react-router-dom";
+import ButtonNav from '../ButtonNav';
 
 const CartFooter = () => (
-    <div className="card-body border-top ">
-        <button className="btn btn-primary float-md-right"><Link to='/checkout' className="text-light">Make Purchase <i className="fa fa-chevron-right"></i></Link></button>
-        <button className="btn btn-secondary float-md-right  mr-2"><Link to='/' className="text-light"> Continue shopping <i className="fa fa-chevron-right"></i></Link></button> 
+    <div className='cart-footer__container'>
+        <ButtonNav href="/shop" title="link shop">Continue shopping</ButtonNav>
+        <ButtonNav href="/checkout" title="link chekout">Make Purchase</ButtonNav>   
     </div>
 )
 export default CartFooter

@@ -4,7 +4,7 @@ import CartTable from './CartTable'
 
 const Layout = ({ children }) => (
 	<section className="cart__container section bd-grid">
-		<main className="col-md-9">
+		<main className="cart__table">
 			<CartTable children={children} />
 		</main>
 		<aside className="col-md-3">

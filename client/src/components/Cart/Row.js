@@ -1,4 +1,3 @@
-import React from 'react';  
 import { useDispatch } from 'react-redux';
 import { removeFromCart, updateCart } from '../../lib/state/actions';
 
@@ -37,7 +36,7 @@ const Row = ({ _id, name, price, quantity, image}) => {
                 </div>
             </td>
             <td> 
-                <a href="" onClick={removeFromCartAction}>Remove</a>
+                <a className="cart__remove" href="" onClick={removeFromCartAction}>Remove</a>
             </td>
         </tr>
     );

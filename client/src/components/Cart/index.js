@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import Layout from './Layout';
 import Row from './Row';
@@ -10,10 +9,7 @@ const Cart = () => {
 		<>
 			<Layout>
 					{items.length === 0 && 
-						<p 
-							className="d-flex justify-content-center align-items-center" 
-							style={{fontSize: 20}}
-						>
+						<p className="cart__empty">
 							Your Cart is Empty
 						</p>
 					}
