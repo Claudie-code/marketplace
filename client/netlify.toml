@@ -1,6 +1,4 @@
-[build]
-    publish = "/build"
-    base = "/"
+
 
 [[redirects]]
     from = "/*"
