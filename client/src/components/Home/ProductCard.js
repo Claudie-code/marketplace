@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import ButtonNav from "../ButtonNav";
 import Loader from "../Loader";
 
 const ProductCard = ({ _id, sale, name, image, model, price }) => {
@@ -11,14 +12,14 @@ const ProductCard = ({ _id, sale, name, image, model, price }) => {
                     <img src={image} alt={name} className="sneaker__img" />
                     <span className="sneaker__name">{model[0].name} <br /> {name}</span>
                     <span className="sneaker__preci">${price.$numberDecimal}</span>
-                    <a href={`/products/${name}`} title={`product page ${name}`} className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
+                    <ButtonNav href={`/products/${name}`} title={`product page ${name}`}>Explore</ButtonNav>
                 </article> :
                 <article className="sneaker">
                     {sale && <div className="sneaker__sale">Sale</div>}
                     <Loader />
                     <span className="sneaker__name"> <br /> </span>
                     <span className="sneaker__preci">$</span>
-                    <a className="button-light">Explore<i className='bx bx-right-arrow-alt button-icon'></i></a>
+                    <ButtonNav>Explore</ButtonNav>
                 </article>
             }
         </>

@@ -2,28 +2,28 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, updateCart } from '../../lib/state/actions';
 
-const Row = ({ id, name, price, quantity}) => { 
+const Row = ({ _id, name, price, quantity, image}) => { 
     const dispatch = useDispatch();
     const updateCartAction = (event) => { 
-        dispatch(updateCart(id, event.target.value));
+        dispatch(updateCart(_id, event.target.value));
     };
     const removeFromCartAction = (event) => {
         event.preventDefault();
-        dispatch(removeFromCart(id));
+        dispatch(removeFromCart(_id));
     };
 
     return (
-        <tr>
+        <tr key={_id}>
             <td>
-                <figure className="itemside">
-                    <div className="aside"><img src={ `images/items/${id}.jpg`} className="img-sm" /></div>
-                    <figcaption className="info">
-                        <a href="#" className="title text-dark">{ name }</a>
+                <figure >
+                    <div ><img src={image}  /></div>
+                    <figcaption >
+                        <a href="#" >{ name }</a>
                     </figcaption>
                 </figure>
             </td>
             <td> 
-                <select className="form-control" value={quantity} onChange={updateCartAction}>
+                <select value={quantity} onChange={updateCartAction}>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -32,14 +32,14 @@ const Row = ({ id, name, price, quantity}) => {
                 </select> 
             </td>
             <td>    
-                <div className="price-wrap"> 
-                    <span className="price">${price * quantity}</span> 
+                <div> 
+                    <span>${price.$numberDecimal * quantity}</span> 
                 </div>
             </td>
-            <td className="text-right"> 
-                <a data-original-title="Save to Wishlist" title="" href="" className="btn btn-light" data-toggle="tooltip" onClick={() => null}> <i className="fa fa-heart"></i></a> 
-                <a href="" className="btn btn-light btn-round" onClick={removeFromCartAction}> Remove</a>
+            <td> 
+                <a href="" onClick={removeFromCartAction}>Remove</a>
             </td>
-    </tr>)
+        </tr>
+    );
 }
 export default Row

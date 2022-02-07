@@ -1,19 +1,15 @@
-import React from 'react';  
+import './cart.scss';
 import CartTotal from './CartTotal'
 import CartTable from './CartTable'
 
 const Layout = ({ children }) => (
-<section className="section-content padding-y" style={{ marginTop: '140px' }}>
-	<div className="container">
-		<div className="row">
-			<main className="col-md-9">
-				<CartTable children={children} />
-			</main>
-			<aside className="col-md-3">
-				<CartTotal />			
-			</aside>
-		</div>
-	</div> 
-</section>
+	<section className="cart__container section bd-grid">
+		<main className="col-md-9">
+			<CartTable children={children} />
+		</main>
+		<aside className="col-md-3">
+			<CartTotal />			
+		</aside>
+	</section>
 )
 export default Layout

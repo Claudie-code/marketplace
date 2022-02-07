@@ -1,0 +1,16 @@
+.button-light {
+    display: inline-flex;
+    color: var(--dark-color);
+    font-weight: var(--font-bold);
+    align-items: center;
+}
+
+.button-icon {
+    font-size: 1.25rem;
+    margin-left: var(--mb-1);
+    transition: .3s;
+}
+
+.button-light:hover .button-icon {
+    transform: translateX(.25rem);
+}

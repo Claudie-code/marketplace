@@ -1,0 +1,15 @@
+.cart {
+    &__container {
+        display: grid;
+        grid-template-columns: 65% 35%;
+        justify-items: stretch;
+        gap: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 750px) {
+    .cart__container {
+        grid-template-columns: 100%;
+    }
+}
