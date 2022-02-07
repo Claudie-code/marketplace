@@ -1,6 +1,7 @@
-
+[build]
+  ignore = "false"
 
 [[redirects]]
     from = "/*"
-    to = "/index.html"
+    to = "/"
     status = 200
