@@ -42,7 +42,23 @@ function ProductPage() {
                 <>
                     <h2 className="section-title">{product.brand[0].name}</h2>
                     <div className="product__container">
-                        <img src={product.product_image} alt={product.name} className="product__img" />
+                        <div>
+                            <img src={product.image} alt={product.name} className="product__img" />
+                            <div className="product__carousel">
+                                <div>
+                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                </div>
+                                <div>
+                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                </div>
+                                <div>
+                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                </div>
+                                <div>
+                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                </div>
+                            </div>
+                        </div>
                         <div className="product__description">
                             <h3>{product.name}</h3>
                             <p>${product.price.$numberDecimal}</p>
@@ -56,6 +72,30 @@ function ProductPage() {
                             </div>
                             <Button onClick={addToCartAction}>Add to cart</Button>
                             <a href="/cart" title="link cart" className="button-light product__link">Cart <i className='bx bx-right-arrow-alt button-icon'></i></a>
+                            <div>
+                                <div className="product__accordion large">
+                                    <input type="checkbox" id="faq-1" className="product__input" />
+                                    <h4 className="product__subtitle"><label for="faq-1" className="product__label">DESCRIPTION</label></h4>
+                                    <div className="product__text">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis consectetur provident animi similique natus omnis maiores officia magnam expedita itaque. Ratione blanditiis quod nemo rem illum qui facilis omnis, esse, exercitationem recusandae nam quasi debitis eum? Quod, expedita maiores itaque ullam laudantium, eligendi illum autem odio assumenda voluptates id nulla consequatur dignissimos tenetur laborum consequuntur, eveniet pariatur! Porro quo alias maxime, saepe numquam voluptatem consectetur?</p>
+                                    </div>
+                                </div>
+                                <div className="product__accordion">
+                                    <input type="checkbox" id="faq-2" className="product__input" />
+                                    <h4 className="product__subtitle"><label for="faq-2" className="product__label">AUTHENTICITY</label></h4>
+                                    <div className="product__text">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto delectus porro illo, veritatis placeat eum!</p>
+                                    </div>
+                                </div>
+                                <div className="product__accordion">
+                                    <input type="checkbox" id="faq-3" className="product__input" />
+                                    <h4 className="product__subtitle"><label for="faq-3" className="product__label">DELIVERY</label></h4>
+                                    <div className="product__text">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis inventore, amet deleniti maiores suscipit incidunt culpa rerum reprehenderit praesentium facilis accusantium officia impedit sequi, iure magnam accusamus est cum iusto!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>
