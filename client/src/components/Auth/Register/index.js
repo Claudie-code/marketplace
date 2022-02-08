@@ -99,9 +99,11 @@ const Register = () => {
 					</div> 
 					<div className="form__row">
 						<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange} required/>
-						<select name="country" id="country-select" value={country}>
+						<select name="country" id="country-select" value={country} onChange={handleOnChange}>
 							<option value="">Country</option>
-							{options.map(option => <option key={option}value={option.toLocaleLowerCase()}>{option}</option>)}
+							{options.map(option => 
+								<option key={option} value={option.toLocaleLowerCase()}>{option}</option>
+							)}
 						</select>
 					</div> 	
 					

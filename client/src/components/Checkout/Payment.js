@@ -1,7 +1,7 @@
-import React from 'react';
 import { processPayment } from '../../lib/service';
 import { useSelector } from 'react-redux';
 import { selectDeliveryCost } from '../../lib/state/selectors';
+import Button from '../Button';
 
 function Payment({ isValid }) {
   const { items } = useSelector(state => state.cart);
@@ -22,12 +22,12 @@ function Payment({ isValid }) {
   const orderWithShipping = order.concat(shipping);
 
   return (
-    <button 
-      className="btn btn-outline-primary btn-lg mt-3 btn-block" 
+    <Button
       onClick={() => processPayment(orderWithShipping)} 
       disabled={isValid}
     >
         Checkout
-    </button>);
+    </Button>
+  );
 }
 export default Payment;

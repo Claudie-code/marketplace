@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Payment from './Payment'
 import DeliveryBox from './DeliveryBox'
 import { setDelivery } from '../../lib/state/actions/index';
+import './checkout.scss';
 
 const defaultValues = { 
 	delivery: 'standard',
@@ -36,17 +37,14 @@ const Checkout = () => {
 		handleOnChange(event, value);
 		dispatch(setDelivery(value));
 	};
-
+	console.log("test", user)
 	return (
-	<>
-	<section className="section-content padding-y" style={{ margin: '100px auto', maxWidth: '720px' }}>
-		<div className="container" >
+	<section className="section checkout">
+		<div className="card checkout__container">
+			<div className="checkout__body">
+				<h3 className="card-title mb-3">Delivery info</h3>
 
-			<div className="card mb-4">
-				<div className="card-body">
-				<h4 className="card-title mb-3">Delivery info</h4>
-
-				<div className="form-row">
+				<div className="form__row checkout__delivery">
 					<div className="form-group col-sm-6">
 						<DeliveryBox title="standard" message="Free by airline within 20 days" onChange={(event) => handleOnchangeDelivery(event, "standard")} value={delivery} />
 					</div>
@@ -55,26 +53,33 @@ const Checkout = () => {
 					</div>
 				</div>
 
-				<div className="form-row">
+				<div className="form__row">
+					<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange} required/>
+					<input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange} required/>
 					{/* <Input.Text label="First name" name="first" onChange={handleOnChange} value={first}/>
 					<Input.Text label="Last name" name="last"  onChange={handleOnChange} value={last}/> */}
 				</div> 
 
-				<div className="form-row">
+				<div className="form__row">
 					{/* <Input.Email label="Email" onChange={handleOnChange} col="6" value={email}/>	 */}
+					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required/>
 				</div> 
-				<div className="form-row">
+				<div className="form__row">
 					{/* <Input.Select name='country' options={options}  label="Country" col="6" onChange={handleOnChange} value={country}/>
 					<Input.Text label="City" name='city'onChange={handleOnChange} value={city} /> */}
+					<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange} required/>
+					<select name="country" id="country-select" value={country} onChange={handleOnChange}>
+						<option value="">Country</option>
+						{options.map(option => <option key={option}value={option.toLocaleLowerCase()}>{option}</option>)}
+					</select>
 				</div> 
 					{/* <Input.TextArea label="Address" name="address" onChange={handleOnChange} />  */}
-				</div> 
-				<div className="form-row" style={{padding: '0 25px 30px'}}>
-					<Payment isValid={!isValid} />	
-				</div>
+				<input type="text" name="address" id="address" className="form__input" placeholder="Address" value={address} onChange={handleOnChange} required/>
+			</div> 
+			<div className="form__row" style={{margin: "auto"}}>
+				<Payment isValid={!isValid} />	
+			</div>
 		</div> 
-	</div>
-</section>
-</>
+	</section>
 )}
 export default Checkout
