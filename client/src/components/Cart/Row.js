@@ -32,7 +32,7 @@ const Row = ({ _id, name, price, quantity, image}) => {
             </td>
             <td>    
                 <div> 
-                    <span>${price.$numberDecimal * quantity}</span> 
+                    <span>${price?.$numberDecimal * quantity}</span> 
                 </div>
             </td>
             <td className="text-right"> 

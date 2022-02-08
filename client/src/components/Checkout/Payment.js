@@ -15,12 +15,12 @@ function Payment({ isValid }) {
   const processItem = (item) => ({
     currency: "usd",
     quantity: item.quantity,
-    amount: item.price * 100,
+    amount: item.price.$numberDecimal * 100,
     name: item.name
   });
   const order = items.map(item => processItem(item));
   const orderWithShipping = order.concat(shipping);
-
+  console.log("order", orderWithShipping)
   return (
     <Button
       onClick={() => processPayment(orderWithShipping)} 
