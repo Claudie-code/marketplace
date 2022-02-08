@@ -13,7 +13,7 @@ function ProductPage() {
     const { items } = useSelector(state => state.products);
     const product = items.find(item => item.name === slug);
     const addToCartAction = () => dispatch(addToCart(product));
-    console.log(slug, product);
+
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);

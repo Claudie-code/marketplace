@@ -37,7 +37,7 @@ const Checkout = () => {
 		handleOnChange(event, value);
 		dispatch(setDelivery(value));
 	};
-	console.log("test", user)
+
 	return (
 	<section className="section checkout">
 		<div className="card checkout__container">

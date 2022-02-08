@@ -1,4 +1,4 @@
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -24,7 +24,7 @@ const DATABASE = "marketplace";
 
 // connect to server
 app.listen(PORT, () => {
-  console.log(`Server up and running on http://localhost:${PORT}`);
+  console.log('listening on *:5000');
 });
 
 //connect to Database
@@ -132,7 +132,8 @@ client.connect((err) => {
 })
 
 //stripe
-const YOUR_DOMAIN = 'http://localhost:3000';
+const YOUR_DOMAIN = process.env.YOUR_DOMAIN;
+console.log("domain", YOUR_DOMAIN);
 routes.post('/create-checkout-session', jsonParser, async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.create({

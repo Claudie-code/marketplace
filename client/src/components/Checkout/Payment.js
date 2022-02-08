@@ -21,7 +21,7 @@ function Payment({ isValid }) {
   });
   const order = items.map(item => processItem(item));
   const orderWithShipping = order.concat(shipping);
-  console.log("order", orderWithShipping)
+
   return (
     <Button
       onClick={() => processPayment(orderWithShipping)} 
