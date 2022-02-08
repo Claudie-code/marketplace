@@ -7,7 +7,7 @@ import Button from '../../Button';
 const Alert = ({ isVisible }) => (
 	isVisible &&
 	<div className="alert alert-info mt-3">
-		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>User successfully created</p>
+		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>{' '}User successfully created</p>
     </div>
 );
 
