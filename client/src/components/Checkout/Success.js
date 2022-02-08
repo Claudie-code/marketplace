@@ -5,9 +5,11 @@ import { selectCartTotal } from '../../lib/state/selectors';
 import useAuthentication from '../../lib/hooks/useAuthentication';
 
 const styles = {
+  padding: '7rem',
   height: '100vh',
   fontSize: 20
-}
+};
+
 function Success({ history }) {
   const dispatch = useDispatch();
   const { items } = useSelector(state => state.cart);
@@ -46,7 +48,7 @@ function Success({ history }) {
     <>
     <div style={styles} className='d-flex justify-content-center align-items-center'>
         <div className="alert alert-success mt-3 mb-3">
-          <p className="icontext"><i className="icon text-success fa fa-thumbs-up"></i>Thank you for your order &amp; your payment</p>
+          <p className="icontext"><i className="icon text-success fa fa-thumbs-up"></i>{' '}Thank you for your order &amp; your payment</p>
       </div>
     </div>
     </>

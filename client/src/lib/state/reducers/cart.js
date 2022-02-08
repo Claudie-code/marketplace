@@ -17,7 +17,7 @@ const mapItem = (item, payload) => {
   return item
 }
 const updateMapItem = (item, payload) => { 
-  if (item._id === payload.id) { return { ...item, quantity: payload.quantity} }
+  if (item._id === payload.id) { return { ...item, quantity: Number(payload.quantity)} }
   return item
 }
 const filterItem = (item, payload) => item._id !== payload.id

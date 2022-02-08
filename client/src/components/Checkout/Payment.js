@@ -16,7 +16,8 @@ function Payment({ isValid }) {
     currency: "usd",
     quantity: item.quantity,
     amount: item.price.$numberDecimal * 100,
-    name: item.name
+    name: item.name,
+    images: [item.image]
   });
   const order = items.map(item => processItem(item));
   const orderWithShipping = order.concat(shipping);
