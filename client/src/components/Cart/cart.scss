@@ -7,20 +7,27 @@
 
         & table td {
             text-align: center;
+            vertical-align: middle;
         }
     }
 
-    &__table {
+    &__main {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
+    &__table {
+        & td, th {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+    }
+
     &__remove {
-        background-color: red;
-        color: white;
-        padding: .25rem .75rem;
-        border-radius: .5rem;
+        color: red;
+        font-size: 1.5rem;
     }
 
     &__empty {
@@ -39,6 +46,41 @@
         border-color: #c3e6cb;
     }
 
+    &__payments img {
+        margin: auto;
+    }
+
+    &__image {
+        margin: auto;
+        width: 150px;
+    }
+}
+
+.text-right {
+    text-align: right!important;
+}
+
+.text-center {
+    text-align: center!important;
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
 }
 
 .cart-footer__container {
@@ -46,12 +88,15 @@
     justify-content: space-between;
 }
 
-.card-table__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+.dlist-align {
+    display: flex; 
 }
+.dlist-align dt {
+    width: 120px;
+    word-wrap: break-word;
+    font-weight: normal; }
+.dlist-align dd {
+    flex-grow: 1; }
 
 @media screen and (max-width: 750px) {
     .cart__container {

@@ -14,10 +14,10 @@ const Row = ({ _id, name, price, quantity, image}) => {
     return (
         <tr key={_id}>
             <td>
-                <figure >
-                    <div ><img src={image}  /></div>
-                    <figcaption >
-                        <a href="#" >{ name }</a>
+                <figure>
+                    <div><img src={image} className="cart__image"/></div>
+                    <figcaption>
+                        <a href={`/products/${name}`} >{ name }</a>
                     </figcaption>
                 </figure>
             </td>
@@ -35,8 +35,8 @@ const Row = ({ _id, name, price, quantity, image}) => {
                     <span>${price.$numberDecimal * quantity}</span> 
                 </div>
             </td>
-            <td> 
-                <a className="cart__remove" href="" onClick={removeFromCartAction}>Remove</a>
+            <td className="text-right"> 
+                <a className="cart__remove" href="" onClick={removeFromCartAction}><i class='bx bx-trash'></i></a>
             </td>
         </tr>
     );

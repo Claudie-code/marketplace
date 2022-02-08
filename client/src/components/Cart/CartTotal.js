@@ -1,4 +1,4 @@
-import React from 'react'; 
+import Link from '../Link';
 import { useSelector } from 'react-redux';
 import { selectCartTotal, selectDeliveryCost } from "../../lib/state/selectors";
 
@@ -43,8 +43,11 @@ const CartTotal = () => {
 					  <dt>Total:</dt>
 					  <dd className="text-right  h5"><strong>${total + deliveryCost}</strong></dd>
 					</dl>
+					<dl>
+						<dt className="text-center"><Link href="/checkout" title="link chekout">Make Purchase</Link> </dt>
+					</dl>
 					<hr />
-					<p className="text-center mb-3">
+					<p className="cart__payments">
 						<img src="images/misc/payments.png" height="26" />
 					</p>
 					

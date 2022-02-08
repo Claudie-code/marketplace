@@ -79,6 +79,10 @@ img {
     display: block;
 }
 
+figure {
+    margin: 0 0 1rem; 
+}
+
 .section {
     padding: 5rem 0 2rem;
 }
