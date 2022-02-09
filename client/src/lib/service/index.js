@@ -77,6 +77,19 @@ export const addUser = (body) => {
     })
 };
 
+export const updateUser = (body) => {
+    return new Promise((onSuccess, onFail) => {
+        axiosInstance
+        .post('/users/update', body)
+        .then((response, error) => {
+            if(!response || error) {
+                return onFail(`Response failure : ${error}`);
+            }
+            onSuccess(`user profile successfully updated`);
+        })
+    })
+};
+
 export const addOrder = (body) => {
     return new Promise((onSuccess, onFail) => {
         axiosInstance
