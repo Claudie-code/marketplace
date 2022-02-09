@@ -56,24 +56,18 @@ const Checkout = () => {
 				<div className="form__row">
 					<input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange} required/>
 					<input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange} required/>
-					{/* <Input.Text label="First name" name="first" onChange={handleOnChange} value={first}/>
-					<Input.Text label="Last name" name="last"  onChange={handleOnChange} value={last}/> */}
 				</div> 
 
 				<div className="form__row">
-					{/* <Input.Email label="Email" onChange={handleOnChange} col="6" value={email}/>	 */}
 					<input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required/>
 				</div> 
 				<div className="form__row">
-					{/* <Input.Select name='country' options={options}  label="Country" col="6" onChange={handleOnChange} value={country}/>
-					<Input.Text label="City" name='city'onChange={handleOnChange} value={city} /> */}
 					<input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange} required/>
 					<select name="country" id="country-select" value={country} onChange={handleOnChange}>
 						<option value="">Country</option>
 						{options.map(option => <option key={option}value={option.toLocaleLowerCase()}>{option}</option>)}
 					</select>
 				</div> 
-					{/* <Input.TextArea label="Address" name="address" onChange={handleOnChange} />  */}
 				<input type="text" name="address" id="address" className="form__input" placeholder="Address" value={address} onChange={handleOnChange} required/>
 			</div> 
 			<div className="form__row" style={{margin: "auto"}}>

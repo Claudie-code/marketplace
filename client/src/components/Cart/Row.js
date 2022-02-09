@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { removeFromCart, updateCart } from '../../lib/state/actions';
 
-const Row = ({ _id, name, price, quantity, image}) => { 
+const Row = ({ _id, name, price, quantity, image, size}) => { 
     const dispatch = useDispatch();
     const updateCartAction = (event) => { 
         dispatch(updateCart(_id, event.target.value));
@@ -17,7 +17,7 @@ const Row = ({ _id, name, price, quantity, image}) => {
                 <figure>
                     <div><img src={image} className="cart__image"/></div>
                     <figcaption>
-                        <a href={`/products/${name}`} >{ name }</a>
+                        <a href={`/products/${name}`} >{ name }{" - "}{ size }</a>
                     </figcaption>
                 </figure>
             </td>
