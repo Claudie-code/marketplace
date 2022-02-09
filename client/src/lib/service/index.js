@@ -49,9 +49,10 @@ export const getBrands = () => {
 };
 
 export const getUser = (body) => {
+    console.log("get", body.profile)
     return new Promise((onSuccess, onFail) => {
         axiosInstance
-        .get('/user', body.email)
+        .get('/user', body.profile)
         .then((response, error) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);
@@ -67,7 +68,7 @@ export const getUser = (body) => {
 export const addUser = (body) => {
     return new Promise((onSuccess, onFail) => {
         axiosInstance
-        .post('/users/add', body)
+        .post('/user/add', body)
         .then((response, error) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);
@@ -80,7 +81,7 @@ export const addUser = (body) => {
 export const updateUser = (body) => {
     return new Promise((onSuccess, onFail) => {
         axiosInstance
-        .post('/users/update', body)
+        .post('/user/update', body)
         .then((response, error) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);

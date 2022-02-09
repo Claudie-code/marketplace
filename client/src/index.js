@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 const store = configureStore();
 
 store.subscribe(() => localStorage.setItem('items', JSON.stringify(store.getState().cart.items)));
+store.subscribe(() => localStorage.setItem('user', JSON.stringify(store.getState().user.user)));
 
 ReactDOM.render(
   <Provider store={store}>

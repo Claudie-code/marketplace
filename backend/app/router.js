@@ -19,6 +19,7 @@ router.post('/create-checkout-session', stripeController.payment);
 
 router.get('/user', userController.findOne);
 router.post('/user/add', userController.create);
+router.post('/user/update', userController.update);
 
 router.post('/orders/add', orderController.create);
 

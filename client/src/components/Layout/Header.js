@@ -7,8 +7,10 @@ const UserLogin = ({ user  }) => {
 	const { handleUserLogout } = useAuthentication();
 
 	const logout = () => {
-		handleUserLogout();
-		setTimeout(() => window.location.reload(), 1000);
+		handleUserLogout().then(response => {
+			console.log("res", response)
+			response && setTimeout(() => window.location.reload(), 1000)
+		});
 	};
 
 	return (

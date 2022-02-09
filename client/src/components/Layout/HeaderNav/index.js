@@ -12,8 +12,9 @@ const UserLogin = ({ user, setShowModal, showModal  }) => {
 	const { handleUserLogout } = useAuthentication();
 
 	const logout = () => {
-		handleUserLogout();
-		setTimeout(() => window.location.reload(), 1000);
+		handleUserLogout().then(response => {
+			response && setTimeout(() => window.location.reload(), 1000)
+		});
 	};
 
 	return (

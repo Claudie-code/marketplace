@@ -36,7 +36,7 @@ const Row = ({ _id, name, price, quantity, image, size}) => {
                 </div>
             </td>
             <td className="text-right"> 
-                <a className="cart__remove" href="" onClick={removeFromCartAction}><i class='bx bx-trash'></i></a>
+                <a className="cart__remove" href="" onClick={removeFromCartAction}><i className='bx bx-trash'></i></a>
             </td>
         </tr>
     );

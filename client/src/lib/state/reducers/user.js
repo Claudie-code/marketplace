@@ -4,7 +4,7 @@ import {
 } from '../actions/actionTypes'
 
 const initialState = {
-    user: null, 
+    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null, 
     error : null
 };
 const user = (state = initialState, {type, payload}) => { 

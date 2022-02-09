@@ -10,6 +10,23 @@ const userController = {
         .then(() => response.status(200).send(`succesfully inserted new document`))
         .catch((error) => {response.send(error)})
     },
+
+    update: async (request, response) => {
+        const db = await database;
+        const users = db.collection('users');
+        users.findByIdAndUpdate(req.session.passport.user, 
+            {
+               $set : {
+                    name: req.body.name,
+                    email: req.body.email,
+                    password: req.body.password
+                }
+            },
+            (err, user) => {
+                 console.log("user", user)
+            }
+        );
+    },
     
     findOne: async (request, response) => {
         const db = await database;

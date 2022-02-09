@@ -33,3 +33,13 @@ Content-Type: application/json
         "quantity": 1
     }
 ]
+
+### GET USER
+GET {{host}}/user
+Content-Type: application/json
+
+[
+    {
+        "email": "gueguen.claudie29@gmail.com"
+    }
+]
