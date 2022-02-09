@@ -36,7 +36,7 @@ const defaultValues = {
 	confirm_password: '' 
 };
 
-const options = ['France', 'Italy', 'Spain', 'Belgium']
+const options = ['France', 'Italy', 'Spain', 'Belgium'];
 const Register = () => { 
 	const dispatch = useDispatch();
 	const [ messageConfirmEmail, setMessageConfirmEmail ] = useState("");

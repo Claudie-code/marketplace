@@ -11,7 +11,7 @@ const defaultValues = {
 	address: ''
 }
 
-const options = ['Canada', 'Russia', 'United States', 'India', 'Afganistan', 'France']
+const options = ['France', 'Italy', 'Spain', 'Belgium'];
 const Checkout = () => { 
 	const dispatch = useDispatch();
 	const { user } = useSelector(state => state.user);	
