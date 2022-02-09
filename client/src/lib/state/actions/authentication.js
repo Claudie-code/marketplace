@@ -8,7 +8,6 @@ export const handleAuthenticationError = (err) => {
 };
 
 export const handleLogin = (user) => {
-    console.log("handle",user)
     return { 
         type: LOGIN,
         payload: {user: user, error: null}

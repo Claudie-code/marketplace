@@ -53,7 +53,7 @@ const Login = () => {
 		handleUserLogin(email, password)
 		.then(currentUser => {
 			console.log(currentUser)
-			//currentUser && setTimeout(() => window.location.reload(), 2000);
+			currentUser && setTimeout(() => window.location.reload(), 2000);
 		});
 		
 	};

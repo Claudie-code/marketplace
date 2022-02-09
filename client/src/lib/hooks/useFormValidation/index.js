@@ -9,6 +9,7 @@ export const useFormValidation = ({ formName, defaultValues }) => {
     const [isDirty, setDirty] = React.useState(false)
 
     const handleOnChange = (event, value) => {
+        console.log('ici')
         setDirty(true)
         const val = value?.toLowerCase() ?? event.target.value
         setFormValues(prevState => ({ ...prevState, [formName]: { ...prevState[formName], [event.target.name]: val }}))

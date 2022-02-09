@@ -71,13 +71,18 @@ const useAuthentication = (dispatch) => {
             app.logIn(Realm.Credentials.emailPassword(email, password))
             .then(async () => {
                 const currentUser = await app.currentUser;
-                console.log('current', currentUser)
                 getUser(currentUser).then(userProfile => {
                     dispatch(handleLogin(userProfile));
                     resolve(userProfile);
                 });
             })
             .catch(error => { dispatch(handleAuthenticationError(error)) });
+        })
+    };
+
+    async function handleUserUpdate(user) {
+        return new Promise((resolve, reject) => {
+            
         })
     };
 

@@ -8,7 +8,6 @@ const UserLogin = ({ user  }) => {
 
 	const logout = () => {
 		handleUserLogout().then(response => {
-			console.log("res", response)
 			response && setTimeout(() => window.location.reload(), 1000)
 		});
 	};

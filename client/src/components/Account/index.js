@@ -3,44 +3,69 @@ import { useDispatch, useSelector } from "react-redux";
 import { useFormValidation } from "../../lib/hooks/useFormValidation";
 import Button from "../Button";
 
-const defaultValues = { 
-	address: ''
-};
+
+const options = ['France', 'Italy', 'Spain', 'Belgium'];
 
 function Account() {
     const dispatch = useDispatch();
-	const { user } = useSelector(state => state.user);	
-	const { first, last, email, city, country, gender } = user ?? {};
-	const {
-		formValues,
-		validate,
-		register,
-		handleOnChange,
-		isValid
-	} = useFormValidation({ formName: "account", defaultValues: defaultValues });
-
-	useEffect(() => {
-		register(defaultValues);
-	}, []);
-	const {address} = formValues['account'] ?? {};
-    const options = ['France', 'Italy', 'Spain', 'Belgium'];
-
-	useEffect(() => {
-		validate(formValues['account'] ?? {});
-	}, [formValues]);
+    const { user, error } = useSelector(state => state.user);
+    const defaultValues = { 
+        first: user.first,
+        last: user.last,
+        email: user.email,
+        city: user.city,
+        country: user.country,
+        address: "",
+        gender: user.gender
+    };
+    const {
+          formValues,
+          validate,
+          register,
+          handleOnChange,
+          isValid
+    } = useFormValidation({ formName: "account", defaultValues: defaultValues });
+      
+    const { 
+		first, last, email, city, country, address, gender
+	} = formValues['account'] ?? {};
+  
+    useEffect(() => {
+        validate(formValues['account'] ?? {});
+    }, [formValues]);
+    const handleOnSubmit = (event) => {
+		event.preventDefault();
+		const newUser = {
+			first, 
+			last, 
+			email, 
+			city, 
+			country, 
+			gender
+		};
+		handleUserRegistration(newUser).then((response) => {
+			setMessageConfirmEmail(response)
+		}).catch((error) => console.log('error creating user :', error));
+	};
     return (
 		<section className="section checkout">
             <h2 className="section-title">ACCOUNT</h2>
-            <div className="card checkout__container">
+            <form className="card checkout__container" onSubmit={handleOnSubmit}>
                 <div className="checkout__body">
+                    <div className="form__group">
+						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange} checked={gender === "male"} required/>
+						<label htmlFor="male">Male</label>
+						<input type="radio" name="gender" id="female" value="female" onChange={handleOnChange} checked={gender === "female"} required/>
+						<label htmlFor="female">Female</label>
+					</div> 
 
                     <div className="form__row">
-                        <input type="text" name="first" id="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange} required/>
-                        <input type="text" name="last" id="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange} required/>
+                        <input type="text" name="first" className="form__input" placeholder="First Name" value={first} onChange={handleOnChange} required/>
+                        <input type="text" name="last" className="form__input" placeholder="Last Name" value={last} onChange={handleOnChange} required/>
                     </div> 
 
                     <div className="form__row">
-                        <input type="email" name="email" id="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required/>
+                        <input type="email" name="email" className="form__input" placeholder="Email" value={email} onChange={handleOnChange} required/>
                     </div> 
                     <div className="form__row">
                         <input type="text" name="city" id="city" className="form__input" placeholder="City" value={city} onChange={handleOnChange} required/>
@@ -59,7 +84,7 @@ function Account() {
                         Update
                     </Button>
                 </div>
-            </div>
+            </form>
 		</section>
     );
 }

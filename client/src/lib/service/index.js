@@ -49,10 +49,9 @@ export const getBrands = () => {
 };
 
 export const getUser = (body) => {
-    console.log("get", body.profile)
     return new Promise((onSuccess, onFail) => {
         axiosInstance
-        .get('/user', body.profile)
+        .post('/user', body.profile)
         .then((response, error) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);
