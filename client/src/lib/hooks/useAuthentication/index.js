@@ -42,14 +42,14 @@ const useAuthentication = (dispatch) => {
     const handleEmailConfirmation = (token, tokenId) => { 
         return new Promise((resolve, reject) => {
             if(!token && !tokenId) {
-                return reject("missing tokens");
+                return reject("Missing tokens.");
             }
             app.emailPasswordAuth
             .confirmUser({ token, tokenId })
             .then(() => {
-                resolve("email confirmed");
+                resolve("Email confirmed, please login.");
             })
-            .catch(err => reject("userpass token is expired or invalid"));
+            .catch(err => reject("Userpass token is expired or invalid."));
         });
 
     };

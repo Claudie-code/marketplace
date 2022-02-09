@@ -1,0 +1,35 @@
+@host=http://localhost:5000/api
+
+### GET PRODUCT
+
+GET {{host}}/products
+
+### CREATE PRODUCT
+POST {{host}}/products/adds
+Content-Type: application/json
+
+{
+    "id": "tt",
+    "name": "test"
+}  
+
+### GET BRANDS
+
+GET {{host}}/brands
+
+### GET MODELS
+
+GET {{host}}/models
+
+### PAYMENT
+POST {{host}}/create-checkout-session
+Content-Type: application/json
+
+[
+    {
+        "name": "test",
+        "currency": "USD",
+        "amount": 12300,
+        "quantity": 1
+    }
+]
