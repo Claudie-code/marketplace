@@ -38,8 +38,6 @@ Content-Type: application/json
 GET {{host}}/user
 Content-Type: application/json
 
-[
-    {
-        "email": "gueguen.claudie29@gmail.com"
-    }
-]
+{
+    "email": "gueguen.claudie29@gmail.com"
+}

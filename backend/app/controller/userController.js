@@ -31,6 +31,7 @@ const userController = {
     findOne: async (request, response) => {
         const db = await database;
         const users = db.collection('users');
+        console.log("testBack", request.body)
         users
         .findOne(request.body)
         .then((err, results) => {
