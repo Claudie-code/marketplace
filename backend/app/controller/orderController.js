@@ -1,6 +1,15 @@
 const { response } = require('express');
+const Email = require('email-templates');
 const database = require('../database');
 const nodemailer = require("nodemailer");
+const { google } = require("googleapis");
+const path = require('path');
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 const orderController = {
     
@@ -10,30 +19,47 @@ const orderController = {
         orders
         .insertOne(request.body)
         .then(async () => {
-            let testAccount = await nodemailer.createTestAccount();
+            try {
+                const accessToken = await oAuth2Client.getAccessToken();
 
-            // create reusable transporter object using the default SMTP transport
-            let transporter = nodemailer.createTransport({
-                service: "Yahoo",  // sets automatically host, port and connection security settings
-                auth: {
-                    user: "xxxxxxxxxx95@yahoo.com",
-                    pass: "xxxxxxxxxxxx"
-                }
-             });
-            let info = await transporter.sendMail({
-                from: '"Fred Foo 👻" <foo@example.com>', // sender address
-                to: "gueguen_c@yahoo.fr, gueguen_c@yahoo.fr", // list of receivers
-                subject: "Hello ✔", // Subject line
-                text: "Hello world?", // plain text body
-                html: "<b>Hello world?</b>", // html body
-            });
+                const transporter = nodemailer.createTransport({
+                    service: "gmail", 
+                    auth: {
+                        type: 'OAuth2',
+                        user: "roby.marketplace@gmail.com",
+                        clientId: CLIENT_ID,
+                        clientSecret: CLIENT_SECRET,
+                        refreshToken: REFRESH_TOKEN,
+                        accessToken: accessToken
+                    }
+                 });
 
-            console.log("Message sent: %s", info.messageId);
-            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-          
-            // Preview only available when sending through an Ethereal account
-            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-            response.status(200).send(`succesfully inserted new document`);
+
+                const templateDir = path.join(__dirname, "../", 'templates')
+            
+                const email = new Email()
+                
+                const locals = {
+                    userName: "XYZ" //dynamic data for bind into the template
+                };
+
+                const temp = await email.render(templateDir, locals);
+                const result = await transporter.sendMail({
+                    from: 'Roby <roby.marketplace@gmail.com>', // sender address
+                    to: request.body.user.email, // list of receivers
+                    subject: "Thank you for your purchase", // Subject line
+                    text: "test", // plain text body
+                    html: temp,
+                }); 
+                
+                response.status(200).send({
+                    message: "email sent",
+                    result
+                });
+            } catch (error) {
+                console.log("err", error);
+            }
+
         })
         .catch((error) => {response.send(error)})
     }
