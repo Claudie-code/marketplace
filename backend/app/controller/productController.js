@@ -2,10 +2,8 @@ const database = require('../database');
 
 const productController = {
     create: async (request, response) => {
-        console.log('body', request.body)
         const db = await database;
         const products = db.collection('products');
-        console.log('la', request.body)
         products
         .insertOne(request.body)
         .then(() => response.status(200).send(`succesfully inserted new document`))

@@ -17,7 +17,7 @@ router.get('/brands', brandController.findAll);
 
 router.post('/create-checkout-session', stripeController.payment);
 
-router.get('/user', userController.findOne);
+router.post('/user', userController.findOne);
 router.post('/user/add', userController.create);
 router.post('/user/update', userController.update);
 

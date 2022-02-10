@@ -14,12 +14,14 @@ const userController = {
     update: async (request, response) => {
         const db = await database;
         const users = db.collection('users');
-        users.findByIdAndUpdate(req.session.passport.user, 
+        users.findByIdAndUpdate(request.body._id, 
             {
-               $set : {
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
+                $set: {
+                    first: request.body.first,
+                    last: request.body.last,
+                    city: request.body.city,
+                    address: request.body.address,
+                    country: request.body.country
                 }
             },
             (err, user) => {
@@ -31,7 +33,9 @@ const userController = {
     findOne: async (request, response) => {
         const db = await database;
         const users = db.collection('users');
-        console.log("testBack", request.body)
+        if (!request.body) {
+            return response.status(500).send("email manquant");
+        }
         users
         .findOne(request.body)
         .then((err, results) => {
