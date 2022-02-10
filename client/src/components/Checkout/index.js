@@ -81,7 +81,7 @@ const Checkout = () => {
 				<input type="text" name="address" id="address" className="form__input" placeholder="Address" value={address} onChange={handleOnChange} required/>
 			</div> 
 			<div className="form__row" style={{margin: "auto"}}>
-				<Payment isValid={!isValid} />	
+				<Payment isValid={!isValid} formValues={formValues} />	
 			</div>
 		</div> 
 	</section>

@@ -1,6 +1,7 @@
 
 import React, { useEffect} from 'react'
 const styles = {
+  padding: '7rem',
   height: '100vh',
   fontSize: 20
 }

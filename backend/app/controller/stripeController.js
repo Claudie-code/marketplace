@@ -7,7 +7,8 @@ const stripeController = {
     payment: async (request, response) => {
         try {
             const session = await stripe.checkout.sessions.create({
-                line_items: request.body,
+                line_items: request.body.line_items,
+                shipping: request.body.address,
                 mode: 'payment',
                 success_url: `${YOUR_DOMAIN}/success`,
                 cancel_url: `${YOUR_DOMAIN}/cancel.html`,

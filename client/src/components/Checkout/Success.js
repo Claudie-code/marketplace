@@ -32,13 +32,14 @@ function Success({ history }) {
   };
 
   const redirectHome = () => {
-    setTimeout(() => { history.push('/'); }, 4000);
+    //setTimeout(() => { history.push('/'); }, 4000);
   };
 
   useEffect(() => {
     (async () => {
-      const userProfile = await handleAuthentication();
-      await dispatchAndSaveOrder(userProfile);
+      const address = JSON.parse(localStorage.getItem('orderAddress'))
+      await handleAuthentication(address);
+      await dispatchAndSaveOrder();
       await clearStorage();
       await redirectHome();
     })();
