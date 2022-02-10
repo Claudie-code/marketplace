@@ -25,14 +25,16 @@ GET {{host}}/models
 POST {{host}}/create-checkout-session
 Content-Type: application/json
 
-[
-    {
-        "name": "test",
-        "currency": "USD",
-        "amount": 12300,
-        "quantity": 1
-    }
-]
+
+    [
+        {
+            "name": "test",
+            "currency": "USD",
+            "amount": 12300,
+            "quantity": 1
+        }
+    ]
+
 
 ### GET USER
 GET {{host}}/user
@@ -55,3 +57,48 @@ Content-Type: application/json
     "country":"france",
     "gender":"male"
 }
+
+### CREATE ORDER
+POST {{host}}/orders/add
+Content-Type: application/json
+
+{
+    "_id":{"$oid":"62053e169b05e678d44746eb"},
+    "user": {
+        "delivery":"standard",
+        "_id":"6203e1",
+        "first":"John",
+        "last":"Albert",
+        "email":"albert@yahoo.fr",
+        "city":"paris",
+        "country":"france",
+        "gender":"male",
+        "address":"Impasse f, appartement 700"
+    },
+    "items":
+        [
+            {
+                "_id":"61f82273cde1ab818c454944",
+                "name":"Black Gym Red Black",
+                "price":{"$numberDecimal":"190.00"},
+                "image":"https://res.cloudinary.com/dmajx2yud/image/upload/v1643651039/samples/ecommerce/featured2_vw7nui.png",
+                "brandid":"nike",
+                "modelid":"airjordan1high",
+                "brand": [{"_id":"61fbeee8faa67657e3f1ea27","name":"Nike","id":"nike"}],
+                "model":[{"_id":"61fbf8edb47a8160c5ad193f","name":"Air Jordan 1 High","id":"airjordan1high","brandid":"nike"}],"quantity":{"$numberInt":"1"}},
+            {
+                "_id":"61f81c91cde1ab818c45493f",
+                "name":"V2 Beluga 2.0",
+                "price":{"$numberDecimal":"380.00"},
+                "image":"https://res.cloudinary.com/dmajx2yud/image/upload/v1643651039/samples/ecommerce/new4_dcw8yl.png",
+                "brandid":"adidas",
+                "modelid":"yeezyboost350",
+                "brand":[{"_id":"61fbeecefaa67657e3f1ea26","name":"Adidas","id":"adidas"}],
+                "model":[{"_id":"61fbf850b47a8160c5ad193d","name":"Yeezy Boost 350","id":"yeezyboost350","brandid":"adidas"}],
+                "quantity":{"$numberInt":"1"}
+            }
+        ],
+        "total":{"$numberInt":"570"}
+}
+
+

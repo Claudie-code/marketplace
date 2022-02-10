@@ -32,17 +32,17 @@ const userController = {
             function (err, result) {
                 //Error handling
                 if (err) {
-                   return response.status(500).send('Something broke!');
+                    return response.status(500).send('Something broke!');
                 }
-        
-               //Send response based on the required
-                if (result.hasOwnProperty("value") && 
-                  result.value !== null) {
-                    response.send(result.value);
-                } else {
-                    response.send("update failed");
-                }
-           });
+            
+                //Send response based on the required
+                    if (result.hasOwnProperty("value") && 
+                    result.value !== null) {
+                        response.send(result.value);
+                    } else {
+                        response.send("update failed");
+                    }
+            });
     },
     
     findOne: async (request, response) => {

@@ -21,14 +21,10 @@ function Payment({ isValid, formValues }) {
   });
   const order = items.map(item => processItem(item));
   const orderWithShipping = order.concat(shipping);
-  const orderWithAddress = {
-    line_items: orderWithShipping,
-    address: formValues
-  };
 
   const handleClick = () => {
-    localStorage.setItem('orderAddress', formValues);
-    processPayment(orderWithAddress)
+    localStorage.setItem('orderAddress', JSON.stringify(formValues?.checkout));
+    processPayment(orderWithShipping)
   }
 
   return (

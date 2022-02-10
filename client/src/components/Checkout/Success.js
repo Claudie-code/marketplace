@@ -37,9 +37,9 @@ function Success({ history }) {
 
   useEffect(() => {
     (async () => {
-      const address = JSON.parse(localStorage.getItem('orderAddress'))
-      await handleAuthentication(address);
-      await dispatchAndSaveOrder();
+      const address = JSON.parse(localStorage.getItem('orderAddress'));
+      await handleAuthentication();
+      await dispatchAndSaveOrder(address);
       await clearStorage();
       await redirectHome();
     })();
