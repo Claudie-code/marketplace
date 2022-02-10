@@ -14,7 +14,11 @@ const userController = {
     update: async (request, response) => {
         const db = await database;
         const users = db.collection('users');
-        users.findByIdAndUpdate(request.body._id, 
+        users
+        .findOneAndUpdate(
+            {
+                email: request.body.email
+            }, 
             {
                 $set: {
                     first: request.body.first,
@@ -23,18 +27,29 @@ const userController = {
                     address: request.body.address,
                     country: request.body.country
                 }
-            },
-            (err, user) => {
-                 console.log("user", user)
-            }
-        );
+            }, 
+            { returnOriginal: false, returnDocument: "after" }, 
+            function (err, result) {
+                //Error handling
+                if (err) {
+                   return response.status(500).send('Something broke!');
+                }
+        
+               //Send response based on the required
+                if (result.hasOwnProperty("value") && 
+                  result.value !== null) {
+                    response.send(result.value);
+                } else {
+                    response.send("update failed");
+                }
+           });
     },
     
     findOne: async (request, response) => {
         const db = await database;
         const users = db.collection('users');
         if (!request.body) {
-            return response.status(500).send("email manquant");
+            return response.status(500).send("missing email");
         }
         users
         .findOne(request.body)

@@ -1,23 +1,29 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormValidation } from "../../lib/hooks/useFormValidation";
+import useAuthentication from '../../lib/hooks/useAuthentication';
 import Button from "../Button";
-
+import ErrorMessage from "../ErrorMessage";
+import AlertMessage from "../AlertMessage";
+import { Redirect } from "react-router-dom";
 
 const options = ['France', 'Italy', 'Spain', 'Belgium'];
 
 function Account() {
     const dispatch = useDispatch();
-    const { user, error } = useSelector(state => state.user);
+    const { handleUserUpdate } = useAuthentication(dispatch);
+    const { user, error, message } = useSelector(state => state.user);
+
     const defaultValues = { 
-        first: user.first,
-        last: user.last,
-        email: user.email,
-        city: user.city,
-        country: user.country,
-        address: "",
-        gender: user.gender
+        first: user?.first,
+        last: user?.last,
+        email: user?.email,
+        city: user?.city,
+        country: user?.country,
+        address: user?.address,
+        gender: user?.gender
     };
+
     const {
           formValues,
           validate,
@@ -33,25 +39,35 @@ function Account() {
     useEffect(() => {
         validate(formValues['account'] ?? {});
     }, [formValues]);
+
     const handleOnSubmit = (event) => {
 		event.preventDefault();
-		const newUser = {
+		const userUpdated = {
 			first, 
 			last, 
 			email, 
 			city, 
 			country, 
-			gender
+			gender,
+            address
 		};
-		handleUserRegistration(newUser).then((response) => {
-			setMessageConfirmEmail(response)
-		}).catch((error) => console.log('error creating user :', error));
+        
+		handleUserUpdate(userUpdated).then((response) => {
+			console.log('response', response)
+		}).catch((error) => console.log('error updating user :', error));
 	};
+    console.log("user", user)
+    if(!user) {
+        return <Redirect to="/" />
+    }
+
     return (
 		<section className="section checkout">
             <h2 className="section-title">ACCOUNT</h2>
             <form className="card checkout__container" onSubmit={handleOnSubmit}>
                 <div className="checkout__body">
+                    <ErrorMessage error={error} />
+                    <AlertMessage message={message} />
                     <div className="form__group">
 						<input type="radio" name="gender" id="male" value="male" onChange={handleOnChange} checked={gender === "male"} required/>
 						<label htmlFor="male">Male</label>

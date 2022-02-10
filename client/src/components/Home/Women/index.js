@@ -15,7 +15,9 @@ const Women = ({ scrollActive, offset, womenItems }) => {
 			<div className="women__container bd-grid">
 				{womenItems ? 
 					womenItems.map(womanItem => (
-						<ProductCard {...womanItem} />
+						<div key={womanItem._id}>
+							<ProductCard {...womanItem} />
+						</div>
 					)) : <ProductCard />
 				}
 			</div>

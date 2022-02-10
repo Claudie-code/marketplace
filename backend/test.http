@@ -41,3 +41,17 @@ Content-Type: application/json
 {
     "email": "gueguen.claudie29@gmail.com"
 }
+
+### UPDATE USER
+POST {{host}}/user/update
+Content-Type: application/json
+
+{
+    "_id":"6203e1",
+    "first":"John",
+    "last":"Albert",
+    "email":"albert@yahoo.fr",
+    "city":"paris",
+    "country":"france",
+    "gender":"male"
+}

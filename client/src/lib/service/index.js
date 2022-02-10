@@ -72,7 +72,7 @@ export const addUser = (body) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);
             }
-            onSuccess(`user profile successfully created`);
+            onSuccess(`User profile successfully created.`);
         })
     })
 };
@@ -85,7 +85,10 @@ export const updateUser = (body) => {
             if(!response || error) {
                 return onFail(`Response failure : ${error}`);
             }
-            onSuccess(`user profile successfully updated`);
+            onSuccess({
+                user: response.data, 
+                message: `User profile successfully updated.`
+            });
         })
     })
 };

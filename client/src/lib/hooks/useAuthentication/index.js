@@ -1,7 +1,7 @@
 import * as Realm from "realm-web";
-import { addUser, getUser } from "../../service";
+import { addUser, getUser, updateUser } from "../../service";
 import { app } from '../../service/mongoDB-sdk';
-import { handleAuthenticationError, handleLogin, handleLogout } from '../../state/actions/authentication';
+import { handleAuthenticationError, handleLogin, handleLogout, handleUpdate, handleUpdateError } from '../../state/actions/authentication';
 
 const useAuthentication = (dispatch) => {
     const handleUserRegistration = (newUser) => { 
@@ -74,15 +74,20 @@ const useAuthentication = (dispatch) => {
                 getUser(currentUser).then(userProfile => {
                     dispatch(handleLogin(userProfile));
                     resolve(userProfile);
-                });
+                })
+                .catch(error => console.log("error",error));
             })
             .catch(error => { dispatch(handleAuthenticationError(error)) });
         })
     };
 
-    async function handleUserUpdate(user) {
+    const handleUserUpdate = (user) => {
         return new Promise((resolve, reject) => {
-            
+            updateUser(user).then(response => {
+                dispatch(handleUpdate(response.user, response.message));
+                resolve(response);
+            })
+            .catch(error => { dispatch(handleUpdateError(error)) });
         })
     };
 
@@ -99,8 +104,9 @@ const useAuthentication = (dispatch) => {
         handleUserRegistration,
         handleUserLogout,
         handleUserLogin,
+        handleUserUpdate,
         handleAuthentication,
-        handleEmailConfirmation
+        handleEmailConfirmation,
     };
 };
 

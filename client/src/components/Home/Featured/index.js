@@ -15,7 +15,9 @@ const Featured = ({ scrollActive, offset, featuredItems }) => {
 			<div className="featured__container bd-grid">
 				{featuredItems ? 
 					featuredItems.map(featuredItem => (
-						<ProductCard {...featuredItem} sale={true} />
+						<div key={featuredItem._id}>
+							<ProductCard {...featuredItem} sale={true} />
+						</div>
 					)) : <ProductCard sale={true} />
 				}
 			</div>

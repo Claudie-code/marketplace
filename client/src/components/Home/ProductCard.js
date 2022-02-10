@@ -7,7 +7,7 @@ const ProductCard = ({ _id, sale, name, image, model, price }) => {
     return (
         <>
             {_id && !isLoading ?
-                <article className="sneaker" key={_id}>
+                <article className="sneaker">
                     {sale && <div className="sneaker__sale">Sale</div>}
                     <img src={image} alt={name} className="sneaker__img" />
                     <span className="sneaker__name">{model[0].name} <br /> {name}</span>
