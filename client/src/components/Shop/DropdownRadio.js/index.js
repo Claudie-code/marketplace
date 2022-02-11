@@ -37,6 +37,7 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         return () => {
           document.removeEventListener("mousedown", checkIfClickedOutside)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showMenu]);
 
     useEffect(() => {
@@ -45,10 +46,12 @@ const DropdownRadio = ({ setBrandResults, brandCheckedItem, setBrandCheckedItem 
         } else {
             setBrandResults(items);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [items, brandCheckedItem]);
 
     useEffect(() => {
         dispatch(fetchBrands());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
         
     return (

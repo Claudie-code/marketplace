@@ -12,18 +12,17 @@ const Checkout = () => {
 	const { user } = useSelector(state => state.user);	
 	const defaultValues = { 
 		delivery: 'standard',
-        first: user.first,
-        last: user.last,
-        email: user.email,
-        city: user.city,
-		country: user.country,
-		gender: user.gender,
-        address: ""
+        first: user?.first || "",
+        last: user?.last || "",
+        email: user?.email || "",
+        city: user?.city || "",
+		country: user?.country || "",
+		gender: user?.gender || "",
+        address: user?.address || ""
     };
 	const {
 		formValues,
 		validate,
-		register,
 		handleOnChange,
 		isValid
 	} = useFormValidation({ formName: "checkout", defaultValues: defaultValues });
@@ -34,6 +33,7 @@ const Checkout = () => {
 
 	useEffect(() => {
 		validate(formValues['checkout'] ?? {});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formValues]);
 
 	const handleOnchangeDelivery = (event, value) => {

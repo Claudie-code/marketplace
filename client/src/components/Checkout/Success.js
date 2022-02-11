@@ -32,7 +32,7 @@ function Success({ history }) {
   };
 
   const redirectHome = () => {
-    //setTimeout(() => { history.push('/'); }, 4000);
+    setTimeout(() => { history.push('/'); }, 4000);
   };
 
   useEffect(() => {
@@ -43,6 +43,7 @@ function Success({ history }) {
       await clearStorage();
       await redirectHome();
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -15,19 +15,18 @@ function Account() {
     const { user, error, message } = useSelector(state => state.user);
 
     const defaultValues = { 
-        first: user?.first,
-        last: user?.last,
-        email: user?.email,
-        city: user?.city,
-        country: user?.country,
-        address: user?.address,
-        gender: user?.gender
+        first: user?.first || "",
+        last: user?.last || "",
+        email: user?.email || "",
+        city: user?.city || "",
+        country: user?.country || "",
+        address: user?.address || "",
+        gender: user?.gender || ""
     };
 
     const {
           formValues,
           validate,
-          register,
           handleOnChange,
           isValid
     } = useFormValidation({ formName: "account", defaultValues: defaultValues });
@@ -38,6 +37,7 @@ function Account() {
   
     useEffect(() => {
         validate(formValues['account'] ?? {});
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValues]);
 
     const handleOnSubmit = (event) => {
@@ -56,7 +56,7 @@ function Account() {
 			console.log('response', response)
 		}).catch((error) => console.log('error updating user :', error));
 	};
-    console.log("user", user)
+
     if(!user) {
         return <Redirect to="/" />
     }
@@ -93,8 +93,7 @@ function Account() {
                     <input type="text" name="address" id="address" className="form__input" placeholder="Address" value={address} onChange={handleOnChange} required/>
                 </div> 
                 <div className="form__row" style={{margin: "auto"}}>
-                    <Button
-                        //onClick={() => processPayment(orderWithShipping)} 
+                    <Button 
                         disabled={isValid}
                     >
                         Update

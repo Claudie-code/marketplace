@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import useAuthentication from '../../../lib/hooks/useAuthentication';
 
 const Confirmation = () => {
-    const [ message, setMessage ] = useState();
+    const [ message, setMessage ] = useState('');
     const search = useLocation().search;
     const params = new URLSearchParams(search);
     const token = params.get('token'); 
@@ -14,6 +14,7 @@ const Confirmation = () => {
         handleEmailConfirmation(token, tokenId)
         .then((response) => setMessage(response))
         .catch((error) => setMessage(error))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token, tokenId]);
 
     return(

@@ -9,9 +9,11 @@ const Cart = () => {
 		<>
 			<Layout>
 					{items.length === 0 && 
-						<p className="cart__empty">
-							Your Cart is Empty
-						</p>
+						<tr className="cart__empty">
+							<td>
+								Your Cart is Empty
+							</td>
+						</tr>
 					}
 					{items.map(item => <Row key={item._id} {...item} />)}
 			</Layout>

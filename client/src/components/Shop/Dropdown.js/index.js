@@ -36,6 +36,7 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
         return () => {
           document.removeEventListener("mousedown", checkIfClickedOutside)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showMenu]);
 
     const getFilterSearchUrl = (newCheckedItems) => {
@@ -47,14 +48,17 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
 
     useEffect(() => {
         setModelResults(brandResults.filter(element => checkedItems.some(checkedItem => checkedItem === element.modelid)));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.pathname, brandResults, checkedItems]);
 
     useEffect(() => {
         setCheckedItems(new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model.id));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location.search, brandResults]);
 
     useEffect(() => {
         dispatch(fetchModels());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -62,25 +66,22 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
             <button className="dropdown__button" onClick={() => setShowMenu(!showMenu)}>Model</button>
             <div className={`dropdown__content ${showMenu ? "show__model" : ""}`} 
                 onClick={event => event.stopPropagation()}>
-                {models?.map(element => {
-                    if (brandCheckedItem === "allproducts") {
-                        return (
-                            <div className="dropdown__checkbox" key={element.id}>
-                                <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
-                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
-                                <label htmlFor={element.id}>{element.name}</label>
-                            </div>
-                        );
-                    } else if (element.brandid === brandCheckedItem) {
-                        return (
-                            <div className="dropdown__checkbox" key={element.id}>
-                                <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
-                                    checked={checkedItems.includes(element.id)} onChange={handleChange} />
-                                <label htmlFor={element.id}>{element.name}</label>
-                            </div>
-                        );
-                    }
-                })}
+                {brandCheckedItem === "allproducts" ?
+                    models?.map(element => (
+                    <div className="dropdown__checkbox" key={element.id}>
+                        <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                            checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                        <label htmlFor={element.id}>{element.name}</label>
+                    </div>
+                    )) :
+                    models?.filter(element => element.brandid === brandCheckedItem).map(element => (
+                        <div className="dropdown__checkbox" key={element.id}>
+                            <input className="dropdown__icon" type="checkbox"  id={element.id} name={element.id}
+                                checked={checkedItems.includes(element.id)} onChange={handleChange} />
+                            <label htmlFor={element.id}>{element.name}</label>
+                        </div> 
+                    ))
+                }
             </div>
         </div>
     );

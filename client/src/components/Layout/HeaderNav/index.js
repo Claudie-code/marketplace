@@ -39,8 +39,7 @@ const UserLogin = ({ user, setShowModal, showModal  }) => {
 const Header = () => {
     const [ showMenu, setShowMenu ] = useState(false);
     const [ showModal, setShowModal ] = useState(false);
-    const [ showSignup, setShowSignup ] = useState(false);
-	const { section } = useSelector(state => state.section);	
+    const [ showSignup, setShowSignup ] = useState(false);	
     const [ scrollHeader, setScrollHeader ] = useState(false);
     const { user } = useSelector(state => state.user);
 	const { items } = useSelector(state => ({...state.cart}));
@@ -74,7 +73,7 @@ const Header = () => {
                                 <li className="nav__item" key={element.route}>
                                     <a 
                                         href={element.route} 
-                                        className={`nav__link ${section === element.name.toLowerCase() ? "active" : ""}`} 
+                                        className={`nav__link ${window.location.pathname === "/shop" && element.route === "/shop" ? "active" : ""}`} 
                                         onClick={() => setShowMenu(!showMenu)}
                                     >
                                         {element.name}

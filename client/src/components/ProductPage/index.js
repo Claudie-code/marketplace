@@ -9,7 +9,7 @@ import './product.scss';
 
 function ProductPage() {
     const dispatch = useDispatch();
-    const [ selectedSize, setSelectedSize ] = useState();
+    const [ selectedSize, setSelectedSize ] = useState('');
     const { slug } = useParams();
     const { items } = useSelector(state => state.products);
     const product = items.find(item => item.name === slug);
@@ -21,6 +21,7 @@ function ProductPage() {
 
     useEffect(() => {
         dispatch(fetchProducts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -47,18 +48,11 @@ function ProductPage() {
                                     <img src={product.image} alt={product.name} className="product__small-img" />  
                                 </div>
                             </div>
+                            <ButtonNav href="/shop" title="shop">Continue shopping</ButtonNav>
                         </div>
                         <div className="product__description">
                             <h3>{product.name}</h3>
                             <p>${product.price.$numberDecimal}</p>
-                            {/* <div>
-                                <p>Select a size:</p>
-                                <select name="size" id="size-select" value={selectedSize} onChange={setSelectedSize}>
-                                    {sizes.map(size => (
-                                        <option key={size.value} value={size.value}>{size.value}</option>
-                                    ))}
-                                </select>
-                            </div> */}
                             <SelectSize selectedSize={selectedSize} setSelectedSize={setSelectedSize} />
                             <Button onClick={addToCartAction}>Add to cart</Button>
                             <div className="product__link">

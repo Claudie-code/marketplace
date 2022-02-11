@@ -1,16 +1,9 @@
-import { useEffect, useRef } from 'react';
 import ProductCard from '../ProductCard';
 import './featured.scss';
 
-const Featured = ({ scrollActive, offset, featuredItems }) => {
-	const featuredRef = useRef();
-
-	useEffect(() => {
-		scrollActive(featuredRef, "featured");
-	}, [offset]);
-
+const Featured = ({ featuredItems }) => {
 	return (
-		<section className="featured section" id="featured" ref={featuredRef}>
+		<section className="featured section" id="featured">
 			<h2 className="section-title">FEATURED</h2>
 			<div className="featured__container bd-grid">
 				{featuredItems ? 

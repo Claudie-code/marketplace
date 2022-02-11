@@ -1,18 +1,11 @@
-import { useEffect, useRef } from 'react';
 import Link from '../../Link';
 import Loader from '../../Loader';
 import image from '../img/imghome.png';
 import './home.scss';
 
-const HomeSneaker = ({ scrollActive, offset, homeItem, isLoading }) => {
-	const homeRef = useRef();
-
-	useEffect(() => {
-		scrollActive(homeRef, "home");
-	}, [offset]);
-
+const HomeSneaker = ({ homeItem, isLoading }) => {
 	return (
-		<section className="home" id="home" ref={homeRef}>
+		<section className="home" id="home" >
 				<div className="home__container bd-grid">
 					<div className="home__sneaker">
 						<div className="home__shape"></div>

@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="footer__box">
               <h3 className="footer__title">EXPLORE</h3>
               <ul>
-                  <li><a href="#" className="footer__link">Home</a></li>
+                  <li><a href="#home" className="footer__link">Home</a></li>
                   <li><a href="#featured" className="footer__link">Featured</a></li>
                   <li><a href="#women" className="footer__link">Women</a></li>
                   <li><a href="#new" className="footer__link">New</a></li>
@@ -20,16 +20,16 @@ const Footer = () => {
           <div className="footer__box">
               <h3 className="footer__title">SUPPORT</h3>
               <ul>
-                  <li><a href="#" className="footer__link">Product Help</a></li>
-                  <li><a href="#" className="footer__link">Custom Care</a></li>
-                  <li><a href="#" className="footer__link">Authorized service</a></li>
+                  <li><button className="footer__link">Product Help</button></li>
+                  <li><button className="footer__link">Custom Care</button></li>
+                  <li><button className="footer__link">Authorized service</button></li>
               </ul>
           </div>
           <div className="footer__box">
-              <a href="#" className="footer__social"><i className='bx bxl-facebook'></i></a>
-              <a href="#" className="footer__social"><i className='bx bxl-instagram'></i></a>
-              <a href="#" className="footer__social"><i className='bx bxl-twitter'></i></a>
-              <a href="#" className="footer__social"><i className='bx bxl-google'></i></a>
+              <button className="footer__social"><i className='bx bxl-facebook'></i></button>
+              <button className="footer__social"><i className='bx bxl-instagram'></i></button>
+              <button className="footer__social"><i className='bx bxl-twitter'></i></button>
+              <button className="footer__social"><i className='bx bxl-google'></i></button>
           </div>
       </div>
   </footer>

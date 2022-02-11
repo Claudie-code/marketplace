@@ -15,7 +15,7 @@ const Row = ({ _id, name, price, quantity, image, size}) => {
         <tr key={_id}>
             <td>
                 <figure>
-                    <div><img src={image} className="cart__image"/></div>
+                    <div><img src={image} className="cart__image" alt={name}/></div>
                     <figcaption>
                         <a href={`/products/${name}`} >{ name }{" - "}{ size }</a>
                     </figcaption>
@@ -36,7 +36,7 @@ const Row = ({ _id, name, price, quantity, image, size}) => {
                 </div>
             </td>
             <td className="text-right"> 
-                <a className="cart__remove" href="" onClick={removeFromCartAction}><i className='bx bx-trash'></i></a>
+                <button className="cart__remove" onClick={removeFromCartAction}><i className='bx bx-trash'></i></button>
             </td>
         </tr>
     );

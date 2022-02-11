@@ -1,19 +1,12 @@
-import { useEffect, useRef } from 'react';
 import Link from '../../Link';
 import Loader from '../../Loader';
 import ButtonNav from '../../ButtonNav';
 import new1 from '../img/new1.png';
 import './new.scss';
 
-const New = ({ scrollActive, offset, newItems, isLoading }) => {
-	const newRef = useRef();
-
-	useEffect(() => {
-		scrollActive(newRef, "new");
-	}, [offset]);
-
+const New = ({ newItems, isLoading }) => {
 	return (
-		<section className="new section" id="new" ref={newRef}>
+		<section className="new section" id="new">
 			<h2 className="section-title">NEW COLLECTION</h2>
 			<div className="new__container bd-grid">
 			<div className="new__mens">

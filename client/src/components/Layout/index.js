@@ -7,9 +7,7 @@ const Layout = ({ children }) => {
         <Router> 
             <HeaderNav />
             { children }
-            <Footer /> 
-                {/* <Header />
-                <Nav /> */}
+            <Footer />
         </Router>
     );
 };

@@ -4,7 +4,6 @@ import products from "./products";
 import user from "./user";
 import models from "./models";
 import brands from "./brands";
-import section from "./section";
 
 const reducers = combineReducers({
   user,
@@ -12,7 +11,6 @@ const reducers = combineReducers({
   products, 
   brands,
   models,
-  section
 });
 
 export default reducers;

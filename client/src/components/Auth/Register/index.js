@@ -55,10 +55,12 @@ const Register = () => {
 
 	useEffect(() => {
 		register(defaultValues);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		validate(formValues['register'] ?? {});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formValues]);
 
 	const handleOnSubmit = (event) => {

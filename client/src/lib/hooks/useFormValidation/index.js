@@ -9,14 +9,16 @@ export const useFormValidation = ({ formName, defaultValues }) => {
     const [isDirty, setDirty] = React.useState(false)
 
     const handleOnChange = (event, value) => {
-        console.log('ici')
         setDirty(true)
         const val = value?.toLowerCase() ?? event.target.value
         setFormValues(prevState => ({ ...prevState, [formName]: { ...prevState[formName], [event.target.name]: val }}))
     }
    
     const isValid = React.useMemo(() => Object.values(errors[formName] ?? {}).some(error => error), [formValues, handleOnChange])
-    React.useEffect(() => register(), [])
+    React.useEffect(
+        () => register()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    , [])
   
     const register = (values) => {
         const val = values ?? defaultValues
@@ -40,6 +42,7 @@ export const useFormValidation = ({ formName, defaultValues }) => {
             formValues, 
             isValid : Boolean(!isValid && isDirty)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formValues])
     return context
 }

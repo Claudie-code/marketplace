@@ -48,7 +48,7 @@ const CartTotal = () => {
 					</dl>
 					<hr />
 					<p className="cart__payments">
-						<img src="images/misc/payments.png" height="26" />
+						<img src="images/misc/payments.png" height="26" alt="payment methods" />
 					</p>
 					
 			</div> 

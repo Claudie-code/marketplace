@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { fetchProducts, fetchBrands, fetchModels } from '../../lib/state/actions';
+import { fetchProducts } from '../../lib/state/actions';
 import ProductCard from '../Home/ProductCard';
 import Dropdown from './Dropdown.js';
 import DropdownRadio from './DropdownRadio.js';
@@ -16,6 +16,7 @@ const Shop = () => {
 
     useEffect(() => {
         dispatch(fetchProducts());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -38,7 +39,9 @@ const Shop = () => {
             <div className="featured__container shop__container bd-grid">
 
                 {modelResults.map(modelResult => (
-                    <ProductCard {...modelResult} />
+                    <div key={modelResult._id}>
+                        <ProductCard {...modelResult} />
+                    </div>
                 ))}
 
             </div>

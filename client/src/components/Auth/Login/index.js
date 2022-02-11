@@ -29,23 +29,24 @@ const Login = () => {
 		handleOnChange,
 		isValid
 	} = useFormValidation({ formName: "login", defaultValues: defaultValues });
-  const { 
+  	const { 
 		email, password
 	} = formValues['login'] ?? {};
 
-  useEffect(() => {
+  	useEffect(() => {
 		register(defaultValues);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		validate(formValues['login'] ?? {});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [formValues]);
 
   	const handleOnSubmit = (event) => {
 		event.preventDefault();
 		handleUserLogin(email, password)
 		.then(currentUser => {
-			console.log(currentUser)
 			currentUser && setTimeout(() => window.location.reload(), 2000);
 		});	
 	};
