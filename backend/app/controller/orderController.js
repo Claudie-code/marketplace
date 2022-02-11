@@ -55,7 +55,7 @@ const orderController = {
                 const result = await transporter.sendMail({
                     from: 'Roby <roby.marketplace@gmail.com>', // sender address
                     to: request.body.user.email, // list of receivers
-                    subject: "Thank you for your purchase", // Subject line
+                    subject: "Thank you for your order", // Subject line
                     text: "test", // plain text body
                     html: temp,
                 }); 

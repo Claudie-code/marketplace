@@ -5,7 +5,11 @@ html
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
     link(rel="stylesheet", href="/email.css", data-inline)
   body
-    h2= "Thank you for your purchase - Order No " + noOrder
+    h2= "Thank you for your order - Order No " + noOrder
+    h3= "Shipping Address"
+    p= user.first + ' ' + user.last
+    p= user.address
+    p= user.city
     table
       thead
         tr  
@@ -20,9 +24,9 @@ html
                 div
                   img(src=item.image alt=item.name)
                 figcaption
-                  p= item.name + ' ' + item.size
+                  p= item.name
             td
-              p= item.quantity.$numberInt
+              p= item.quantity
             td
               p= '$' + item.price.$numberDecimal
-    h2= 'Total : $' + total.$numberInt
+    h2= 'Total : $' + total
