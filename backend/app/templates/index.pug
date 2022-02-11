@@ -3,44 +3,26 @@ html
   head
     meta(name='viewport', content='width=device-width')
     meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-    style()
-    title #{subject}
-    link(rel="stylesheet", href='/email.css', data-inline)
+    link(rel="stylesheet", href="/email.css", data-inline)
   body
-    table.body(border='0', cellpadding='0', cellspacing='0')
-      tr
-        td  
-        td.container
-          .content
-            span.preheader Someone sent you a message
-            table.main
-              tr
-                td.wrapper
-                  table(border='0', cellpadding='0', cellspacing='0')
-                    tr
-                      td
-                        p Hi there,
-                        p
-                          strong Someone sent you a message, here is what they wrote:
-                        table(border='0', cellpadding='0', cellspacing='0')
-                          tbody
-                            tr
-                              td(align='left')
-                                table(border='0', cellpadding='0', cellspacing='0')
-                                  tbody
-                                    tr
-                                      p #{message}
-                        p 
-                          strong This message was sent by: 
-                          | #{name} 
-                          strong from: 
-                          | #{from}
-                        p If you require technical support, please respond to this email.
-            .footer
-              table(border='0', cellpadding='0', cellspacing='0')
-                tr
-                  td.content-block
-                    span.apple-link My Company
-                    br
-                    a(href='http://www.mycompany.ca') Website
-                    | .
+    h2= "Thank you for your purchase - Order No " + noOrder
+    table
+      thead
+        tr  
+          th= 'Product'
+          th= 'Quantity'
+          th= 'Price'
+      tbody
+        each item in items
+          tr
+            td
+              figure
+                div
+                  img(src=item.image alt=item.name)
+                figcaption
+                  p= item.name + ' ' + item.size
+            td
+              p= item.quantity.$numberInt
+            td
+              p= '$' + item.price.$numberDecimal
+    h2= 'Total : $' + total.$numberInt

@@ -18,7 +18,7 @@ const orderController = {
         const orders = db.collection('orders');
         orders
         .insertOne(request.body)
-        .then(async () => {
+        .then(async (responseOrder) => {
             try {
                 const accessToken = await oAuth2Client.getAccessToken();
 
@@ -34,16 +34,24 @@ const orderController = {
                     }
                  });
 
-
-                const templateDir = path.join(__dirname, "../", 'templates')
+                const templateDir = path.join(__dirname, "../", 'templates', 'index')
+                const templateDirCss = path.join(__dirname, "../", 'templates')
             
                 const email = new Email()
                 
-                const locals = {
-                    userName: "XYZ" //dynamic data for bind into the template
-                };
+                const locals = request.body;
 
-                const temp = await email.render(templateDir, locals);
+                const temp = await email.render({
+                    path: templateDir,
+                    juiceResources: {
+                      preserveImportant: true,
+                      webResources: {
+                        // view folder path, it will get css from `mars/style.css`
+                        relativeTo: templateDirCss
+                      }
+                    }
+                  }, {...locals, noOrder: responseOrder.insertedId});
+                
                 const result = await transporter.sendMail({
                     from: 'Roby <roby.marketplace@gmail.com>', // sender address
                     to: request.body.user.email, // list of receivers
