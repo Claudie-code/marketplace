@@ -63,20 +63,12 @@ POST {{host}}/orders/add
 Content-Type: application/json
 
 {
-<<<<<<< HEAD
-=======
-    "_id":{"$oid":"62053e169b05e678d44746eb"},
->>>>>>> 70cd122714a479d18128c31fa2cf762e470f4eb7
     "user": {
         "delivery":"standard",
         "_id":"6203e1",
         "first":"John",
         "last":"Albert",
-<<<<<<< HEAD
         "email":"gueguen_c@yahoo.fr",
-=======
-        "email":"albert@yahoo.fr",
->>>>>>> 70cd122714a479d18128c31fa2cf762e470f4eb7
         "city":"paris",
         "country":"france",
         "gender":"male",
