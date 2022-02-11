@@ -53,7 +53,7 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
     useEffect(() => {
         setCheckedItems(new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model.id));
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [location.search, brandResults]);
+    }, [location.search, brandResults, models]);
 
     useEffect(() => {
         dispatch(fetchModels());

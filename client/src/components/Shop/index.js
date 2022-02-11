@@ -48,11 +48,9 @@ const Shop = () => {
 
             <div className="sneaker__pages bd-grid">
                 <div>
-                    <span className="sneaker__pag">1</span>
-                    <span className="sneaker__pag">2</span>
-                    <span className="sneaker__pag">3</span>
-                    <span className="sneaker__pag">4</span>
-                    <span className="sneaker__pag">&#8594;</span>
+                    <button className="sneaker__pag">1</button>
+                    <button className="sneaker__pag" disabled={true}>2</button>
+                    <button className="sneaker__pag" disabled={true}>&#8594;</button>
                 </div>
             </div>
         </section>

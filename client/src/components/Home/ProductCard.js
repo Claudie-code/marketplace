@@ -9,7 +9,7 @@ const ProductCard = ({ _id, sale, name, image, model, price }) => {
             {_id && !isLoading ?
                 <article className="sneaker">
                     {sale && <div className="sneaker__sale">Sale</div>}
-                    <img src={image} alt={name} className="sneaker__img" />
+                    <a href={`/products/${name}`}><img src={image} alt={name} className="sneaker__img" /></a>
                     <span className="sneaker__name">{model[0].name} <br /> {name}</span>
                     <span className="sneaker__preci">${price?.$numberDecimal}</span>
                     <ButtonNav href={`/products/${name}`} title={`product page ${name}`}>Explore</ButtonNav>
