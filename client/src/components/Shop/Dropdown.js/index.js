@@ -9,8 +9,7 @@ const Dropdown = ({ brandResults, setModelResults, brandCheckedItem }) => {
     const ref = useRef();
     const history = useHistory();
     const location = useLocation();
-    const initialState = new URLSearchParams(location.search).getAll('model').length > 0 ? new URLSearchParams(location.search).getAll('model') : models.map(model => model.id);
-    const [ checkedItems, setCheckedItems ] = useState(initialState);
+    const [ checkedItems, setCheckedItems ] = useState([]);
     const [ showMenu, setShowMenu ] = useState(false);
 
     const handleChange = (event) => {
