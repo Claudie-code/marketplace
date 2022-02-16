@@ -21,7 +21,7 @@ const Home = () => {
   const scrollActive = () => {
     const sections = document.querySelectorAll('section[id]');
     const scrollY = window.scrollY;
-
+    console.log("sec",sections)
     sections.forEach(current => {
       const sectionHeight = current.offsetHeight;
       const sectionTop = current.offsetTop - 50;

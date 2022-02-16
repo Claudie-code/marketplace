@@ -12,7 +12,7 @@ const Newsletter = () => {
 
 			<form className="newsletter__subscribe">
 				<input type="text" placeholder="@email.com" className="newsletter__input" />
-				<Button>Subscribe</Button>
+				<Button title='subscribe newsletter'>Subscribe</Button>
 			</form>
 			</div>
 		</section>

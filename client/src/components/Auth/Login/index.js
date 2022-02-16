@@ -64,7 +64,7 @@ const Login = () => {
 					<input type="password" name="password" id="password" className="form__input" placeholder="Password" value={password} onChange={handleOnChange} required />
 				</div> 
 				<div className="form__submit">
-					<Button type="submit" disabled={!isValid}>Login</Button>
+					<Button title='login' type="submit" disabled={!isValid}>Login</Button>
 				</div>  
 			</form>
 		</div>

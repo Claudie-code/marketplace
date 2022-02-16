@@ -19,7 +19,7 @@ const ProductCard = ({ _id, sale, name, image, model, price }) => {
                     <Loader />
                     <span className="sneaker__name"> <br /> </span>
                     <span className="sneaker__preci">$</span>
-                    <ButtonNav>Explore</ButtonNav>
+                    <ButtonNav title='waiting'>Explore</ButtonNav>
                 </article>
             }
         </>
