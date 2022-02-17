@@ -29,6 +29,7 @@ function Payment({ isValid, formValues }) {
 
   return (
     <Button
+      type='submit'
       onClick={() => handleClick()} 
       disabled={isValid}
     >

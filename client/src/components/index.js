@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';  
 import { Route } from "react-router-dom";
 import Home from './Home'
-import About from './Misc/About'
-import Help from './Misc/Help'
 import Login from './Auth/Login'
 import Register from './Auth/Register'
 import Confirmation from './Auth/Confirmation'
@@ -32,8 +30,6 @@ const App = () => {
         <Route exact path="/shop" component={Shop} />
         <Route exact path="/shop/:slug" component={Shop} />
         <Route exact path="/products/:slug" component={ProductPage} />
-        <Route path="/about" component={About} />
-        <Route path="/help" component={Help} />
       
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />

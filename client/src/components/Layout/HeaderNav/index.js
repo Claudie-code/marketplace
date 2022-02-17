@@ -54,7 +54,7 @@ const Header = () => {
     return (
         <header className={`l-header ${scrollHeader? "scroll-header" : ""}`} id="header">
             <nav className="nav bd-grid">
-                <IconButton onClick={() => setShowMenu(!showMenu)}>
+                <IconButton arialabel='show menu' onClick={() => setShowMenu(!showMenu)}>
                     <i className='bx bxs-grid'></i>
                 </IconButton>
 
