@@ -1,9 +1,9 @@
 import './button.scss';
 
-const Button = ({ children, onClick, title }) => { 
+const Button = ({ children, onClick, arialabel }) => { 
 
 	return (
-        <button title={title} className="button" onClick={onClick}>{ children }</button>
+        <button aria-label={arialabel} className="button" onClick={onClick}>{ children }</button>
 	)
 };
 

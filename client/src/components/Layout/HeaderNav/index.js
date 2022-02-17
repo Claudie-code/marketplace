@@ -21,14 +21,14 @@ const UserLogin = ({ user, setShowModal, showModal  }) => {
 		<>
             {!!user ?
                 <>
-                    <IconButton href="/account">
+                    <IconButton title='account user' href="/account">
                         <i className='bx bx-user'></i>
                     </IconButton>
-                    <IconButton onClick={logout}>
+                    <IconButton arialabel='log out' onClick={logout}>
                         <i className='bx bx-log-out'></i>
                     </IconButton>
                 </> :
-                <IconButton onClick={() => setShowModal(!showModal)}>
+                <IconButton arialabel='open register and login modal' onClick={() => setShowModal(!showModal)}>
                     <i className='bx bx-user'></i>
                 </IconButton>
             }
@@ -85,7 +85,7 @@ const Header = () => {
                 </div>
 
                 <div className="nav__icon">
-                    <IconButton href="/cart">
+                    <IconButton title='cart' href="/cart">
                         <div>
                             <i className='bx bx-shopping-bag' ></i>
                             <span className="badge badge-primary">{quantity}</span>

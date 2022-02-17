@@ -20,16 +20,16 @@ const Footer = () => {
           <div className="footer__box">
               <h3 className="footer__title">SUPPORT</h3>
               <ul>
-                  <li><button title='Product Help page' className="footer__link">Product Help</button></li>
-                  <li><button title='Custom Care page' className="footer__link">Custom Care</button></li>
-                  <li><button title='Authorized service page' className="footer__link">Authorized service</button></li>
+                  <li><button className="footer__link">Product Help</button></li>
+                  <li><button className="footer__link">Custom Care</button></li>
+                  <li><button className="footer__link">Authorized service</button></li>
               </ul>
           </div>
           <div className="footer__box">
-              <button title="roby's facebook social network" className="footer__social"><i className='bx bxl-facebook'></i></button>
-              <button title="roby's instagram social network" className="footer__social"><i className='bx bxl-instagram'></i></button>
-              <button title="roby's twitter social network" className="footer__social"><i className='bx bxl-twitter'></i></button>
-              <button title="roby's google social network" className="footer__social"><i className='bx bxl-google'></i></button>
+              <button aria-label="roby's facebook social network" className="footer__social"><i className='bx bxl-facebook'></i></button>
+              <button aria-label="roby's instagram social network" className="footer__social"><i className='bx bxl-instagram'></i></button>
+              <button aria-label="roby's twitter social network" className="footer__social"><i className='bx bxl-twitter'></i></button>
+              <button aria-label="roby's google social network" className="footer__social"><i className='bx bxl-google'></i></button>
           </div>
       </div>
   </footer>

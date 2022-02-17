@@ -114,7 +114,7 @@ const Register = () => {
 						<input type="password" name="confirm_password" id="confirm_password" className="form__input" placeholder="Repeat password" value={confirm_password} onChange={handleOnChange} required />
 					</div>
 					<div className="form-group">
-						<Button title='register' type="submit" disabled={!isValid}>Register</Button>
+						<Button type="submit" disabled={!isValid}>Register</Button>
 					</div>              
 				</form>
 

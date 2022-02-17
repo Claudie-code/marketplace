@@ -18,7 +18,7 @@ const CartTotal = () => {
 						<div className="input-group">
 							<input type="text" className="form-control" name="" placeholder="Coupon code" />
 							<span className="input-group-append"> 
-								<button title='apply coupon code' className="btn btn-primary">Apply</button>
+								<button aria-label='apply coupon code' className="btn btn-primary">Apply</button>
 							</span>
 						</div>
 					</div>
