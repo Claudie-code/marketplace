@@ -1,4 +1,4 @@
-import offert from '../img/offert.png';
+import offert from '../img/offert.webp';
 import './offer.css';
 
 const Offer = () => {
@@ -11,7 +11,7 @@ const Offer = () => {
 				<a href="/shop/adidas" title="adidas collection" className="button">Shop Now</a>
 			</div>
 
-			<img src={offert} alt="" className="offer__img" />
+			<img src={offert} alt="adidas sneakers" height='495' width='283' className="offer__img" />
 			</div>
 		</section>
 	);

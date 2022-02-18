@@ -1,6 +1,6 @@
 import Link from '../../Link';
 import Loader from '../../Loader';
-import image from '../img/imghome.png';
+import image from '../img/imghome.webp';
 import './home.scss';
 
 const HomeSneaker = ({ homeItem, isLoading }) => {
@@ -10,7 +10,7 @@ const HomeSneaker = ({ homeItem, isLoading }) => {
 					<div className="home__sneaker">
 						<div className="home__shape"></div>
 						{homeItem && !isLoading ?
-						 <img src={image} alt={homeItem.name} className="home__img" /> : <Loader />
+						 <img src={image} alt={homeItem.name} height='259' width='514' className="home__img" /> : <Loader />
 						}
 					</div>
 					<div className="home__data">

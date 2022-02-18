@@ -1,4 +1,4 @@
-import ProductCard from '../ProductCard';
+import ProductCard from '../../ProductCard';
 import './women.css';
 
 const Women = ({ womenItems }) => {

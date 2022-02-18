@@ -32,20 +32,20 @@ function ProductPage() {
                     <div className="product__container">
                         <div>
                             <div>
-                                <img src={product.image} alt={product.name} className="product__img" />
+                                <img src={product.image} alt={product.name} height='168' width='250' className="product__img" />
                             </div>
                             <div className="product__carousel">
                                 <div>
-                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                    <img src={product.image} alt={product.name} height='168' width='250' className="product__small-img" />  
                                 </div>
                                 <div>
-                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                    <img src={product.image} alt={product.name} height='168' width='250' className="product__small-img" />  
                                 </div>
                                 <div>
-                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                    <img src={product.image} alt={product.name} height='168' width='250' className="product__small-img" />  
                                 </div>
                                 <div>
-                                    <img src={product.image} alt={product.name} className="product__small-img" />  
+                                    <img src={product.image} alt={product.name} height='168' width='250' className="product__small-img" />  
                                 </div>
                             </div>
                             <ButtonNav href="/shop" title="shop">Continue shopping</ButtonNav>

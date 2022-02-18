@@ -15,7 +15,7 @@ const Row = ({ _id, name, price, quantity, image, size}) => {
         <tr key={_id}>
             <td>
                 <figure>
-                    <div><img src={image} className="cart__image" alt={name}/></div>
+                    <div><img src={image} height='168' width='250' className="cart__image" alt={name}/></div>
                     <figcaption>
                         <a href={`/products/${name}`} >{ name }{" - "}{ size }</a>
                     </figcaption>

@@ -1,6 +1,6 @@
 import ButtonNav from '../../ButtonNav';
-import collection1 from '../img/collection1.png';
-import collection2 from '../img/collection2.png';
+import collection1 from '../img/collection1.webp';
+import collection2 from '../img/collection2.webp';
 import './collection.scss';
 
 const Collection = () => {
@@ -14,7 +14,7 @@ const Collection = () => {
 				<ButtonNav href="/shop/nike" title="nike collection">Buy now</ButtonNav>
 				</div>
 
-				<img src={collection1} alt="nike collection" className="collection__img" />
+				<img src={collection1} height='442' width='396' alt="nike collection" className="collection__img" />
 			</div>
 
 			<div className="collection__card">
@@ -23,7 +23,7 @@ const Collection = () => {
 					<p className="collection__description">New collection 2022</p>
 					<ButtonNav href="/shop/adidas" title="adidas collection">Buy now</ButtonNav>
 				</div>
-				<img src={collection2} alt="adidas collection" className="collection__img" />
+				<img src={collection2} height='360' width='373' alt="adidas collection" className="collection__img" />
 			</div>
 			</div>
 		</section>

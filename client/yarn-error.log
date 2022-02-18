@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Claudie\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add queryString
+  C:\Program Files\nodejs\node.exe C:\Users\Claudie\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add redux.
 
 PATH: 
-  C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\Brackets\command;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\Claudie\AppData\Local\Microsoft\WindowsApps;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\ucrt;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Qt;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Ssl;C:\Users\Claudie\AppData\Local\GitHubDesktop\bin;C:\Users\Claudie\AppData\Roaming\npm;C:\Users\Claudie\AppData\Local\Microsoft\WindowsApps;C:\Users\Claudie\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\PostgreSQL\13\bin;C:\Program Files\heroku\bin
+  C:\Users\Claudie\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Claudie\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\AOMEI Backupper;C:\Program Files (x86)\Brackets\command;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Users\Claudie\AppData\Local\Microsoft\WindowsApps;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Firefox_Extension\{442718d9-475e-452a-b3e1-fb1ee16b8e9f}\components;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\ucrt;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Qt;C:\Users\Claudie\AppData\Roaming\Dashlane\6.1907.0.17833\bin\Ssl;C:\Users\Claudie\AppData\Local\GitHubDesktop\bin;C:\Users\Claudie\AppData\Roaming\npm;C:\Users\Claudie\AppData\Local\Microsoft\WindowsApps;C:\Users\Claudie\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\PostgreSQL\13\bin;C:\Program Files\heroku\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
 
 Yarn version: 
   1.22.11
@@ -14,7 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/queryString: Not found
+  Error: https://registry.yarnpkg.com/redux.: Not found
       at Request.params.callback [as _callback] (C:\Users\Claudie\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66992:18)
       at Request.self.callback (C:\Users\Claudie\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140763:22)
       at Request.emit (events.js:315:20)
@@ -41,6 +41,7 @@ npm manifest:
       "concurrently": "^5.3.0",
       "install": "^0.13.0",
       "npm": "^6.14.8",
+      "query-string": "^7.1.0",
       "react": "^17.0.1",
       "react-dom": "^17.0.1",
       "react-redux": "^7.2.2",
@@ -52,6 +53,7 @@ npm manifest:
       "redux-thunk": "^2.3.0",
       "reselect": "^4.0.0",
       "sass": "^1.49.0",
+      "serve": "^13.0.2",
       "stripe": "^8.194.0",
       "web-vitals": "^0.2.4"
     },
@@ -80,7 +82,6 @@ npm manifest:
         "last 1 safari version"
       ]
     },
-    "proxy": "http://localhost:3000",
     "secure": false
   }
 
@@ -10605,6 +10606,16 @@ Lockfile:
     version "6.14.1"
     resolved "https://registry.yarnpkg.com/query-string/-/query-string-6.14.1.tgz#7ac2dca46da7f309449ba0f86b1fd28255b0c86a"
     integrity sha512-XDxAeVmpfu1/6IjyT/gXHOl+S0vQ9owggJ30hhWKdHAsNPOcasn5o9BW0eejZqL2e4vMjhAxoW3jVHcD6mbcYw==
+    dependencies:
+      decode-uri-component "^0.2.0"
+      filter-obj "^1.1.0"
+      split-on-first "^1.0.0"
+      strict-uri-encode "^2.0.0"
+  
+  query-string@^7.1.0:
+    version "7.1.0"
+    resolved "https://registry.yarnpkg.com/query-string/-/query-string-7.1.0.tgz#96b88f27b39794f97b8c8ccd060bc900495078ef"
+    integrity sha512-wnJ8covk+S9isYR5JIXPt93kFUmI2fQ4R/8130fuq+qwLiGVTurg7Klodgfw4NSz/oe7xnyi09y3lSrogUeM3g==
     dependencies:
       decode-uri-component "^0.2.0"
       filter-obj "^1.1.0"

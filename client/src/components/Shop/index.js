@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchProducts } from '../../lib/state/actions';
-import ProductCard from '../Home/ProductCard';
+import ProductCard from '../ProductCard';
 import Dropdown from './Dropdown.js';
 import DropdownRadio from './DropdownRadio.js';
 import './shop.scss';
@@ -36,7 +36,7 @@ const Shop = () => {
                 />
             </div>  
             
-            <div className="featured__container shop__container bd-grid">
+            <div className="models__container shop__container bd-grid">
 
                 {modelResults.map(modelResult => (
                     <div key={modelResult._id}>
