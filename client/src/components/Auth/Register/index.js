@@ -7,21 +7,21 @@ import Button from '../../Button';
 const Alert = ({ isVisible }) => (
 	isVisible &&
 	<div className="alert alert-info mt-3">
-		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>{' '}User successfully created</p>
+		<p className="icontext"><i className='bx bx-user-check'></i>{' '}User successfully created</p>
     </div>
 );
 
 const ErrorMessage = ({ error }) => (
 	error && 
 	<div className="alert alert-danger mt-3">
-		<p className="icontext" style={{ color: 'crimson' }}><i className="icon text-danger fas fa-exclamation-circle"></i> {' '}{error?.error}</p>
+		<p className="icontext" style={{ color: 'crimson' }}><i className='bx bx-error-circle'></i> {' '}{error?.error}</p>
     </div>
 );
 
 const ConfirmEmail = ({ message }) => (
 	message &&
 	<div className="alert alert-info mt-3">
-		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>{message}</p>
+		<p className="icontext"><i className='bx bx-check-circle'></i> {message}</p>
     </div>
 );
 

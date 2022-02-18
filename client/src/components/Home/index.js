@@ -12,11 +12,11 @@ import { fetchProducts } from '../../lib/state/actions';
 const Home = () => {
   const dispatch = useDispatch();
 	const state = useSelector(state => ({...state.products}));
-	const { items, isLoading } = state;
-  const homeItem = items[0];
-  const featuredItems = items.filter(item => item.modelid === "airjordan1high");
-  const womenItems = items.filter(item => item.modelid === "dunklow");
-  const newItems = items.filter(item => item.modelid === "yeezyboost350");
+	const { isLoading, featuredItems, womenItems, newItems, homeItem } = state;
+  //const homeItem = items[0];
+  //const featuredItems = items.filter(item => item.modelid === "airjordan1high");
+  //const womenItems = items.filter(item => item.modelid === "dunklow");
+  //const newItems = items.filter(item => item.modelid === "yeezyboost350");
   
   const scrollActive = () => {
     const sections = document.querySelectorAll('section[id]');

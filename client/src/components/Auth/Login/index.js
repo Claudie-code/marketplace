@@ -9,7 +9,7 @@ import './login.scss';
 const Alert = ({ isVisible }) => (
 	isVisible &&
 	<div className="alert alert-info mt-3">
-		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>User successfully connected</p>
+		<p className="icontext"><i className='bx bx-user-check'></i> User successfully connected</p>
     </div>
 );
 

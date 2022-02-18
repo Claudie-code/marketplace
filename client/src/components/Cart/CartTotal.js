@@ -10,7 +10,7 @@ const CartTotal = () => {
 		<div className="card mb-3">
 			<div className="card-body">
 				<div className="cart__success">
-					<p className="icontext"><i className="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+					<p className="icontext"><i className='bx bxs-truck'></i> Free Delivery within 1-2 weeks</p>
 				</div>
 				<form>
 					<div className="form-group">

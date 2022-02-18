@@ -1,7 +1,7 @@
 const AlertMessage = ({ message }) => (
     !!message &&
 	<div className="alert alert-info mt-3">
-		<p className="icontext"><i className="icon text-primary fa fa-thumbs-up"></i>{message}</p>
+		<p className="icontext"><i className='bx bx-check-circle'></i> {message}</p>
     </div>
 );
 
