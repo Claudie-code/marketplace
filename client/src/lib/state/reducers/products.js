@@ -25,8 +25,7 @@ const products = (state = initialState, { type, payload }) => {
         items: payload.data,
         featuredItems: payload.data.filter(item => item.modelid === "airjordan1high"),
         womenItems: payload.data.filter(item => item.modelid === "dunklow"),
-        newItems: payload.data.filter(item => item.modelid === "yeezyboost350"),
-        homeItem: payload.data[0]
+        newItems: payload.data.filter(item => item.modelid === "yeezyboost350")
       };
     case GET_PRODUCTS_FAILURE:
       return {

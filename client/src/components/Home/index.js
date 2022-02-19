@@ -12,11 +12,7 @@ import { fetchProducts } from '../../lib/state/actions';
 const Home = () => {
   const dispatch = useDispatch();
 	const state = useSelector(state => ({...state.products}));
-	const { isLoading, featuredItems, womenItems, newItems, homeItem } = state;
-  //const homeItem = items[0];
-  //const featuredItems = items.filter(item => item.modelid === "airjordan1high");
-  //const womenItems = items.filter(item => item.modelid === "dunklow");
-  //const newItems = items.filter(item => item.modelid === "yeezyboost350");
+	const { isLoading, featuredItems, womenItems, newItems } = state;
   
   const scrollActive = () => {
     const sections = document.querySelectorAll('section[id]');
@@ -44,7 +40,7 @@ const Home = () => {
   
   return (
     <main className="l-main">    
-      <HomeSneaker homeItem={homeItem} isLoading={isLoading} />
+      <HomeSneaker isLoading={isLoading} />
       <Featured featuredItems={featuredItems} />
       <Collection />
       <Women womenItems={womenItems} />
